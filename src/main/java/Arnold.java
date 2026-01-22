@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Arnold {
     private static void printHorizontalLine() {
         System.out.println("____________________________________________________________");
@@ -13,11 +15,27 @@ public class Arnold {
     }
 
     public static void main(String[] args) {
+        // Scanner is used to get user input later
+        Scanner scanner = new Scanner(System.in);
+
         Arnold.printHorizontalLine();
         Arnold.printHi();
         Arnold.printHorizontalLine();
-        Arnold.printBye();
-        Arnold.printHorizontalLine();
-        System.exit(0);
+
+        while (true) {
+            String input = scanner.nextLine();
+            String inputCommand = input.strip().toLowerCase();
+            if (inputCommand.equals("bye")) {
+                Arnold.printHorizontalLine();
+                Arnold.printBye();
+                Arnold.printHorizontalLine();
+                System.exit(0);
+            } else {
+                Arnold.printHorizontalLine();
+                System.out.println(input);
+                Arnold.printHorizontalLine();
+            }
+        }
+
     }
 }
