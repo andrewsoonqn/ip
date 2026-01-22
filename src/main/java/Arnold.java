@@ -1,16 +1,16 @@
 import java.util.Scanner;
 
 public class Arnold {
-    private static void printHorizontalLine() {
+    private static void line() {
         System.out.println("____________________________________________________________");
     }
 
-    private static void printHi() {
+    private static void hi() {
         System.out.println("Hello! I'm Arnold");
         System.out.println("What can I do for you?");
     }
 
-    private static void printBye() {
+    private static void bye() {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
@@ -18,22 +18,22 @@ public class Arnold {
         // Scanner is used to get user input later
         Scanner scanner = new Scanner(System.in);
 
-        Arnold.printHorizontalLine();
-        Arnold.printHi();
-        Arnold.printHorizontalLine();
+        Arnold.line();
+        Arnold.hi();
+        Arnold.line();
 
         while (true) {
             String input = scanner.nextLine();
             String inputCommand = input.strip().toLowerCase();
             if (inputCommand.equals("bye")) {
-                Arnold.printHorizontalLine();
-                Arnold.printBye();
-                Arnold.printHorizontalLine();
+                Arnold.line();
+                Arnold.bye();
+                Arnold.line();
                 System.exit(0);
             } else {
-                Arnold.printHorizontalLine();
+                Arnold.line();
                 System.out.println(input);
-                Arnold.printHorizontalLine();
+                Arnold.line();
             }
         }
 
