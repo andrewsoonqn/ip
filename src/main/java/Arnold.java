@@ -1,17 +1,21 @@
 import java.util.Scanner;
 
 public class Arnold {
+    private static void indentPrint(String text) {
+        System.out.print("    ");
+        System.out.println(text);
+    }
     private static void line() {
-        System.out.println("____________________________________________________________");
+        indentPrint("____________________________________________________________");
     }
 
     private static void hi() {
-        System.out.println("Hello! I'm Arnold");
-        System.out.println("What can I do for you?");
+        indentPrint("Hello! I'm Arnold");
+        indentPrint("What can I do for you?");
     }
 
     private static void bye() {
-        System.out.println("Bye. Hope to see you again soon!");
+        indentPrint("Bye. Hope to see you again soon!");
     }
 
     public static void main(String[] args) {
@@ -32,7 +36,7 @@ public class Arnold {
                 System.exit(0);
             } else {
                 Arnold.line();
-                System.out.println(input);
+                indentPrint(input);
                 Arnold.line();
             }
         }
