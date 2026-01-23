@@ -1,6 +1,9 @@
 import java.util.Scanner;
 
 public class Arnold {
+    // ---------------------------------------------
+    // Helper methods
+    // ---------------------------------------------
     private static void indentPrint(String text) {
         System.out.print("    ");
         System.out.println(text);
@@ -9,6 +12,9 @@ public class Arnold {
         indentPrint("____________________________________________________________");
     }
 
+    // ---------------------------------------------
+    // Chatbot commands
+    // ---------------------------------------------
     private static void hi() {
         indentPrint("Hello! I'm Arnold");
         indentPrint("What can I do for you?");
