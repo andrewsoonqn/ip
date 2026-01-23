@@ -34,6 +34,13 @@ public class Arnold {
         printMessage("Bye. Hope to see you again soon!");
     }
 
+    private static void list() {
+        printMessage(TaskList.getInstance().listTasks());
+    }
+
+    private static void add(String task) {
+        String message = TaskList.getInstance().addTask(task);
+        printMessage(message);
     }
 
     public static void main(String[] args) {
@@ -48,10 +55,10 @@ public class Arnold {
             if (inputCommand.equals("bye")) {
                 bye();
                 break;
+            } else if (inputCommand.equals("list")) {
+                list();
             } else {
-                Arnold.line();
-                indentPrint(input);
-                Arnold.line();
+                add(input);
             }
         }
 
