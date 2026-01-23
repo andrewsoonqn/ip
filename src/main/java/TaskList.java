@@ -19,12 +19,18 @@ public class TaskList {
 
     public String listTasks() {
         StringBuilder taskListBuilder = new StringBuilder();
+
+        int counter = 1;
         for (String task : tasks) {
+            // Format as "{counter}. {task}"
+            // e.g. "1. my task"
+            taskListBuilder.append(String.format("%d. %s", counter, task));
+
             if (tasks.size() == 1) {
-                taskListBuilder.append(task);
                 break;
             }
-            taskListBuilder.append(task).append("\n");
+            taskListBuilder.append("\n");
+            counter++;
         }
         return taskListBuilder.toString();
     }
