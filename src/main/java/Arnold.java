@@ -1,22 +1,45 @@
+import java.util.Scanner;
+
 public class Arnold {
-    private static void printHorizontalLine() {
-        System.out.println("____________________________________________________________");
+    private static void indentPrint(String text) {
+        System.out.print("    ");
+        System.out.println(text);
+    }
+    private static void line() {
+        indentPrint("____________________________________________________________");
     }
 
-    private static void printHi() {
-        System.out.println("Hello! I'm Arnold");
-        System.out.println("What can I do for you?");
+    private static void hi() {
+        indentPrint("Hello! I'm Arnold");
+        indentPrint("What can I do for you?");
     }
 
-    private static void printBye() {
-        System.out.println("Bye. Hope to see you again soon!");
+    private static void bye() {
+        indentPrint("Bye. Hope to see you again soon!");
     }
 
     public static void main(String[] args) {
-        Arnold.printHorizontalLine();
-        Arnold.printHi();
-        Arnold.printHorizontalLine();
-        Arnold.printBye();
-        Arnold.printHorizontalLine();
+        // Scanner is used to get user input later
+        Scanner scanner = new Scanner(System.in);
+
+        Arnold.line();
+        Arnold.hi();
+        Arnold.line();
+
+        while (true) {
+            String input = scanner.nextLine();
+            String inputCommand = input.strip().toLowerCase();
+            if (inputCommand.equals("bye")) {
+                Arnold.line();
+                Arnold.bye();
+                Arnold.line();
+                System.exit(0);
+            } else {
+                Arnold.line();
+                indentPrint(input);
+                Arnold.line();
+            }
+        }
+
     }
 }
