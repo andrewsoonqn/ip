@@ -10,7 +10,7 @@ public class Arnold {
     }
 
     private static void line() {
-        indentPrint("____________________________________________________________");
+        indentPrint("_".repeat(60));
     }
 
     public static void printMessage(String text) {
