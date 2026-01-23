@@ -3,8 +3,8 @@ import java.util.List;
 
 public class TaskList {
     // This TaskList implements a Singleton pattern
-    private static TaskList instance = new TaskList();
-    private List<String> tasks = new ArrayList<>();
+    private static final TaskList instance = new TaskList();
+    private final List<String> tasks = new ArrayList<>();
 
     private TaskList() {}
 
