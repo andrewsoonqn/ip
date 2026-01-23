@@ -20,17 +20,14 @@ public class TaskList {
     public String listTasks() {
         StringBuilder taskListBuilder = new StringBuilder();
 
-        int counter = 1;
         for (Task task : tasks) {
-            // Format as "{counter}. {task}"
-            // e.g. "1. my task"
-            taskListBuilder.append(String.format("%d. %s", counter, task));
+            taskListBuilder.append(task);
 
             if (tasks.size() == 1) {
                 break;
             }
+
             taskListBuilder.append("\n");
-            counter++;
         }
         return taskListBuilder.toString();
     }
