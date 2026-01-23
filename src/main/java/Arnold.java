@@ -18,6 +18,5 @@ public class Arnold {
         Arnold.printHorizontalLine();
         Arnold.printBye();
         Arnold.printHorizontalLine();
-        System.exit(0);
     }
 }
