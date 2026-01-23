@@ -20,6 +20,10 @@ public class TaskList {
     public String listTasks() {
         StringBuilder taskListBuilder = new StringBuilder();
         for (String task : tasks) {
+            if (tasks.size() == 1) {
+                taskListBuilder.append(task);
+                break;
+            }
             taskListBuilder.append(task).append("\n");
         }
         return taskListBuilder.toString();
