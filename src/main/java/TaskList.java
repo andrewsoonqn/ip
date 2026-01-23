@@ -17,3 +17,11 @@ public class TaskList {
         return "added: " + task;
     }
 
+    public String listTasks() {
+        StringBuilder taskListBuilder = new StringBuilder();
+        for (String task : tasks) {
+            taskListBuilder.append(task).append("\n");
+        }
+        return taskListBuilder.toString();
+    }
+}
