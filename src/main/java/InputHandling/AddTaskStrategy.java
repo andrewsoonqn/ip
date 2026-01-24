@@ -1,15 +1,13 @@
 package InputHandling;
 
 import Messaging.Messenger;
-import Tasks.Deadline;
 import Tasks.Task;
 import Tasks.TaskList;
 import Tasks.TaskString;
 
-import java.util.Map;
-
 public abstract class AddTaskStrategy implements InputHandlingStrategy {
     protected abstract Task getTask(String input);
+
     @Override
     public void handleInput(String input, Messenger msg, TaskList taskList) {
         Task addedTask = taskList.addTask(getTask(input));

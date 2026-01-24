@@ -1,10 +1,10 @@
-import java.util.Scanner;
-
 import Events.EventBus;
 import InputHandling.HiStrategy;
 import InputHandling.InputProcessor;
 import Messaging.Messenger;
 import Tasks.TaskList;
+
+import java.util.Scanner;
 
 public class Arnold {
     private final InputProcessor ip;

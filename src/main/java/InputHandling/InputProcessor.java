@@ -6,8 +6,8 @@ import Tasks.TaskList;
 import java.util.Map;
 
 public class InputProcessor {
-    private Messenger msg;
-    private TaskList taskList;
+    private final Messenger msg;
+    private final TaskList taskList;
 
     public InputProcessor(Messenger msg, TaskList taskList) {
         this.msg = msg;
