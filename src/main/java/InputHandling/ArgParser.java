@@ -28,9 +28,4 @@ public class ArgParser {
         }
         return flags;
     }
-
-    public static void main(String[] args) {
-        getFlags("task /flag1 value1 /flag2 value2");
-    }
-
 }
