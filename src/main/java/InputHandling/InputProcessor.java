@@ -19,7 +19,9 @@ public class InputProcessor {
             "list", new ListStrategy(),
             "mark", new MarkStrategy(),
             "unmark", new UnmarkStrategy(),
-            "todo", new TodoStrategy()
+            "todo", new TodoStrategy(),
+            "deadline", new DeadlineStrategy(),
+            "event", new EventStrategy()
     );
 
     public void processInput(String input) {
