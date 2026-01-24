@@ -38,7 +38,7 @@ public class Arnold {
         printMessage(TaskList.getInstance().listTasks());
     }
 
-    private static void add(String task) {
+    private static void add(Task task) {
         String message = TaskList.getInstance().addTask(task);
         printMessage(message);
     }
@@ -58,7 +58,7 @@ public class Arnold {
             } else if (inputCommand.equals("list")) {
                 list();
             } else {
-                add(input);
+                add(new Task(input));
             }
         }
 
