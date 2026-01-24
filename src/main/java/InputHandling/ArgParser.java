@@ -18,8 +18,10 @@ public class ArgParser {
         String[] parts = text.split(FLAG_SIGNIFIER);
 
         // The first part will be the task
-        // The rest will be flags
         String taskDescription = parts[0];
+        flags.put("taskDescription", taskDescription);
+
+        // The rest will be flags
         for (int i = 1; i < parts.length; i++) {
             String[] keyValue = parts[i].split("\\s+", 2);
             if (keyValue.length == 2) {
