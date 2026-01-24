@@ -22,7 +22,7 @@ public class InputProcessor {
     );
 
     public void processInput(String input) {
-        String[] commandParts = input.strip().toLowerCase().split(" ");
+        String[] commandParts = input.strip().toLowerCase().split("\\s+");
         String command = commandParts[0];
         String arg = commandParts.length > 1 ? commandParts[1] : null;
 
