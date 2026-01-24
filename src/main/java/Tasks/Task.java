@@ -1,6 +1,6 @@
 package Tasks;
 
-public class Task {
+public abstract class Task {
     private final String description;
     private boolean isDone;
     private static int taskCount = 0;
