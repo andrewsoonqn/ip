@@ -2,6 +2,7 @@ package InputHandling;
 
 import Messaging.Messenger;
 import Tasks.TaskList;
+import Tasks.TaskString;
 
 public class UnmarkStrategy implements InputHandlingStrategy {
     @Override
@@ -10,6 +11,6 @@ public class UnmarkStrategy implements InputHandlingStrategy {
         taskList.unmarkTask(taskId);
         msg.printMessage(
                 "OK, I've marked this task as not done yet:\n"
-                + taskList.getTask(taskId).toStringWithoutId());
+                        + TaskString.withoutId(taskList.getTask(taskId)));
     }
 }

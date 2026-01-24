@@ -12,7 +12,7 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return super.toString() + String.format(" (from: %s to: %s)", from, to);
+        return "[E]" + super.toString() + String.format(" (from: %s to: %s)", from, to);
     }
 }
 

@@ -18,15 +18,15 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        return String.format("%d. [%s] %s", id, getStatusIcon(), description);
-    }
-
-    public String toStringWithoutId() {
-        return String.format("   [%s] %s", getStatusIcon(), description);
-    }
+        return String.format("[%s] %s", getStatusIcon(), description);
+    };
 
     public String getDescription() {
         return description;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void mark() {
