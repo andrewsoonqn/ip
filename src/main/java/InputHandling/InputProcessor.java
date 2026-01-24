@@ -18,7 +18,8 @@ public class InputProcessor {
             "bye", new ExitStrategy(),
             "list", new ListStrategy(),
             "mark", new MarkStrategy(),
-            "unmark", new UnmarkStrategy()
+            "unmark", new UnmarkStrategy(),
+            "todo", new TodoStrategy()
     );
 
     public void processInput(String input) {
