@@ -23,9 +23,9 @@ public class InputProcessor {
     );
 
     public void processInput(String input) {
-        String[] commandParts = input.strip().toLowerCase().split("\\s+");
-        String command = commandParts[0];
-        String arg = commandParts.length > 1 ? commandParts[1] : null;
+        String[] commandArgs = ArgParser.getCommandArgs(input);
+        String command = commandArgs[0];
+        String arg = commandArgs[1];
 
         InputHandlingStrategy strategy = commandStrategies.get(command);
         if (strategy != null) {
