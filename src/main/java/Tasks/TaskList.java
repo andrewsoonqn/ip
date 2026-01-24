@@ -26,11 +26,15 @@ public class TaskList {
         return taskListBuilder.toString();
     }
 
+    private Task getTask(int id) {
+        return tasks.get(id - 1);
+    }
+
     public void markTask(int id) {
-        tasks.get(id).mark();
+        getTask(id).mark();
     }
 
     public void unmarkTask(int id) {
-        tasks.get(id).unmark();
+        getTask(id).unmark();
     }
 }
