@@ -1,66 +1,34 @@
 import java.util.Scanner;
 
+import Events.EventBus;
+import InputHandling.HiStrategy;
+import InputHandling.InputProcessor;
+import Messaging.Messenger;
+import Tasks.Task;
+import Tasks.TaskList;
+
 public class Arnold {
-    // ---------------------------------------------
-    // Helper methods
-    // ---------------------------------------------
-    private static void indentPrint(String text) {
-        System.out.print("    ");
-        System.out.println(text);
+    private final InputProcessor ip;
+    private boolean running = true;
+
+    public Arnold(Messenger msg, TaskList taskList) {
+        this.ip = new InputProcessor(msg, taskList);
     }
 
-    private static void line() {
-        indentPrint("_".repeat(60));
+    public void hi() {
+        ip.processInput(new HiStrategy(), "");
     }
 
-    public static void printMessage(String text) {
-        line();
-        for (String line : text.split("\n")) {
-            indentPrint(line);
-        }
-        line();
-    }
+    public void run(Scanner scanner) {
+        // Exit command will trigger shutdown
+        EventBus.getInstance().registerShutdownHandler(() -> running = false);
 
-    // ---------------------------------------------
-    // Chatbot commands
-    // ---------------------------------------------
-
-    private static void hi() {
-        String message = "Hello! I'm Arnold" + "\n" + "What can I do for you?";
-        printMessage(message);
-    }
-
-    private static void bye() {
-        printMessage("Bye. Hope to see you again soon!");
-    }
-
-    private static void list() {
-        printMessage(TaskList.getInstance().listTasks());
-    }
-
-    private static void add(Task task) {
-        String message = TaskList.getInstance().addTask(task);
-        printMessage(message);
-    }
-
-    public static void main(String[] args) {
-        // Scanner is used to get user input later
-        Scanner scanner = new Scanner(System.in);
-
-        hi();
-
-        while (true) {
+        while (scanner.hasNext()) {
             String input = scanner.nextLine();
-            String inputCommand = input.strip().toLowerCase();
-            if (inputCommand.equals("bye")) {
-                bye();
+            ip.processInput(input);
+            if (!running) {
                 break;
-            } else if (inputCommand.equals("list")) {
-                list();
-            } else {
-                add(new Task(input));
             }
         }
-
     }
 }
