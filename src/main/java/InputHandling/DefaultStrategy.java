@@ -1,11 +1,12 @@
 package InputHandling;
 
+import ChatbotExceptions.ChatBotException;
 import Messaging.Messenger;
 import Tasks.TaskList;
 
 public class DefaultStrategy implements InputHandlingStrategy {
     @Override
     public void handleInput(String input, Messenger msg, TaskList taskList) {
-        msg.printMessage("Invalid command.");
+        throw new ChatBotException("Invalid command.");
     }
 }
