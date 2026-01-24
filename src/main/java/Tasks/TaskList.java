@@ -11,7 +11,8 @@ public class TaskList {
         return "added: " + task.getDescription();
     }
 
-    public String listTasks() {
+    @Override
+    public String toString() {
         StringBuilder taskListBuilder = new StringBuilder();
 
         for (Task task : tasks) {
