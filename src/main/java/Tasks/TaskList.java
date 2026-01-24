@@ -25,4 +25,12 @@ public class TaskList {
         }
         return taskListBuilder.toString();
     }
+
+    public void markTask(int id) {
+        tasks.get(id).mark();
+    }
+
+    public void unmarkTask(int id) {
+        tasks.get(id).unmark();
+    }
 }
