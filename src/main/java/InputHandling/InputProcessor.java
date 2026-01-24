@@ -16,7 +16,9 @@ public class InputProcessor {
 
     private static final Map<String, InputHandlingStrategy> commandStrategies = Map.of(
             "bye", new ExitStrategy(),
-            "list", new ListStrategy()
+            "list", new ListStrategy(),
+            "mark", new MarkStrategy(),
+            "unmark", new UnmarkStrategy()
     );
 
     public void processInput(String input) {
