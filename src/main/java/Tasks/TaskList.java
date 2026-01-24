@@ -6,9 +6,9 @@ import java.util.List;
 public class TaskList {
     private final List<Task> tasks = new ArrayList<>();
 
-    public String addTask(Task task) {
+    public Task addTask(Task task) {
         tasks.add(task);
-        return "added: " + task.getDescription();
+        return task;
     }
 
     @Override
@@ -37,5 +37,9 @@ public class TaskList {
 
     public void unmarkTask(int id) {
         getTask(id).unmark();
+    }
+
+    public int getSize() {
+        return tasks.size();
     }
 }
