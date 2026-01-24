@@ -17,4 +17,10 @@ public class DeadlineStrategy extends AddTaskStrategy {
         }
         return new Deadline(flagValues.get("taskDescription"), by);
     }
+
+    @Override
+    public String getExampleUsage() {
+        return "deadline submit report \\by Sun 11PM";
+    }
+
 }

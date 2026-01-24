@@ -23,4 +23,9 @@ public class EventStrategy extends AddTaskStrategy {
 
         return new Event(flagValues.get("taskDescription"), flagValues.get("from"), flagValues.get("to"));
     }
+
+    @Override
+    public String getExampleUsage() {
+        return "event attend meeting \\from Mon 10AM \\to Mon 12PM";
+    }
 }
