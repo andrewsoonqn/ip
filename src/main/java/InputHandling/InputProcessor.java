@@ -6,8 +6,8 @@ import Tasks.TaskList;
 import java.util.Map;
 
 public class InputProcessor {
-    private Messenger msg;
-    private TaskList taskList;
+    private final Messenger msg;
+    private final TaskList taskList;
 
     public InputProcessor(Messenger msg, TaskList taskList) {
         this.msg = msg;
@@ -18,13 +18,16 @@ public class InputProcessor {
             "bye", new ExitStrategy(),
             "list", new ListStrategy(),
             "mark", new MarkStrategy(),
-            "unmark", new UnmarkStrategy()
+            "unmark", new UnmarkStrategy(),
+            "todo", new TodoStrategy(),
+            "deadline", new DeadlineStrategy(),
+            "event", new EventStrategy()
     );
 
     public void processInput(String input) {
-        String[] commandParts = input.strip().toLowerCase().split("\\s+");
-        String command = commandParts[0];
-        String arg = commandParts.length > 1 ? commandParts[1] : null;
+        String[] commandArgs = ArgParser.getCommandArgs(input);
+        String command = commandArgs[0];
+        String arg = commandArgs[1];
 
         InputHandlingStrategy strategy = commandStrategies.get(command);
         if (strategy != null) {

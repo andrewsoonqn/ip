@@ -6,16 +6,17 @@ import java.util.List;
 public class TaskList {
     private final List<Task> tasks = new ArrayList<>();
 
-    public String addTask(Task task) {
+    public Task addTask(Task task) {
         tasks.add(task);
-        return "added: " + task.getDescription();
+        return task;
     }
 
-    public String listTasks() {
+    @Override
+    public String toString() {
         StringBuilder taskListBuilder = new StringBuilder();
 
         for (Task task : tasks) {
-            taskListBuilder.append(task);
+            taskListBuilder.append(TaskString.withId(task));
 
             if (tasks.size() == 1) {
                 break;
@@ -36,5 +37,9 @@ public class TaskList {
 
     public void unmarkTask(int id) {
         getTask(id).unmark();
+    }
+
+    public int getSize() {
+        return tasks.size();
     }
 }

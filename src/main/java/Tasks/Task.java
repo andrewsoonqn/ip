@@ -1,10 +1,10 @@
 package Tasks;
 
-public class Task {
+public abstract class Task {
     private final String description;
     private boolean isDone;
     private static int taskCount = 0;
-    private int id;
+    private final int id;
 
     public Task(String description) {
         this.description = description;
@@ -18,15 +18,15 @@ public class Task {
 
     @Override
     public String toString() {
-        return String.format("%d. [%s] %s", id, getStatusIcon(), description);
-    }
-
-    public String toStringWithoutId() {
-        return String.format("   [%s] %s", getStatusIcon(), description);
+        return String.format("[%s] %s", getStatusIcon(), description);
     }
 
     public String getDescription() {
         return description;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void mark() {

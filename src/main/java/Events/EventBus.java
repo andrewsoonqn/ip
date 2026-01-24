@@ -5,9 +5,10 @@ package Events;
 public class EventBus {
     // For now, only one shutdown handler is supported
     private Runnable shutdownHandler;
-    private static EventBus instance = new EventBus();
+    private static final EventBus instance = new EventBus();
 
-    private EventBus() {}
+    private EventBus() {
+    }
 
     public static EventBus getInstance() {
         return instance;

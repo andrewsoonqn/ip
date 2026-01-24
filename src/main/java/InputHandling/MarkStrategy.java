@@ -2,6 +2,7 @@ package InputHandling;
 
 import Messaging.Messenger;
 import Tasks.TaskList;
+import Tasks.TaskString;
 
 public class MarkStrategy implements InputHandlingStrategy {
     @Override
@@ -10,6 +11,6 @@ public class MarkStrategy implements InputHandlingStrategy {
         taskList.markTask(taskId);
         msg.printMessage(
                 "Nice! I've marked this task as done:\n"
-                + taskList.getTask(taskId).toStringWithoutId());
+                        + TaskString.withoutId(taskList.getTask(taskId)));
     }
 }
