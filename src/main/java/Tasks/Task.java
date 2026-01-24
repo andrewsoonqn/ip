@@ -21,6 +21,10 @@ public class Task {
         return String.format("%d. [%s] %s", id, getStatusIcon(), description);
     }
 
+    public String toStringWithoutId() {
+        return String.format("   [%s] %s", getStatusIcon(), description);
+    }
+
     public String getDescription() {
         return description;
     }

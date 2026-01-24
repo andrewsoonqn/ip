@@ -26,7 +26,7 @@ public class TaskList {
         return taskListBuilder.toString();
     }
 
-    private Task getTask(int id) {
+    public Task getTask(int id) {
         return tasks.get(id - 1);
     }
 

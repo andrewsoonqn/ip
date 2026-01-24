@@ -6,9 +6,10 @@ import Tasks.TaskList;
 public class UnmarkStrategy implements InputHandlingStrategy {
     @Override
     public void handleInput(String input, Messenger msg, TaskList taskList) {
-        taskList.unmarkTask(Integer.parseInt(input));
+        int taskId = Integer.parseInt(input);
+        taskList.unmarkTask(taskId);
         msg.printMessage(
                 "OK, I've marked this task as not done yet:\n"
-                + taskList.listTasks());
+                + taskList.getTask(taskId).toStringWithoutId());
     }
 }
