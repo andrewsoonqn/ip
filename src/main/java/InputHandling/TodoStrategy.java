@@ -5,9 +5,11 @@ import Tasks.Task;
 import Tasks.TaskList;
 import Tasks.Todo;
 
-public class DefaultStrategy implements InputHandlingStrategy {
+public class TodoStrategy implements InputHandlingStrategy {
     @Override
     public void handleInput(String input, Messenger msg, TaskList taskList) {
-        msg.printMessage("Invalid command.");
+        Task task = new Todo(input);
+        String message = taskList.addTask(task);
+        msg.printMessage(message);
     }
 }
