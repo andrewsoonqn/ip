@@ -8,13 +8,11 @@ import Tasks.Todo;
 
 import java.util.Map;
 
-public class DeadlineStrategy implements InputHandlingStrategy {
+public class DeadlineStrategy extends AddTaskStrategy {
     @Override
-    public void handleInput(String input, Messenger msg, TaskList taskList) {
+    protected Task getTask(String input) {
         Map<String, String> flagValues = ArgParser.getFlags(input);
 
-        Task task = new Deadline(flagValues.get("taskDescription"), flagValues.get("by"));
-        String message = taskList.addTask(task);
-        msg.printMessage(message);
+        return new Deadline(flagValues.get("taskDescription"), flagValues.get("by"));
     }
 }

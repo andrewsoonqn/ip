@@ -8,13 +8,11 @@ import Tasks.TaskList;
 
 import java.util.Map;
 
-public class EventStrategy implements InputHandlingStrategy {
+public class EventStrategy extends AddTaskStrategy {
     @Override
-    public void handleInput(String input, Messenger msg, TaskList taskList) {
+    protected Task getTask(String input) {
         Map<String, String> flagValues = ArgParser.getFlags(input);
 
-        Task task = new Event(flagValues.get("taskDescription"), flagValues.get("from"), flagValues.get("to"));
-        String message = taskList.addTask(task);
-        msg.printMessage(message);
+        return new Event(flagValues.get("taskDescription"), flagValues.get("from"), flagValues.get("to"));
     }
 }
