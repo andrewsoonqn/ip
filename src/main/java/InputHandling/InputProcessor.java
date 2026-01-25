@@ -1,6 +1,6 @@
 package InputHandling;
 
-import ChatbotExceptions.ChatBotException;
+import ChatbotExceptions.ChatbotException;
 import Messaging.Messenger;
 import Tasks.TaskList;
 
@@ -37,7 +37,7 @@ public class InputProcessor {
             } else {
                 new DefaultStrategy().handleInput(input, msg, taskList);
             }
-        } catch (ChatBotException e) {
+        } catch (ChatbotException e) {
             msg.printMessage(e.getMessage());
         }
     }
