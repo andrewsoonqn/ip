@@ -46,5 +46,8 @@ public class TaskList {
     public int getSize() {
         return tasks.size();
     }
+
+    public Task removeTask(int which) {
         return tasks.remove(which - 1);
+    }
 }
