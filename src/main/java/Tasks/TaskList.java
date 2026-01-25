@@ -16,7 +16,7 @@ public class TaskList {
         StringBuilder taskListBuilder = new StringBuilder();
 
         for (Task task : tasks) {
-            taskListBuilder.append(TaskString.withId(task));
+            taskListBuilder.append(TaskString.withIndex(task, tasks.indexOf(task) + 1));
 
             if (tasks.size() == 1) {
                 break;
