@@ -21,7 +21,12 @@ public class EventStrategy extends AddTaskStrategy {
             throw new ChatbotArgumentException("Please provide an event end time.");
         }
 
-        return new Event(flagValues.get("taskDescription"), flagValues.get("from"), flagValues.get("to"));
+        String taskDescription = flagValues.get("taskDescription");
+        if (taskDescription == null || taskDescription.isBlank()) {
+            throw new ChatbotArgumentException("Please provide an event description.");
+        }
+
+        return new Event(taskDescription, from, to);
     }
 
     @Override

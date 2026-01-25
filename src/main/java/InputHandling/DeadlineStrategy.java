@@ -15,7 +15,13 @@ public class DeadlineStrategy extends AddTaskStrategy {
         if (by == null || by.isBlank()) {
             throw new ChatbotArgumentException("Please provide a deadline.");
         }
-        return new Deadline(flagValues.get("taskDescription"), by);
+
+        String taskDescription = flagValues.get("taskDescription");
+        if (taskDescription == null || taskDescription.isBlank()) {
+            throw new ChatbotArgumentException("Please provide a task description.");
+        }
+
+        return new Deadline(taskDescription, by);
     }
 
     @Override
