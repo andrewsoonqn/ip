@@ -16,7 +16,7 @@ public class TaskList {
         StringBuilder taskListBuilder = new StringBuilder();
 
         for (Task task : tasks) {
-            taskListBuilder.append(TaskString.withId(task));
+            taskListBuilder.append(TaskString.withIndex(task, tasks.indexOf(task) + 1));
 
             if (tasks.size() == 1) {
                 break;
@@ -27,19 +27,27 @@ public class TaskList {
         return taskListBuilder.toString();
     }
 
-    public Task getTask(int id) {
-        return tasks.get(id - 1);
+    public Task getTask(int idx) {
+        return tasks.get(idx - 1);
     }
 
-    public void markTask(int id) {
-        getTask(id).mark();
+    public Task markTask(int which) {
+        Task task = getTask(which);
+        task.mark();
+        return task;
     }
 
-    public void unmarkTask(int id) {
-        getTask(id).unmark();
+    public Task unmarkTask(int which) {
+        Task task = getTask(which);
+        task.unmark();
+        return task;
     }
 
     public int getSize() {
         return tasks.size();
+    }
+
+    public Task removeTask(int which) {
+        return tasks.remove(which - 1);
     }
 }

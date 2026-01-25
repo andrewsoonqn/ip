@@ -1,11 +1,11 @@
 package Tasks;
 
 public class TaskString {
-    public static String withId(Task task) {
-        return String.format("%d.%s", task.getId(), task);
+    public static String withIndex(Task task, int index) {
+        return String.format("%d.%s", index, task);
     }
 
-    public static String withoutId(Task task) {
+    public static String withoutIndex(Task task) {
         return String.format("  %s", task);
     }
 }

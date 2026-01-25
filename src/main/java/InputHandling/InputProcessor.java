@@ -22,7 +22,8 @@ public class InputProcessor {
             "unmark", new UnmarkStrategy(),
             "todo", new TodoStrategy(),
             "deadline", new DeadlineStrategy(),
-            "event", new EventStrategy()
+            "event", new EventStrategy(),
+            "delete", new RemoveStrategy()
     );
 
     public void processInput(String input) {
