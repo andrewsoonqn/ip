@@ -12,8 +12,8 @@ public class DeadlineStrategy extends AddTaskStrategy {
         Map<String, String> flagValues = ArgParser.getFlags(input);
 
         String by = flagValues.get("by");
-        if (by == null) {
-            throw new ChatbotArgumentException("Deadline is mandatory.");
+        if (by == null || by.isBlank()) {
+            throw new ChatbotArgumentException("Please provide a deadline.");
         }
         return new Deadline(flagValues.get("taskDescription"), by);
     }
