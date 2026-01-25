@@ -26,6 +26,6 @@ public class EventStrategy extends AddTaskStrategy {
 
     @Override
     public String getExampleUsage() {
-        return "event attend meeting \\from Mon 10AM \\to Mon 12PM";
+        return "event attend meeting /from Mon 10AM /to Mon 12PM";
     }
 }

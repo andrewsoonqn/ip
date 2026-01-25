@@ -20,7 +20,7 @@ public class DeadlineStrategy extends AddTaskStrategy {
 
     @Override
     public String getExampleUsage() {
-        return "deadline submit report \\by Sun 11PM";
+        return "deadline submit report /by Sun 11PM";
     }
 
 }
