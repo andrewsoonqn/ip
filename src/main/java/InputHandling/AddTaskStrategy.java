@@ -20,7 +20,7 @@ public abstract class AddTaskStrategy implements InputHandlingStrategy {
         Task addedTask = taskList.addTask(getTask(input));
         msg.printMessage(
                 "Got it. I've added this task:\n"
-                        + TaskString.withoutId(addedTask)
+                        + TaskString.withoutIndex(addedTask)
                         + String.format("\nNow you have %d tasks in the list.", taskList.getSize()));
     }
 

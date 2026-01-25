@@ -27,19 +27,24 @@ public class TaskList {
         return taskListBuilder.toString();
     }
 
-    public Task getTask(int id) {
-        return tasks.get(id - 1);
+    public Task getTask(int idx) {
+        return tasks.get(idx - 1);
     }
 
-    public void markTask(int id) {
-        getTask(id).mark();
+    public Task markTask(int which) {
+        Task task = getTask(which);
+        task.mark();
+        return task;
     }
 
-    public void unmarkTask(int id) {
-        getTask(id).unmark();
+    public Task unmarkTask(int which) {
+        Task task = getTask(which);
+        task.unmark();
+        return task;
     }
 
     public int getSize() {
         return tasks.size();
     }
+        return tasks.remove(which - 1);
 }
