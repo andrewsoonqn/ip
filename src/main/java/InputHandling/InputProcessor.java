@@ -23,7 +23,7 @@ public class InputProcessor {
             "todo", new TodoStrategy(),
             "deadline", new DeadlineStrategy(),
             "event", new EventStrategy(),
-            "remove", new RemoveStrategy()
+            "delete", new RemoveStrategy()
     );
 
     public void processInput(String input) {
