@@ -29,4 +29,6 @@ public abstract class Task {
     public void unmark() {
         isDone = false;
     }
+
+    public abstract TaskType getTaskType();
 }
