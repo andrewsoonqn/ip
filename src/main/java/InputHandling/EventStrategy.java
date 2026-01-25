@@ -1,5 +1,6 @@
 package InputHandling;
 
+import ChatbotExceptions.ChatbotArgumentException;
 import Tasks.Event;
 import Tasks.Task;
 
@@ -10,6 +11,26 @@ public class EventStrategy extends AddTaskStrategy {
     protected Task getTask(String input) {
         Map<String, String> flagValues = ArgParser.getFlags(input);
 
-        return new Event(flagValues.get("taskDescription"), flagValues.get("from"), flagValues.get("to"));
+        String from = flagValues.get("from");
+        if (from == null || from.isBlank()) {
+            throw new ChatbotArgumentException("Please provide an event start time.");
+        }
+
+        String to = flagValues.get("to");
+        if (to == null || to.isBlank()) {
+            throw new ChatbotArgumentException("Please provide an event end time.");
+        }
+
+        String taskDescription = flagValues.get("taskDescription");
+        if (taskDescription == null || taskDescription.isBlank()) {
+            throw new ChatbotArgumentException("Please provide an event description.");
+        }
+
+        return new Event(taskDescription, from, to);
+    }
+
+    @Override
+    public String getExampleUsage() {
+        return "event attend meeting /from Mon 10AM /to Mon 12PM";
     }
 }

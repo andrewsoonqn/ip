@@ -1,5 +1,6 @@
 package InputHandling;
 
+import ChatbotExceptions.ChatbotArgumentException;
 import Tasks.Deadline;
 import Tasks.Task;
 
@@ -10,6 +11,22 @@ public class DeadlineStrategy extends AddTaskStrategy {
     protected Task getTask(String input) {
         Map<String, String> flagValues = ArgParser.getFlags(input);
 
-        return new Deadline(flagValues.get("taskDescription"), flagValues.get("by"));
+        String by = flagValues.get("by");
+        if (by == null || by.isBlank()) {
+            throw new ChatbotArgumentException("Please provide a deadline.");
+        }
+
+        String taskDescription = flagValues.get("taskDescription");
+        if (taskDescription == null || taskDescription.isBlank()) {
+            throw new ChatbotArgumentException("Please provide a task description.");
+        }
+
+        return new Deadline(taskDescription, by);
     }
+
+    @Override
+    public String getExampleUsage() {
+        return "deadline submit report /by Sun 11PM";
+    }
+
 }

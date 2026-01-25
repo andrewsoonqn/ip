@@ -1,5 +1,6 @@
 package InputHandling;
 
+import ChatbotExceptions.ChatbotException;
 import Messaging.Messenger;
 import Tasks.TaskList;
 
@@ -29,11 +30,15 @@ public class InputProcessor {
         String command = commandArgs[0];
         String arg = commandArgs[1];
 
-        InputHandlingStrategy strategy = commandStrategies.get(command);
-        if (strategy != null) {
-            strategy.handleInput(arg, msg, taskList);
-        } else {
-            new DefaultStrategy().handleInput(input, msg, taskList);
+        try {
+            InputHandlingStrategy strategy = commandStrategies.get(command);
+            if (strategy != null) {
+                strategy.handleInput(arg, msg, taskList);
+            } else {
+                new DefaultStrategy().handleInput(input, msg, taskList);
+            }
+        } catch (ChatbotException e) {
+            msg.printMessage(e.getMessage());
         }
     }
 
