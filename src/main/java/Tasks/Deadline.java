@@ -17,4 +17,9 @@ public class Deadline extends Task {
     public TaskType getTaskType() {
         return TaskType.DEADLINE;
     }
+
+    @Override
+    public String asCommand() {
+        return String.format("deadline %s /by %s", getDescription(), by);
+    }
 }

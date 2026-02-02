@@ -19,5 +19,10 @@ public class Event extends Task {
     public TaskType getTaskType() {
         return TaskType.EVENT;
     }
+
+    @Override
+    public String asCommand() {
+        return String.format("event %s /from %s /to %s", getDescription(), from, to);
+    }
 }
 

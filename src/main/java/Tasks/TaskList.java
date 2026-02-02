@@ -1,13 +1,28 @@
 package Tasks;
 
+import DataPersistence.DataLoader;
+import DataPersistence.DataPaths;
+import DataPersistence.DataSaver;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TaskList {
     private final List<Task> tasks = new ArrayList<>();
 
+    private TaskList() {
+    }
+
+    public static TaskList create() {
+        TaskList taskList = new TaskList();
+        DataLoader.loadData(taskList);
+        return taskList;
+    }
+
     public Task addTask(Task task) {
         tasks.add(task);
+        DataSaver.saveData(DataPaths.TASKS_FILE_PATH, this);
         return task;
     }
 
@@ -34,12 +49,14 @@ public class TaskList {
     public Task markTask(int which) {
         Task task = getTask(which);
         task.mark();
+        DataSaver.saveData(DataPaths.TASKS_FILE_PATH, this);
         return task;
     }
 
     public Task unmarkTask(int which) {
         Task task = getTask(which);
         task.unmark();
+        DataSaver.saveData(DataPaths.TASKS_FILE_PATH, this);
         return task;
     }
 
@@ -50,4 +67,10 @@ public class TaskList {
     public Task removeTask(int which) {
         return tasks.remove(which - 1);
     }
+
+    public String getTasksAsCommands() {
+        return tasks.stream()
+                .map(Task::asCommand).collect(Collectors.joining("\n"));
+    }
+
 }

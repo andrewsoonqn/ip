@@ -14,4 +14,9 @@ public class Todo extends Task {
     public TaskType getTaskType() {
         return TaskType.TODO;
     }
+
+    @Override
+    public String asCommand() {
+        return String.format("todo %s", getDescription());
+    }
 }
