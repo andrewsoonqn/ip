@@ -1,11 +1,11 @@
-import Messaging.Messenger;
+import Messaging.DefaultMessenger;
 import Tasks.TaskList;
 
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Arnold bot = new Arnold(new Messenger(), new TaskList());
+        Arnold bot = new Arnold(new DefaultMessenger(), TaskList.create());
 
         // Scanner is used to get user input later
         Scanner scanner = new Scanner(System.in);
