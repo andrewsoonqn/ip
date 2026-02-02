@@ -7,25 +7,25 @@ import Tasks.TaskList;
 import java.util.Scanner;
 
 public class Arnold {
-    private final InputProcessor ip;
-    private boolean running = true;
+    private final InputProcessor inputProcessor;
+    private boolean isRunning = true;
 
     public Arnold(Messenger msg, TaskList taskList) {
-        this.ip = new InputProcessor(msg, taskList);
+        this.inputProcessor = new InputProcessor(msg, taskList);
     }
 
     public void hi() {
-        ip.processInput(new HiStrategy(), "");
+        inputProcessor.processInput(new HiStrategy(), "");
     }
 
     public void run(Scanner scanner) {
         // Exit command will trigger shutdown
-        EventBus.getInstance().registerShutdownHandler(() -> running = false);
+        EventBus.getInstance().registerShutdownHandler(() -> isRunning = false);
 
         while (scanner.hasNext()) {
             String input = scanner.nextLine();
-            ip.processInput(input);
-            if (!running) {
+            inputProcessor.processInput(input);
+            if (!isRunning) {
                 break;
             }
         }
