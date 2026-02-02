@@ -1,16 +1,21 @@
 package Tasks;
 
-public class Deadline extends Task {
-    private String by;
+import InputHandling.DateTimeParser;
 
-    public Deadline(String description, String by) {
+import java.time.LocalDateTime;
+
+public class Deadline extends Task {
+    private LocalDateTime by;
+
+    public Deadline(String description, LocalDateTime by) {
         super(description);
         this.by = by;
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + String.format(" (by: %s)", by);
+        return "[D]" + super.toString()
+                + String.format(" (by: %s)", DateTimeParser.formatDateTime(by));
     }
 
     @Override
@@ -20,6 +25,6 @@ public class Deadline extends Task {
 
     @Override
     public String asCommand() {
-        return String.format("deadline %s /by %s", getDescription(), by);
+        return String.format("deadline %s /by %s", getDescription(), DateTimeParser.formatDateTime(by));
     }
 }
