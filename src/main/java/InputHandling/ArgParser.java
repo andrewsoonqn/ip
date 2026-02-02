@@ -3,7 +3,7 @@ package InputHandling;
 import java.util.Map;
 
 public class ArgParser {
-    private static final String FLAG_SIGNIFIER = "/";
+    private static final String FLAG_SIGNIFIER = " /";
 
     public static String[] getCommandArgs(String text) {
         String[] parts = text.split("\\s+", 2);
