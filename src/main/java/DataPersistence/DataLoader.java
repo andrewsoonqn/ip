@@ -12,9 +12,9 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 public class DataLoader {
-    public static void loadData(TaskList taskList) {
+    public static void loadData(String filePath, TaskList taskList) {
         InputProcessor inputProcessor = new InputProcessor(new NullMessenger(), taskList);
-        Path path = Paths.get(DataPaths.TASKS_FILE_PATH);
+        Path path = Path.of(filePath);
 
         try (Stream<String> commands = Files.lines(path)) {
             // Process each line as a command
