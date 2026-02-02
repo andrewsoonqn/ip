@@ -4,6 +4,8 @@ import ChatbotExceptions.ChatbotArgumentException;
 import Tasks.Deadline;
 import Tasks.Task;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.Map;
 
 public class DeadlineStrategy extends AddTaskStrategy {
@@ -16,12 +18,19 @@ public class DeadlineStrategy extends AddTaskStrategy {
             throw new ChatbotArgumentException("Please provide a deadline.");
         }
 
+        LocalDateTime parsedBy;
+        try {
+            parsedBy = DateTimeParser.parse(by);
+        } catch (DateTimeParseException e) {
+            throw new ChatbotArgumentException("Please provide a valid deadline.");
+        }
+
         String taskDescription = flagValues.get("taskDescription");
         if (taskDescription == null || taskDescription.isBlank()) {
             throw new ChatbotArgumentException("Please provide a task description.");
         }
 
-        return new Deadline(taskDescription, by);
+        return new Deadline(taskDescription, parsedBy);
     }
 
     @Override
