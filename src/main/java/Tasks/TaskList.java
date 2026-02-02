@@ -16,7 +16,7 @@ public class TaskList {
 
     public static TaskList create() {
         TaskList taskList = new TaskList();
-        DataLoader.loadData(taskList);
+        DataLoader.loadData(DataPaths.TASKS_FILE_PATH, taskList);
         return taskList;
     }
 
