@@ -4,6 +4,8 @@ import ChatbotExceptions.ChatbotArgumentException;
 import Tasks.Event;
 import Tasks.Task;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.Map;
 
 public class EventStrategy extends AddTaskStrategy {
@@ -16,9 +18,23 @@ public class EventStrategy extends AddTaskStrategy {
             throw new ChatbotArgumentException("Please provide an event start time.");
         }
 
+        LocalDateTime parsedFrom;
+        try {
+            parsedFrom = DateTimeParser.parse(from);
+        } catch (DateTimeParseException e) {
+            throw new ChatbotArgumentException("Please provide a valid event start time.");
+        }
+
         String to = flagValues.get("to");
         if (to == null || to.isBlank()) {
             throw new ChatbotArgumentException("Please provide an event end time.");
+        }
+
+        LocalDateTime parsedTo;
+        try {
+            parsedTo = DateTimeParser.parse(to);
+        } catch (DateTimeParseException e) {
+            throw new ChatbotArgumentException("Please provide a valid event end time.");
         }
 
         String taskDescription = flagValues.get("taskDescription");
@@ -26,7 +42,7 @@ public class EventStrategy extends AddTaskStrategy {
             throw new ChatbotArgumentException("Please provide an event description.");
         }
 
-        return new Event(taskDescription, from, to);
+        return new Event(taskDescription, parsedFrom, parsedTo);
     }
 
     @Override
