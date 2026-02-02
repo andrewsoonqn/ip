@@ -31,4 +31,6 @@ public abstract class Task {
     }
 
     public abstract TaskType getTaskType();
+
+    public abstract String asCommand();
 }
