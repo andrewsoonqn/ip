@@ -2,6 +2,7 @@ package Tasks;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TaskList {
     private final List<Task> tasks = new ArrayList<>();
@@ -50,4 +51,10 @@ public class TaskList {
     public Task removeTask(int which) {
         return tasks.remove(which - 1);
     }
+
+    public String getTasksAsCommands() {
+        return tasks.stream()
+                .map(Task::asCommand).collect(Collectors.joining("\n"));
+    }
+
 }
