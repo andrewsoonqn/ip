@@ -1,10 +1,14 @@
 package Tasks;
 
-public class Event extends Task {
-    private String from;
-    private String to;
+import InputHandling.DateTimeParser;
 
-    public Event(String description, String from, String to) {
+import java.time.LocalDateTime;
+
+public class Event extends Task {
+    private LocalDateTime from;
+    private LocalDateTime to;
+
+    public Event(String description, LocalDateTime from, LocalDateTime to) {
         super(description);
         this.from = from;
         this.to = to;
@@ -12,7 +16,11 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + String.format(" (from: %s to: %s)", from, to);
+
+        return "[E]" + super.toString()
+                + String.format(" (from: %s to: %s)",
+                DateTimeParser.formatDateTime(from),
+                DateTimeParser.formatDateTime(to));
     }
 
     @Override
@@ -22,7 +30,7 @@ public class Event extends Task {
 
     @Override
     public String asCommand() {
-        return String.format("event %s /from %s /to %s", getDescription(), from, to);
+        return String.format("event %s /from %s /to %s", getDescription(), DateTimeParser.formatDateTime(from), DateTimeParser.formatDateTime(to));
     }
 }
 
