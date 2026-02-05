@@ -1,6 +1,6 @@
 package InputHandling;
 
-import ChatbotExceptions.NoSuchCommandException;
+import chatbotexceptions.NoSuchCommandException;
 import Messaging.Messenger;
 import Tasks.TaskList;
 

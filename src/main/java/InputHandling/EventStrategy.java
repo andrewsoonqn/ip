@@ -1,6 +1,6 @@
 package InputHandling;
 
-import ChatbotExceptions.ChatbotArgumentException;
+import chatbotexceptions.ChatbotArgumentException;
 import Tasks.Event;
 import Tasks.Task;
 

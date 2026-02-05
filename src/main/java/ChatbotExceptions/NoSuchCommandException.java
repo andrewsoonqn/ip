@@ -1,4 +1,4 @@
-package ChatbotExceptions;
+package chatbotexceptions;
 
 public class NoSuchCommandException extends ChatbotException {
     public NoSuchCommandException(String message) {
