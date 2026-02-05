@@ -1,5 +1,6 @@
-import Messaging.DefaultMessenger;
-import Tasks.TaskList;
+import arnold.Arnold;
+import arnold.messaging.DefaultMessenger;
+import arnold.tasks.TaskList;
 
 import java.util.Scanner;
 
