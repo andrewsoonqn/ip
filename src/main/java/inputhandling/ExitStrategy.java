@@ -1,7 +1,7 @@
 package inputhandling;
 
 import events.EventBus;
-import Messaging.Messenger;
+import messaging.Messenger;
 import Tasks.TaskList;
 
 public class ExitStrategy implements InputHandlingStrategy {

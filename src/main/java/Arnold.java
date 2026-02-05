@@ -1,7 +1,7 @@
 import events.EventBus;
 import inputhandling.HiStrategy;
 import inputhandling.InputProcessor;
-import Messaging.Messenger;
+import messaging.Messenger;
 import Tasks.TaskList;
 
 import java.util.Scanner;

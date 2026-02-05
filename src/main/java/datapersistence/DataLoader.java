@@ -1,7 +1,7 @@
 package datapersistence;
 
 import inputhandling.InputProcessor;
-import Messaging.NullMessenger;
+import messaging.NullMessenger;
 import Tasks.TaskList;
 
 import java.io.IOException;

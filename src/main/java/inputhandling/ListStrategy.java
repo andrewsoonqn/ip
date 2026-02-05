@@ -1,6 +1,6 @@
 package inputhandling;
 
-import Messaging.Messenger;
+import messaging.Messenger;
 import Tasks.TaskList;
 
 public class ListStrategy implements InputHandlingStrategy {

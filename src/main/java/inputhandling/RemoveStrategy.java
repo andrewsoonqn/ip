@@ -1,6 +1,6 @@
 package inputhandling;
 
-import Messaging.Messenger;
+import messaging.Messenger;
 import Tasks.Task;
 import Tasks.TaskList;
 import Tasks.TaskString;
