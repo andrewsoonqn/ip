@@ -1,5 +1,6 @@
 package arnold.tasks;
 
+import arnold.chatbotexceptions.ChatbotArgumentException;
 import arnold.datapersistence.DataLoader;
 import arnold.datapersistence.DataPaths;
 import arnold.datapersistence.DataSaver;
@@ -43,6 +44,9 @@ public class TaskList {
     }
 
     public Task getTask(int idx) {
+        if (idx < 1 || idx > tasks.size()) {
+            throw new ChatbotArgumentException("Task index out of bounds.");
+        }
         return tasks.get(idx - 1);
     }
 
