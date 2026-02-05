@@ -1,4 +1,4 @@
-package InputHandling;
+package inputhandling;
 
 import Tasks.Task;
 import Tasks.Todo;

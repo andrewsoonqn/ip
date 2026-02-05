@@ -1,6 +1,6 @@
 package Tasks;
 
-import InputHandling.DateTimeParser;
+import inputhandling.DateTimeParser;
 
 import java.time.LocalDateTime;
 

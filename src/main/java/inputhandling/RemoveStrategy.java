@@ -1,4 +1,4 @@
-package InputHandling;
+package inputhandling;
 
 import Messaging.Messenger;
 import Tasks.Task;

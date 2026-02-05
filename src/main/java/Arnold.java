@@ -1,6 +1,6 @@
 import events.EventBus;
-import InputHandling.HiStrategy;
-import InputHandling.InputProcessor;
+import inputhandling.HiStrategy;
+import inputhandling.InputProcessor;
 import Messaging.Messenger;
 import Tasks.TaskList;
 

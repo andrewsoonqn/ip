@@ -1,17 +1,17 @@
-package InputHandling;
+package inputhandling;
 
 import Messaging.Messenger;
 import Tasks.Task;
 import Tasks.TaskList;
 import Tasks.TaskString;
 
-public class MarkStrategy implements InputHandlingStrategy {
+public class UnmarkStrategy implements InputHandlingStrategy {
     @Override
     public void handleInput(String input, Messenger msg, TaskList taskList) {
         int taskId = Integer.parseInt(input);
-        Task task = taskList.markTask(taskId);
+        Task task = taskList.unmarkTask(taskId);
         msg.printMessage(
-                "Nice! I've marked this task as done:\n"
+                "OK, I've marked this task as not done yet:\n"
                         + TaskString.withoutIndex(task));
     }
 }

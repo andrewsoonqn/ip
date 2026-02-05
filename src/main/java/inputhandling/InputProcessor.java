@@ -1,4 +1,4 @@
-package InputHandling;
+package inputhandling;
 
 import chatbotexceptions.ChatbotException;
 import Messaging.Messenger;
