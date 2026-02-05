@@ -1,4 +1,4 @@
-import Events.EventBus;
+import events.EventBus;
 import InputHandling.HiStrategy;
 import InputHandling.InputProcessor;
 import Messaging.Messenger;

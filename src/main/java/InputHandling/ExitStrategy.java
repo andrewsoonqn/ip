@@ -1,6 +1,6 @@
 package InputHandling;
 
-import Events.EventBus;
+import events.EventBus;
 import Messaging.Messenger;
 import Tasks.TaskList;
 

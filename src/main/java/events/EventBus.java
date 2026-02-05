@@ -1,4 +1,4 @@
-package Events;
+package events;
 
 // Code adapted from Gemini
 // https://gemini.google.com/share/99d8bc847bb9
