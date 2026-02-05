@@ -2,9 +2,9 @@ package inputhandling;
 
 import chatbotexceptions.ChatbotArgumentException;
 import messaging.Messenger;
-import Tasks.Task;
-import Tasks.TaskList;
-import Tasks.TaskString;
+import tasks.Task;
+import tasks.TaskList;
+import tasks.TaskString;
 
 public abstract class AddTaskStrategy implements InputHandlingStrategy {
     protected abstract Task getTask(String input);

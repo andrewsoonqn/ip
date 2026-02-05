@@ -1,7 +1,7 @@
 package inputhandling;
 
 import messaging.Messenger;
-import Tasks.TaskList;
+import tasks.TaskList;
 
 public interface InputHandlingStrategy {
     // Processes command and performs necessary actions

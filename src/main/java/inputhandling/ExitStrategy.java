@@ -2,7 +2,7 @@ package inputhandling;
 
 import events.EventBus;
 import messaging.Messenger;
-import Tasks.TaskList;
+import tasks.TaskList;
 
 public class ExitStrategy implements InputHandlingStrategy {
     @Override

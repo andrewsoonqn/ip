@@ -2,7 +2,7 @@ package inputhandling;
 
 import chatbotexceptions.NoSuchCommandException;
 import messaging.Messenger;
-import Tasks.TaskList;
+import tasks.TaskList;
 
 public class DefaultStrategy implements InputHandlingStrategy {
     @Override

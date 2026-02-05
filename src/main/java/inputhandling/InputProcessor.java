@@ -2,7 +2,7 @@ package inputhandling;
 
 import chatbotexceptions.ChatbotException;
 import messaging.Messenger;
-import Tasks.TaskList;
+import tasks.TaskList;
 
 import java.util.Map;
 

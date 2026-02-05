@@ -1,8 +1,8 @@
 package inputhandling;
 
 import chatbotexceptions.ChatbotArgumentException;
-import Tasks.Deadline;
-import Tasks.Task;
+import tasks.Deadline;
+import tasks.Task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;

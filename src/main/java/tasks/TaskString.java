@@ -1,4 +1,4 @@
-package Tasks;
+package tasks;
 
 public class TaskString {
     public static String withIndex(Task task, int index) {

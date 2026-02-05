@@ -1,7 +1,7 @@
 package inputhandling;
 
-import Tasks.Task;
-import Tasks.Todo;
+import tasks.Task;
+import tasks.Todo;
 
 public class TodoStrategy extends AddTaskStrategy {
     @Override

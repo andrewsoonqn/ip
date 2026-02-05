@@ -1,9 +1,9 @@
 package inputhandling;
 
 import messaging.Messenger;
-import Tasks.Task;
-import Tasks.TaskList;
-import Tasks.TaskString;
+import tasks.Task;
+import tasks.TaskList;
+import tasks.TaskString;
 
 public class RemoveStrategy implements InputHandlingStrategy {
     @Override

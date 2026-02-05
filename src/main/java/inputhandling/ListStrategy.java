@@ -1,7 +1,7 @@
 package inputhandling;
 
 import messaging.Messenger;
-import Tasks.TaskList;
+import tasks.TaskList;
 
 public class ListStrategy implements InputHandlingStrategy {
     @Override
