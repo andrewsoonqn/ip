@@ -1,0 +1,23 @@
+package arnold.tasks;
+
+public enum TaskType {
+    TODO {
+        @Override
+        public String toString() {
+            return "todo";
+        }
+    },
+    DEADLINE {
+        @Override
+        public String toString() {
+            return "deadline";
+        }
+    },
+    EVENT {
+        @Override
+        public String toString() {
+            return "event";
+        }
+    }
+}
+
