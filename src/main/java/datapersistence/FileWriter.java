@@ -1,4 +1,4 @@
-package DataPersistence;
+package datapersistence;
 
 import java.io.IOException;
 import java.nio.file.Files;

@@ -1,11 +1,8 @@
-package DataPersistence;
+package datapersistence;
 
 import Tasks.TaskList;
 
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 
 public class DataSaver {
     public static void saveData(String filePath, TaskList taskList) {

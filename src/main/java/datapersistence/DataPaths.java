@@ -1,4 +1,4 @@
-package DataPersistence;
+package datapersistence;
 
 public class DataPaths {
     public static final String DATA_FOLDER_PATH = "./data/";
