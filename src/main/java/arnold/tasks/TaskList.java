@@ -1,28 +1,27 @@
 package arnold.tasks;
 
-import arnold.datapersistence.DataLoader;
-import arnold.datapersistence.DataPaths;
-import arnold.datapersistence.DataSaver;
-
+import arnold.datapersistence.Storage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class TaskList {
     private final List<Task> tasks = new ArrayList<>();
+    private final Storage storage;
 
-    private TaskList() {
+    private TaskList(Storage storage) {
+        this.storage = storage;
     }
 
-    public static TaskList create() {
-        TaskList taskList = new TaskList();
-        DataLoader.loadData(DataPaths.TASKS_FILE_PATH, taskList);
+    public static TaskList create(Storage storage) {
+        TaskList taskList = new TaskList(storage);
+        storage.load(taskList);
         return taskList;
     }
 
     public Task addTask(Task task) {
         tasks.add(task);
-        DataSaver.saveData(DataPaths.TASKS_FILE_PATH, this);
+        storage.save(this);
         return task;
     }
 
@@ -49,14 +48,14 @@ public class TaskList {
     public Task markTask(int which) {
         Task task = getTask(which);
         task.mark();
-        DataSaver.saveData(DataPaths.TASKS_FILE_PATH, this);
+        storage.save(this);
         return task;
     }
 
     public Task unmarkTask(int which) {
         Task task = getTask(which);
         task.unmark();
-        DataSaver.saveData(DataPaths.TASKS_FILE_PATH, this);
+        storage.save(this);
         return task;
     }
 
@@ -65,7 +64,9 @@ public class TaskList {
     }
 
     public Task removeTask(int which) {
-        return tasks.remove(which - 1);
+        Task removedTask = tasks.remove(which - 1);
+        storage.save(this);
+        return removedTask;
     }
 
     public String getTasksAsCommands() {
