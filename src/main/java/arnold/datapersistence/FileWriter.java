@@ -5,7 +5,16 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * Utility class for writing to and creating files and directories.
+ */
 public class FileWriter {
+    /**
+     * Writes content to a file.
+     *
+     * @param filePath The path of the file to write to.
+     * @param content The content to write.
+     */
     public static void writeToFilePath(String filePath, String content) {
         try {
             Files.writeString(Paths.get(filePath), content);
@@ -15,6 +24,11 @@ public class FileWriter {
         }
     }
 
+    /**
+     * Creates a new file.
+     *
+     * @param filePath The path of the file to create.
+     */
     public static void createFile(String filePath) {
         try {
             Files.createFile(Paths.get(filePath));
@@ -23,6 +37,11 @@ public class FileWriter {
         }
     }
 
+    /**
+     * Creates directories for a given path if they don't exist.
+     *
+     * @param path The path for which directories should be created.
+     */
     public static void createDirectories(Path path) {
         // Parent directory will be null if not specified, e.g. "data.txt"
         // Prevent NullPointerException
