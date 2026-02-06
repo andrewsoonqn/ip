@@ -8,6 +8,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.Map;
 
+/**
+ * Strategy for adding a deadline task.
+ */
 public class DeadlineStrategy extends AddTaskStrategy {
     @Override
     protected Task getTask(String input) {

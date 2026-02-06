@@ -8,6 +8,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.Map;
 
+/**
+ * Strategy for adding an event task.
+ */
 public class EventStrategy extends AddTaskStrategy {
     @Override
     protected Task getTask(String input) {
