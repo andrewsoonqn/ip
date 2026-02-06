@@ -1,12 +1,12 @@
 package arnold;
 
+import java.util.Scanner;
+
 import arnold.datapersistence.DataPaths;
 import arnold.datapersistence.Storage;
 import arnold.datapersistence.TaskFileStorage;
 import arnold.messaging.DefaultMessenger;
 import arnold.tasks.TaskList;
-
-import java.util.Scanner;
 
 /**
  * Entry point for the Arnold chatbot application.

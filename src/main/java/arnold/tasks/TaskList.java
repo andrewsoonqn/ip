@@ -1,11 +1,11 @@
 package arnold.tasks;
 
-import arnold.datapersistence.Storage;
-import arnold.chatbotexceptions.ChatbotArgumentException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import arnold.chatbotexceptions.ChatbotArgumentException;
+import arnold.datapersistence.Storage;
 
 /**
  * Represents a list of tasks.

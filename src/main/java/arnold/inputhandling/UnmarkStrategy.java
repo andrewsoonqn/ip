@@ -1,7 +1,6 @@
 package arnold.inputhandling;
 
 import arnold.chatbotexceptions.ChatbotArgumentException;
-import arnold.chatbotexceptions.ChatbotException;
 import arnold.messaging.Messenger;
 import arnold.tasks.Task;
 import arnold.tasks.TaskList;
