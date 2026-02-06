@@ -8,7 +8,7 @@ Arnold provides a seamless interface to unlock everlasting memory. *Never forget
 
 ## Setup Instructions
 1. Download `arnold.jar` executable from releases [here](https://github.com/andrewsoonqn/ip/releases/latest).
-2. Run the application within the enclosing folder of the JAR file.
+2. Run the following command within the enclosing folder of the JAR file.
 ```sh
 java -jar arnold.jar
 ```
