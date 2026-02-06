@@ -7,6 +7,9 @@ import arnold.tasks.Task;
 import arnold.tasks.TaskList;
 import arnold.tasks.TaskString;
 
+/**
+ * Strategy for handling the unmark command.
+ */
 public class UnmarkStrategy implements InputHandlingStrategy {
     @Override
     public void handleInput(String input, Messenger msg, TaskList taskList) {
