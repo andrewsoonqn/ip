@@ -1,4 +1,5 @@
-import arnold.Arnold;
+package arnold;
+
 import arnold.datapersistence.DataPaths;
 import arnold.datapersistence.Storage;
 import arnold.datapersistence.TaskFileStorage;
