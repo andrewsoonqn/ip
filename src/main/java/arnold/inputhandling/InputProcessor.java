@@ -18,7 +18,8 @@ public class InputProcessor {
             "todo", new TodoStrategy(),
             "deadline", new DeadlineStrategy(),
             "event", new EventStrategy(),
-            "delete", new RemoveStrategy()
+            "delete", new RemoveStrategy(),
+            "find", new FindStrategy()
     );
     private final Messenger msg;
     private final TaskList taskList;

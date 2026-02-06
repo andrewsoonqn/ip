@@ -2,10 +2,12 @@ package arnold.tasks;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import arnold.chatbotexceptions.ChatbotArgumentException;
 import arnold.datapersistence.Storage;
+import arnold.utils.ListSearcher;
 
 /**
  * Represents a list of tasks.
@@ -44,18 +46,7 @@ public class TaskList {
 
     @Override
     public String toString() {
-        StringBuilder taskListBuilder = new StringBuilder();
-
-        for (Task task : tasks) {
-            taskListBuilder.append(TaskString.withIndex(task, tasks.indexOf(task) + 1));
-
-            if (tasks.size() == 1) {
-                break;
-            }
-
-            taskListBuilder.append("\n");
-        }
-        return taskListBuilder.toString();
+        return TaskString.listWithIndex(tasks);
     }
 
     /**
@@ -129,4 +120,8 @@ public class TaskList {
                 .map(Task::asCommand).collect(Collectors.joining("\n"));
     }
 
+    public List<Task> findTasks(Predicate<Task> predicate) {
+        ListSearcher<Task> searcher = new ListSearcher<>();
+        return searcher.findItems(tasks, predicate);
+    }
 }
