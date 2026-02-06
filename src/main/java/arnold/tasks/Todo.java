@@ -1,6 +1,14 @@
 package arnold.tasks;
 
+/**
+ * Represents a todo task.
+ */
 public class Todo extends Task {
+    /**
+     * Initializes a new instance of a todo task.
+     *
+     * @param description The description of the task.
+     */
     public Todo(String description) {
         super(description);
     }

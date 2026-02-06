@@ -1,5 +1,8 @@
 package arnold.tasks;
 
+/**
+ * Represents the types of tasks available in the chatbot.
+ */
 public enum TaskType {
     TODO {
         @Override
