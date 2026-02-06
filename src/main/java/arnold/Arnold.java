@@ -1,12 +1,12 @@
 package arnold;
 
+import java.util.Scanner;
+
 import arnold.events.EventBus;
 import arnold.inputhandling.HiStrategy;
 import arnold.inputhandling.InputProcessor;
 import arnold.messaging.Messenger;
 import arnold.tasks.TaskList;
-
-import java.util.Scanner;
 
 public class Arnold {
     private final InputProcessor inputProcessor;

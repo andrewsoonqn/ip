@@ -1,15 +1,16 @@
 package arnold.tasks;
 
-import arnold.datapersistence.NullStorage;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import arnold.datapersistence.NullStorage;
 
 public class TaskListTest {
     private TaskList taskList;
@@ -49,7 +50,7 @@ public class TaskListTest {
     @Test
     public void getTask_invalidIndex_throwsException() {
         assertThrows(IndexOutOfBoundsException.class, () -> taskList.getTask(1));
-        
+
         taskList.addTask(new Todo("test"));
         assertThrows(IndexOutOfBoundsException.class, () -> taskList.getTask(2));
         assertThrows(IndexOutOfBoundsException.class, () -> taskList.getTask(0));
@@ -78,7 +79,7 @@ public class TaskListTest {
         Task t2 = new Todo("task 2");
         taskList.addTask(t1);
         taskList.addTask(t2);
-        
+
         Task removed = taskList.removeTask(1);
         assertEquals(t1, removed);
         assertEquals(1, taskList.getSize());

@@ -1,8 +1,8 @@
 package arnold.tasks;
 
-import arnold.inputhandling.DateTimeParser;
-
 import java.time.LocalDateTime;
+
+import arnold.inputhandling.DateTimeParser;
 
 public class Event extends Task {
     private LocalDateTime from;
