@@ -10,8 +10,18 @@ import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.util.stream.Stream;
 
-public class DataLoader {
-    public static void loadData(String filePath, TaskList taskList) {
+/**
+ * Concrete implementation of Storage that uses a file for persistence.
+ */
+public class TaskFileStorage implements Storage {
+    private final String filePath;
+
+    public TaskFileStorage(String filePath) {
+        this.filePath = filePath;
+    }
+
+    @Override
+    public void load(TaskList taskList) {
         InputProcessor inputProcessor = new InputProcessor(new NullMessenger(), taskList);
         Path path = Path.of(filePath);
 
@@ -26,5 +36,15 @@ public class DataLoader {
             System.err.println("Error loading data: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void save(TaskList taskList) {
+        String data = taskList.getTasksAsCommands();
+
+        Path path = Path.of(filePath);
+
+        FileWriter.createDirectories(path);
+        FileWriter.writeToFilePath(filePath, data);
     }
 }
