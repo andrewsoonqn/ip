@@ -26,7 +26,7 @@ public class InputProcessor {
     /**
      * Initializes a new instance of the InputProcessor.
      *
-     * @param msg      The messenger to use for communication.
+     * @param msg The messenger to use for communication.
      * @param taskList The task list to manage.
      */
     public InputProcessor(Messenger msg, TaskList taskList) {
@@ -60,7 +60,7 @@ public class InputProcessor {
      * Processes user input using a specific strategy.
      *
      * @param strategy The strategy to use for processing.
-     * @param arg      The argument for the strategy.
+     * @param arg The argument for the strategy.
      */
     public void processInput(InputHandlingStrategy strategy, String arg) {
         strategy.handleInput(arg, msg, taskList);
