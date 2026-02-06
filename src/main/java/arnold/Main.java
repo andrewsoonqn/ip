@@ -1,12 +1,12 @@
 package arnold;
 
+import java.util.Scanner;
+
 import arnold.datapersistence.DataPaths;
 import arnold.datapersistence.Storage;
 import arnold.datapersistence.TaskFileStorage;
 import arnold.messaging.DefaultMessenger;
 import arnold.tasks.TaskList;
-
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {

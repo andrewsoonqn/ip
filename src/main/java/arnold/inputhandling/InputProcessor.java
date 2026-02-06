@@ -1,20 +1,12 @@
 package arnold.inputhandling;
 
+import java.util.Map;
+
 import arnold.chatbotexceptions.ChatbotException;
 import arnold.messaging.Messenger;
 import arnold.tasks.TaskList;
 
-import java.util.Map;
-
 public class InputProcessor {
-    private final Messenger msg;
-    private final TaskList taskList;
-
-    public InputProcessor(Messenger msg, TaskList taskList) {
-        this.msg = msg;
-        this.taskList = taskList;
-    }
-
     private static final Map<String, InputHandlingStrategy> commandStrategies = Map.of(
             "bye", new ExitStrategy(),
             "list", new ListStrategy(),
@@ -25,6 +17,13 @@ public class InputProcessor {
             "event", new EventStrategy(),
             "delete", new RemoveStrategy()
     );
+    private final Messenger msg;
+    private final TaskList taskList;
+
+    public InputProcessor(Messenger msg, TaskList taskList) {
+        this.msg = msg;
+        this.taskList = taskList;
+    }
 
     public void processInput(String input) {
         String[] commandArgs = ArgParser.getCommandArgs(input);

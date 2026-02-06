@@ -1,8 +1,8 @@
 package arnold.inputhandling;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class DateTimeParser {
     public static LocalDateTime parse(String dateTimeString) throws DateTimeParseException {
