@@ -1,11 +1,11 @@
 package arnold.inputhandling;
 
+import java.util.function.Predicate;
+
 import arnold.messaging.Messenger;
 import arnold.tasks.Task;
 import arnold.tasks.TaskList;
 import arnold.tasks.TaskString;
-
-import java.util.function.Predicate;
 
 /**
  * Strategy for handling the list command.
@@ -21,6 +21,6 @@ public class FindStrategy implements InputHandlingStrategy {
         msg.printMessage(
                 "Here are the matching tasks in your list:\n"
                         + TaskString.listWithIndex(
-                                taskList.findTasks(predicate)));
+                        taskList.findTasks(predicate)));
     }
 }

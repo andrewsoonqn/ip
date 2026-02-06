@@ -1,6 +1,7 @@
 package arnold.tasks;
 
 import java.util.List;
+
 /**
  * Utility class for formatting tasks as strings.
  */
