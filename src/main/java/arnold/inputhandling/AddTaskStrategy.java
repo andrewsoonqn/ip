@@ -6,7 +6,16 @@ import arnold.tasks.Task;
 import arnold.tasks.TaskList;
 import arnold.tasks.TaskString;
 
+/**
+ * Abstract strategy for adding a task to the task list.
+ */
 public abstract class AddTaskStrategy implements InputHandlingStrategy {
+    /**
+     * Returns a task object from the user input.
+     *
+     * @param input The user input.
+     * @return The task object.
+     */
     protected abstract Task getTask(String input);
 
     @Override
@@ -24,5 +33,10 @@ public abstract class AddTaskStrategy implements InputHandlingStrategy {
                         + String.format("\nNow you have %d tasks in the list.", taskList.getSize()));
     }
 
+    /**
+     * Returns an example usage of the command.
+     *
+     * @return The example usage string.
+     */
     public abstract String getExampleUsage();
 }

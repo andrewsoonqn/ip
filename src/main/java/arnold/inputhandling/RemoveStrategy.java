@@ -5,6 +5,9 @@ import arnold.tasks.Task;
 import arnold.tasks.TaskList;
 import arnold.tasks.TaskString;
 
+/**
+ * Strategy for handling the remove command.
+ */
 public class RemoveStrategy implements InputHandlingStrategy {
     @Override
     public void handleInput(String input, Messenger msg, TaskList taskList) {

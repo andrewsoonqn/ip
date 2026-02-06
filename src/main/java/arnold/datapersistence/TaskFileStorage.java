@@ -1,14 +1,14 @@
 package arnold.datapersistence;
 
-import arnold.inputhandling.InputProcessor;
-import arnold.messaging.NullMessenger;
-import arnold.tasks.TaskList;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.util.stream.Stream;
+
+import arnold.inputhandling.InputProcessor;
+import arnold.messaging.NullMessenger;
+import arnold.tasks.TaskList;
 
 /**
  * Concrete implementation of Storage that uses a file for persistence.
@@ -16,6 +16,11 @@ import java.util.stream.Stream;
 public class TaskFileStorage implements Storage {
     private final String filePath;
 
+    /**
+     * Initializes a new instance of TaskFileStorage.
+     *
+     * @param filePath The path to the file used for persistence.
+     */
     public TaskFileStorage(String filePath) {
         this.filePath = filePath;
     }
