@@ -16,6 +16,11 @@ import arnold.tasks.TaskList;
 public class TaskFileStorage implements Storage {
     private final String filePath;
 
+    /**
+     * Initializes a new instance of TaskFileStorage.
+     *
+     * @param filePath The path to the file used for persistence.
+     */
     public TaskFileStorage(String filePath) {
         this.filePath = filePath;
     }

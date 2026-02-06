@@ -2,9 +2,18 @@ package arnold.inputhandling;
 
 import java.util.Map;
 
+/**
+ * Utility class for parsing user input arguments and flags.
+ */
 public class ArgParser {
     private static final String FLAG_SIGNIFIER = " /";
 
+    /**
+     * Splits the input text into command and arguments.
+     *
+     * @param text The input text to split.
+     * @return An array containing the command and the arguments.
+     */
     public static String[] getCommandArgs(String text) {
         String[] parts = text.split("\\s+", 2);
 
@@ -12,6 +21,12 @@ public class ArgParser {
         return parts.length > 1 ? new String[]{parts[0], parts[1]} : new String[]{parts[0], ""};
     }
 
+    /**
+     * Parses flags from the input text.
+     *
+     * @param text The input text containing flags.
+     * @return A map of flag names to flag values.
+     */
     public static Map<String, String> getFlags(String text) {
         Map<String, String> flags = new java.util.HashMap<>();
         String[] parts = text.split(FLAG_SIGNIFIER);

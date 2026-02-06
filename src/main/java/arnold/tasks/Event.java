@@ -4,10 +4,20 @@ import java.time.LocalDateTime;
 
 import arnold.inputhandling.DateTimeParser;
 
+/**
+ * Represents an event task with a start and end time.
+ */
 public class Event extends Task {
     private LocalDateTime from;
     private LocalDateTime to;
 
+    /**
+     * Initializes a new instance of an event task.
+     *
+     * @param description The description of the task.
+     * @param from The start date and time.
+     * @param to The end date and time.
+     */
     public Event(String description, LocalDateTime from, LocalDateTime to) {
         super(description);
         this.from = from;

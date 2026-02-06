@@ -4,9 +4,18 @@ import java.time.LocalDateTime;
 
 import arnold.inputhandling.DateTimeParser;
 
+/**
+ * Represents a task with a deadline.
+ */
 public class Deadline extends Task {
     private LocalDateTime by;
 
+    /**
+     * Initializes a new instance of a deadline task.
+     *
+     * @param description The description of the task.
+     * @param by The deadline date and time.
+     */
     public Deadline(String description, LocalDateTime by) {
         super(description);
         this.by = by;
