@@ -8,6 +8,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.Map;
 
+/**
+ * Strategy for adding an event task.
+ */
 public class EventStrategy extends AddTaskStrategy {
     @Override
     protected Task getTask(String input) {
@@ -47,6 +50,6 @@ public class EventStrategy extends AddTaskStrategy {
 
     @Override
     public String getExampleUsage() {
-        return "event attend meeting /from Mon 10AM /to Mon 12PM";
+        return "event attend meeting /from 1/12/2026 1000 /to 1/12/2026 1200";
     }
 }

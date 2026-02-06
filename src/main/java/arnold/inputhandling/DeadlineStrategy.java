@@ -8,6 +8,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.Map;
 
+/**
+ * Strategy for adding a deadline task.
+ */
 public class DeadlineStrategy extends AddTaskStrategy {
     @Override
     protected Task getTask(String input) {
@@ -35,7 +38,7 @@ public class DeadlineStrategy extends AddTaskStrategy {
 
     @Override
     public String getExampleUsage() {
-        return "deadline submit report /by Sun 11PM";
+        return "deadline submit report /by 1/12/2026 2359";
     }
 
 }
