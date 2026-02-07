@@ -20,7 +20,7 @@ public class MarkStrategy implements InputHandlingStrategy {
         }
         Task task = taskList.markTask(taskId);
         msg.printMessage(
-                "Nice! I've marked this task as done:\n"
-                        + TaskString.withoutIndex(task));
+            "Nice! I've marked this task as done:\n"
+                + TaskString.withoutIndex(task));
     }
 }

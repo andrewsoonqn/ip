@@ -11,15 +11,15 @@ import arnold.tasks.TaskList;
  */
 public class InputProcessor {
     private static final Map<String, InputHandlingStrategy> commandStrategies = Map.of(
-            "bye", new ExitStrategy(),
-            "list", new ListStrategy(),
-            "mark", new MarkStrategy(),
-            "unmark", new UnmarkStrategy(),
-            "todo", new TodoStrategy(),
-            "deadline", new DeadlineStrategy(),
-            "event", new EventStrategy(),
-            "delete", new RemoveStrategy(),
-            "find", new FindStrategy()
+        "bye", new ExitStrategy(),
+        "list", new ListStrategy(),
+        "mark", new MarkStrategy(),
+        "unmark", new UnmarkStrategy(),
+        "todo", new TodoStrategy(),
+        "deadline", new DeadlineStrategy(),
+        "event", new EventStrategy(),
+        "delete", new RemoveStrategy(),
+        "find", new FindStrategy()
     );
     private final Messenger msg;
     private final TaskList taskList;

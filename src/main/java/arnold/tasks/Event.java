@@ -28,9 +28,9 @@ public class Event extends Task {
     public String toString() {
 
         return "[E]" + super.toString()
-                + String.format(" (from: %s to: %s)",
-                DateTimeParser.formatDateTime(from),
-                DateTimeParser.formatDateTime(to));
+            + String.format(" (from: %s to: %s)",
+            DateTimeParser.formatDateTime(from),
+            DateTimeParser.formatDateTime(to));
     }
 
     @Override
@@ -40,7 +40,8 @@ public class Event extends Task {
 
     @Override
     public String asCommand() {
-        return String.format("event %s /from %s /to %s", getDescription(), DateTimeParser.formatDateTime(from), DateTimeParser.formatDateTime(to));
+        return String.format("event %s /from %s /to %s", getDescription(), DateTimeParser.formatDateTime(from),
+            DateTimeParser.formatDateTime(to));
     }
 }
 

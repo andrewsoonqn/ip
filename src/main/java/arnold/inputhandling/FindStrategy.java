@@ -14,13 +14,13 @@ public class FindStrategy implements InputHandlingStrategy {
     @Override
     public void handleInput(String input, Messenger msg, TaskList taskList) {
         Predicate<Task> predicate = task -> task
-                .getDescription()
-                .toLowerCase()
-                .contains(input.toLowerCase());
+            .getDescription()
+            .toLowerCase()
+            .contains(input.toLowerCase());
 
         msg.printMessage(
-                "Here are the matching tasks in your list:\n"
-                        + TaskString.listWithIndex(
-                        taskList.findTasks(predicate)));
+            "Here are the matching tasks in your list:\n"
+                + TaskString.listWithIndex(
+                taskList.findTasks(predicate)));
     }
 }

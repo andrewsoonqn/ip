@@ -117,9 +117,17 @@ public class TaskList {
      */
     public String getTasksAsCommands() {
         return tasks.stream()
-                .map(Task::asCommand).collect(Collectors.joining("\n"));
+            .map(Task::asCommand).collect(Collectors.joining("\n"));
     }
 
+    /**
+     * Finds and returns a list of tasks that satisfy the specified condition.
+     *
+     * @param predicate The condition to apply to each task in the task list. Must not be null.
+     * @return A list of tasks that match the given condition. Returns an empty list if no tasks match
+     *         the condition or if the task list is empty.
+     * @throws NullPointerException If the predicate is null.
+     */
     public List<Task> findTasks(Predicate<Task> predicate) {
         ListSearcher<Task> searcher = new ListSearcher<>();
         return searcher.findItems(tasks, predicate);

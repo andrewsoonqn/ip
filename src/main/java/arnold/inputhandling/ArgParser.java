@@ -18,7 +18,7 @@ public class ArgParser {
         String[] parts = text.split("\\s+", 2);
 
         // "Pair"
-        return parts.length > 1 ? new String[]{parts[0], parts[1]} : new String[]{parts[0], ""};
+        return parts.length > 1 ? new String[] {parts[0], parts[1]} : new String[] {parts[0], ""};
     }
 
     /**
