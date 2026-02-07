@@ -20,7 +20,7 @@ public class UnmarkStrategy implements InputHandlingStrategy {
         }
         Task task = taskList.unmarkTask(taskId);
         msg.printMessage(
-                "OK, I've marked this task as not done yet:\n"
-                        + TaskString.withoutIndex(task));
+            "OK, I've marked this task as not done yet:\n"
+                + TaskString.withoutIndex(task));
     }
 }
