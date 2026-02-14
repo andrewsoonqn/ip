@@ -1,12 +1,28 @@
 package arnold.tasks;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import arnold.tasks.utils.TaskType;
 
 /**
  * Represents a generic task.
  */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = Todo.class, name = "todo"),
+    @JsonSubTypes.Type(value = Deadline.class, name = "deadline"),
+    @JsonSubTypes.Type(value = Event.class, name = "event")
+})
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE,
+        isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 public abstract class Task {
+    @JsonProperty("description")
     private final String description;
+
+    @JsonProperty("isDone")
     private boolean isDone;
 
     /**

@@ -2,6 +2,9 @@ package arnold.tasks;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import arnold.inputhandling.parsing.DateTimeParser;
 import arnold.tasks.utils.TaskType;
 
@@ -9,6 +12,7 @@ import arnold.tasks.utils.TaskType;
  * Represents a task with a deadline.
  */
 public class Deadline extends Task {
+    @JsonProperty("by")
     private LocalDateTime by;
 
     /**
@@ -17,7 +21,8 @@ public class Deadline extends Task {
      * @param description The description of the task.
      * @param by The deadline date and time.
      */
-    public Deadline(String description, LocalDateTime by) {
+    @JsonCreator
+    public Deadline(@JsonProperty("description") String description, @JsonProperty("by") LocalDateTime by) {
         super(description);
         this.by = by;
     }

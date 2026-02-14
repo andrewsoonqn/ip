@@ -1,5 +1,8 @@
 package arnold.tasks;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import arnold.tasks.utils.TaskType;
 
 /**
@@ -11,7 +14,8 @@ public class Todo extends Task {
      *
      * @param description The description of the task.
      */
-    public Todo(String description) {
+    @JsonCreator
+    public Todo(@JsonProperty("description") String description) {
         super(description);
     }
 

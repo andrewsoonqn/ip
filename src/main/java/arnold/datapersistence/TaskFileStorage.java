@@ -9,7 +9,7 @@ import java.util.List;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import arnold.tasks.Task;
 import arnold.tasks.utils.TaskList;
@@ -35,10 +35,10 @@ public class TaskFileStorage implements Storage {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
-        SimpleModule module = new SimpleModule();
-        module.addSerializer(Task.class, new TaskSerializer());
-        module.addDeserializer(Task.class, new TaskDeserializer());
-        mapper.registerModule(module);
+        // Use ISO-8601 strings to store DateTime
+        // e.g., "2026-02-14T10:30:00"
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        mapper.registerModule(new JavaTimeModule());
 
         return mapper;
     }
@@ -52,7 +52,10 @@ public class TaskFileStorage implements Storage {
             if (json.isBlank()) {
                 return;
             }
-            List<Task> tasks = objectMapper.readValue(json, new TypeReference<List<Task>>() {});
+
+            // Treat list as array of Task objects instead of runtime type
+            List<Task> tasks = objectMapper.readValue(json, new TypeReference<List<Task>>() {
+            });
             taskList.loadTasks(tasks);
         } catch (NoSuchFileException e) {
             // File doesn't exist yet, so create it
@@ -70,7 +73,9 @@ public class TaskFileStorage implements Storage {
         FileWriter.createDirectories(path);
 
         try {
-            String json = objectMapper.writeValueAsString(taskList.getTasks());
+            String json = objectMapper.writerFor(new TypeReference<List<Task>>() {
+                })
+                .writeValueAsString(taskList.getTasks());
             FileWriter.writeToFilePath(filePath, json);
         } catch (IOException e) {
             System.err.println("Error saving data: " + e.getMessage());
