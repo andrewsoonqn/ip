@@ -13,6 +13,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -21,6 +22,9 @@ import javafx.stage.Stage;
 public class ArnoldApplication extends Application {
     @Override
     public void start(Stage primaryStage) {
+        Font.loadFont(getClass().getResourceAsStream("/fonts/JetBrainsMono-Regular.ttf"), 14);
+        Font.loadFont(getClass().getResourceAsStream("/fonts/OpenSans-Regular.ttf"), 15);
+
         Storage storage = new TaskFileStorage(DataPaths.TASKS_FILE_PATH);
         TaskList taskList = TaskList.create(storage);
 
