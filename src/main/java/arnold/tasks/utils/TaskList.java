@@ -1,9 +1,9 @@
 package arnold.tasks.utils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import arnold.chatbotexceptions.ChatbotArgumentException;
 import arnold.datapersistence.Storage;
@@ -119,13 +119,22 @@ public class TaskList {
     }
 
     /**
-     * Returns all tasks formatted as commands.
+     * Retrieves an unmodifiable view of the task list.
      *
-     * @return A string containing all tasks as commands.
+     * @return An unmodifiable list of tasks.
      */
-    public String getTasksAsCommands() {
-        return tasks.stream()
-            .map(Task::asCommand).collect(Collectors.joining("\n"));
+    public List<Task> getTasks() {
+        return Collections.unmodifiableList(tasks);
+    }
+
+    /**
+     * Loads the given list of tasks into the task list, replacing any existing tasks.
+     *
+     * @param loadedTasks The list of tasks to load. Must not be null.
+     */
+    public void loadTasks(List<Task> loadedTasks) {
+        tasks.clear();
+        tasks.addAll(loadedTasks);
     }
 
     /**

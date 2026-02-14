@@ -12,5 +12,5 @@ public class DataPaths {
     /**
      * The path to the file where tasks are stored.
      */
-    public static final String TASKS_FILE_PATH = DATA_FOLDER_PATH + "tasks.txt";
+    public static final String TASKS_FILE_PATH = DATA_FOLDER_PATH + "tasks.json";
 }

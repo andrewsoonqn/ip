@@ -4,9 +4,15 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
-import java.util.stream.Stream;
+import java.util.List;
 
-import arnold.inputhandling.InputProcessor;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
+import arnold.tasks.Task;
 import arnold.tasks.utils.TaskList;
 
 /**
@@ -14,6 +20,7 @@ import arnold.tasks.utils.TaskList;
  */
 public class TaskFileStorage implements Storage {
     private final String filePath;
+    private final ObjectMapper objectMapper;
 
     /**
      * Initializes a new instance of TaskFileStorage.
@@ -22,16 +29,38 @@ public class TaskFileStorage implements Storage {
      */
     public TaskFileStorage(String filePath) {
         this.filePath = filePath;
+        this.objectMapper = createObjectMapper();
+    }
+
+    private ObjectMapper createObjectMapper() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.deactivateDefaultTyping();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        // Use ISO-8601 strings to store DateTime
+        // e.g., "2026-02-14T10:30:00"
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        mapper.registerModule(new JavaTimeModule());
+
+        return mapper;
     }
 
     @Override
     public void load(TaskList taskList) {
-        InputProcessor inputProcessor = new InputProcessor(taskList);
         Path path = Path.of(filePath);
 
-        try (Stream<String> commands = Files.lines(path)) {
-            // Process each line as a command
-            commands.forEach(inputProcessor::processInput);
+        try {
+            String json = Files.readString(path);
+            if (json.isBlank()) {
+                return;
+            }
+
+            // Treat list as array of Task objects instead of runtime type
+            List<Task> tasks = objectMapper.readValue(json, new TypeReference<List<Task>>() {
+            });
+            if (tasks != null) {
+                taskList.loadTasks(tasks);
+            }
         } catch (NoSuchFileException e) {
             // File doesn't exist yet, so create it
             FileWriter.createDirectories(path);
@@ -44,11 +73,17 @@ public class TaskFileStorage implements Storage {
 
     @Override
     public void save(TaskList taskList) {
-        String data = taskList.getTasksAsCommands();
-
         Path path = Path.of(filePath);
-
         FileWriter.createDirectories(path);
-        FileWriter.writeToFilePath(filePath, data);
+
+        try {
+            String json = objectMapper.writerFor(new TypeReference<List<Task>>() {
+                })
+                .writeValueAsString(taskList.getTasks());
+            FileWriter.writeToFilePath(filePath, json);
+        } catch (JsonProcessingException e) {
+            System.err.println("Error saving data: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }
