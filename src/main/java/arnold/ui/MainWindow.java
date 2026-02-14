@@ -32,7 +32,9 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    /** Injects the Arnold instance */
+    /**
+     * Injects the Arnold instance
+     */
     public void setArnold(Arnold arnold) {
         this.arnold = arnold;
     }

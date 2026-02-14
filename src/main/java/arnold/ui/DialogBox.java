@@ -15,6 +15,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.Circle;
 
+/**
+ * Represents a dialog box in a chatbot interface.
+ * Each dialog box contains a label for text and an image,
+ * allowing for customization of user and chatbot interactions.
+ */
 public class DialogBox extends HBox {
     @FXML
     private Label dialog;
@@ -39,14 +44,6 @@ public class DialogBox extends HBox {
         displayPicture.setClip(clip);
     }
 
-    private void flip() {
-        ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
-        Collections.reverse(tmp);
-        getChildren().setAll(tmp);
-        setAlignment(Pos.BOTTOM_LEFT);
-        dialog.getStyleClass().add("reply-label");
-    }
-
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
@@ -55,5 +52,13 @@ public class DialogBox extends HBox {
         var db = new DialogBox(text, img);
         db.flip();
         return db;
+    }
+
+    private void flip() {
+        ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
+        Collections.reverse(tmp);
+        getChildren().setAll(tmp);
+        setAlignment(Pos.BOTTOM_LEFT);
+        dialog.getStyleClass().add("reply-label");
     }
 }

@@ -5,7 +5,6 @@ import java.io.IOException;
 import arnold.datapersistence.DataPaths;
 import arnold.datapersistence.Storage;
 import arnold.datapersistence.TaskFileStorage;
-import arnold.events.EventBus;
 import arnold.messaging.Messenger;
 import arnold.tasks.TaskList;
 import arnold.ui.MainWindow;
