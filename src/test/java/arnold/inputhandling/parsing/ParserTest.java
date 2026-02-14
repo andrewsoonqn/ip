@@ -91,7 +91,6 @@ public class ParserTest {
     @Test
     public void parse_emptyDescription_success() {
         parser.register("deadline", dummyStrategy, "by");
-        // One space before /by should be enough after the fix
         Parser.Result result = parser.parse("deadline /by tomorrow");
         assertEquals("", result.command().getDescription());
         assertEquals("tomorrow", result.command().getFlag("by"));
