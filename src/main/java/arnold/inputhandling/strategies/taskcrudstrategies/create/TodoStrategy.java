@@ -1,4 +1,4 @@
-package arnold.inputhandling.taskcrudstrategies.create;
+package arnold.inputhandling.strategies.taskcrudstrategies.create;
 
 import arnold.inputhandling.parsing.ParsedCommand;
 import arnold.tasks.Task;
@@ -17,6 +17,11 @@ public class TodoStrategy extends CreateTaskStrategy {
     @Override
     protected Task getTask(ParsedCommand command) {
         return new Todo(command.getDescription());
+    }
+
+    @Override
+    public String getDescription() {
+        return "Add a todo task";
     }
 
     @Override

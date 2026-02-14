@@ -1,9 +1,10 @@
-package arnold.inputhandling.taskcrudstrategies.create;
+package arnold.inputhandling.strategies.taskcrudstrategies.create;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 import arnold.chatbotexceptions.ChatbotArgumentException;
+import arnold.inputhandling.Messages;
 import arnold.inputhandling.parsing.DateTimeParser;
 import arnold.inputhandling.parsing.ParsedCommand;
 import arnold.tasks.Deadline;
@@ -26,10 +27,15 @@ public class DeadlineStrategy extends CreateTaskStrategy {
         try {
             parsedBy = DateTimeParser.parse(command.getFlag("by"));
         } catch (DateTimeParseException e) {
-            throw new ChatbotArgumentException("Please provide a valid deadline.");
+            throw new ChatbotArgumentException(Messages.invalidDeadline());
         }
 
         return new Deadline(command.getDescription(), parsedBy);
+    }
+
+    @Override
+    public String getDescription() {
+        return "Add a task with a deadline";
     }
 
     @Override

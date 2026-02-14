@@ -1,7 +1,9 @@
-package arnold.inputhandling.taskcrudstrategies.create;
+package arnold.inputhandling.strategies.taskcrudstrategies.create;
 
 import arnold.chatbotexceptions.ChatbotArgumentException;
-import arnold.inputhandling.InputHandlingStrategy;
+import arnold.inputhandling.CommandResult;
+import arnold.inputhandling.Messages;
+import arnold.inputhandling.strategies.InputHandlingStrategy;
 import arnold.inputhandling.parsing.ParsedCommand;
 import arnold.tasks.Task;
 import arnold.tasks.utils.TaskList;
@@ -20,23 +22,16 @@ public abstract class CreateTaskStrategy implements InputHandlingStrategy {
     protected abstract Task getTask(ParsedCommand command);
 
     @Override
-    public String handleInput(ParsedCommand command, TaskList taskList) {
+    public CommandResult handleInput(ParsedCommand command, TaskList taskList) {
         if (command.getDescription().isBlank()) {
             throw new ChatbotArgumentException(
-                String.format("The description for a task cannot be blank.\n"
-                    + "Example usage: %s", getExampleUsage()));
+                Messages.blankDescription(getExampleUsage()));
         }
 
         Task addedTask = taskList.addTask(getTask(command));
-        return String.format("Got it. I've added this %s:\n", addedTask.getTaskType().toString())
-            + TaskString.withoutIndex(addedTask)
-            + String.format("\nNow you have %d tasks in the list.", taskList.getSize());
+        return CommandResult.success(
+            Messages.taskAdded(addedTask.getTaskType().toString(),
+                TaskString.withoutIndex(addedTask), taskList.getSize()));
     }
 
-    /**
-     * Returns an example usage of the command.
-     *
-     * @return The example usage string for this command.
-     */
-    public abstract String getExampleUsage();
 }

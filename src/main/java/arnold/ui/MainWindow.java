@@ -1,6 +1,7 @@
 package arnold.ui;
 
 import arnold.Arnold;
+import arnold.inputhandling.CommandResult;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -49,10 +50,14 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = arnold.getResponse(input);
+        CommandResult result = arnold.getResponse(input);
+        DialogBox responseBox = DialogBox.getArnoldDialog(result.getMessage(), arnoldImage);
+        if (result.isError()) {
+            responseBox.setErrorStyle();
+        }
         dialogContainer.getChildren().addAll(
             DialogBox.getUserDialog(input, userImage),
-            DialogBox.getArnoldDialog(response, arnoldImage)
+            responseBox
         );
         userInput.clear();
     }
