@@ -41,6 +41,11 @@ public class EventStrategy extends CreateTaskStrategy {
     }
 
     @Override
+    public String getDescription() {
+        return "Add an event with start and end times";
+    }
+
+    @Override
     public String getExampleUsage() {
         return "event attend meeting /from 1/12/2026 1000 /to 1/12/2026 1200";
     }

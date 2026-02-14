@@ -20,6 +20,11 @@ public class TodoStrategy extends CreateTaskStrategy {
     }
 
     @Override
+    public String getDescription() {
+        return "Add a todo task";
+    }
+
+    @Override
     public String getExampleUsage() {
         return "todo read book";
     }

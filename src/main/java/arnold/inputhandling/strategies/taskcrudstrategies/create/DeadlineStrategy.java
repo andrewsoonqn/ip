@@ -34,6 +34,11 @@ public class DeadlineStrategy extends CreateTaskStrategy {
     }
 
     @Override
+    public String getDescription() {
+        return "Add a task with a deadline";
+    }
+
+    @Override
     public String getExampleUsage() {
         return "deadline submit report /by 1/12/2026 2359";
     }

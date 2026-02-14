@@ -22,4 +22,14 @@ public class ExitStrategy implements InputHandlingStrategy {
         EventBus.getInstance().publishShutdown();
         return CommandResult.exit(Messages.bye());
     }
+
+    @Override
+    public String getDescription() {
+        return "Exit the application";
+    }
+
+    @Override
+    public String getExampleUsage() {
+        return "bye";
+    }
 }
