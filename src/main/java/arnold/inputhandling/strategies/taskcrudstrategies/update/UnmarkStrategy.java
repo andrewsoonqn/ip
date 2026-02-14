@@ -1,6 +1,7 @@
 package arnold.inputhandling.strategies.taskcrudstrategies.update;
 
 import arnold.chatbotexceptions.ChatbotArgumentException;
+import arnold.inputhandling.CommandResult;
 import arnold.inputhandling.strategies.InputHandlingStrategy;
 import arnold.inputhandling.parsing.ParsedCommand;
 import arnold.tasks.Task;
@@ -20,7 +21,7 @@ public class UnmarkStrategy implements InputHandlingStrategy {
      * @throws ChatbotArgumentException If the description is not a valid task ID.
      */
     @Override
-    public String handleInput(ParsedCommand command, TaskList taskList) {
+    public CommandResult handleInput(ParsedCommand command, TaskList taskList) {
         int taskId;
         try {
             taskId = Integer.parseInt(command.getDescription());
@@ -28,7 +29,7 @@ public class UnmarkStrategy implements InputHandlingStrategy {
             throw new ChatbotArgumentException("Please enter a valid task ID.");
         }
         Task task = taskList.unmarkTask(taskId);
-        return "OK, I've marked this task as not done yet:\n"
-            + TaskString.withoutIndex(task);
+        return CommandResult.success("OK, I've marked this task as not done yet:\n"
+            + TaskString.withoutIndex(task));
     }
 }

@@ -1,6 +1,7 @@
 package arnold.inputhandling.strategies.taskcrudstrategies.delete;
 
 import arnold.chatbotexceptions.ChatbotArgumentException;
+import arnold.inputhandling.CommandResult;
 import arnold.inputhandling.strategies.InputHandlingStrategy;
 import arnold.inputhandling.parsing.ParsedCommand;
 import arnold.tasks.Task;
@@ -20,7 +21,7 @@ public class RemoveStrategy implements InputHandlingStrategy {
      * @throws ChatbotArgumentException If the description is not a valid task ID.
      */
     @Override
-    public String handleInput(ParsedCommand command, TaskList taskList) {
+    public CommandResult handleInput(ParsedCommand command, TaskList taskList) {
         int taskId;
         try {
             taskId = Integer.parseInt(command.getDescription());
@@ -29,8 +30,8 @@ public class RemoveStrategy implements InputHandlingStrategy {
         }
 
         Task task = taskList.removeTask(taskId);
-        return "Noted. I've removed this task:\n"
+        return CommandResult.success("Noted. I've removed this task:\n"
             + TaskString.withoutIndex(task)
-            + String.format("\nNow you have %d tasks in the list.", taskList.getSize());
+            + String.format("\nNow you have %d tasks in the list.", taskList.getSize()));
     }
 }

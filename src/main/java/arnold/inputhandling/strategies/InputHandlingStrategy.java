@@ -1,5 +1,6 @@
 package arnold.inputhandling.strategies;
 
+import arnold.inputhandling.CommandResult;
 import arnold.inputhandling.parsing.ParsedCommand;
 import arnold.tasks.utils.TaskList;
 
@@ -15,5 +16,5 @@ public interface InputHandlingStrategy {
      * @return The response message.
      * @throws arnold.chatbotexceptions.ChatbotException If an error occurs during processing.
      */
-    String handleInput(ParsedCommand command, TaskList taskList);
+    CommandResult handleInput(ParsedCommand command, TaskList taskList);
 }

@@ -1,5 +1,6 @@
 package arnold.inputhandling.strategies.taskcrudstrategies.read;
 
+import arnold.inputhandling.CommandResult;
 import arnold.inputhandling.strategies.InputHandlingStrategy;
 import arnold.inputhandling.parsing.ParsedCommand;
 import arnold.tasks.utils.TaskList;
@@ -16,7 +17,7 @@ public class ListStrategy implements InputHandlingStrategy {
      * @return The formatted list of all tasks.
      */
     @Override
-    public String handleInput(ParsedCommand command, TaskList taskList) {
-        return "Here are the tasks in your list:\n" + taskList;
+    public CommandResult handleInput(ParsedCommand command, TaskList taskList) {
+        return CommandResult.success("Here are the tasks in your list:\n" + taskList);
     }
 }
