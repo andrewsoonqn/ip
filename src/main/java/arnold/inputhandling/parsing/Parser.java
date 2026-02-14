@@ -51,7 +51,7 @@ public class Parser {
         }
 
         String[] expectedFlags = commandFlags.get(commandName);
-        ParsedCommand command = parseFlags(rest, expectedFlags);
+        ParsedCommand command = parseFlags(" " + rest, expectedFlags);
 
         return new Result(strategy, command);
     }
