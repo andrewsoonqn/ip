@@ -1,10 +1,8 @@
 package arnold.inputhandling.strategies.taskcrudstrategies.update;
 
-import arnold.chatbotexceptions.ChatbotArgumentException;
 import arnold.inputhandling.CommandResult;
 import arnold.inputhandling.Messages;
-import arnold.inputhandling.strategies.InputHandlingStrategy;
-import arnold.inputhandling.parsing.ParsedCommand;
+import arnold.inputhandling.strategies.taskcrudstrategies.TaskIdStrategy;
 import arnold.tasks.Task;
 import arnold.tasks.utils.TaskList;
 import arnold.tasks.utils.TaskString;
@@ -12,24 +10,27 @@ import arnold.tasks.utils.TaskString;
 /**
  * Strategy for handling the unmark command.
  */
-public class UnmarkStrategy implements InputHandlingStrategy {
+public class UnmarkStrategy extends TaskIdStrategy {
     /**
-     * Handles the unmark command by marking the specified task as not done.
+     * Marks the specified task as not done.
      *
-     * @param command The parsed command containing the task ID.
+     * @param taskId The ID of the task to unmark.
      * @param taskList The task list containing the task.
      * @return The response message confirming the task was unmarked.
-     * @throws ChatbotArgumentException If the description is not a valid task ID.
      */
     @Override
-    public CommandResult handleInput(ParsedCommand command, TaskList taskList) {
-        int taskId;
-        try {
-            taskId = Integer.parseInt(command.getDescription());
-        } catch (NumberFormatException e) {
-            throw new ChatbotArgumentException(Messages.invalidTaskId());
-        }
+    protected CommandResult execute(int taskId, TaskList taskList) {
         Task task = taskList.unmarkTask(taskId);
         return CommandResult.success(Messages.taskUnmarked(TaskString.withoutIndex(task)));
+    }
+
+    @Override
+    public String getDescription() {
+        return "Mark a task as not done";
+    }
+
+    @Override
+    public String getExampleUsage() {
+        return "unmark 1";
     }
 }
