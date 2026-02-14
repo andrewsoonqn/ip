@@ -36,10 +36,10 @@ public class InputProcessor {
     }
 
     /**
-     * Processes the user input string.
+     * Processes the user input string and executes the corresponding command.
      *
      * @param input The raw input string from the user.
-     * @return The response message.
+     * @return The response message after processing the input.
      */
     public String processInput(String input) {
         String[] commandArgs = ArgParser.getCommandArgs(input);

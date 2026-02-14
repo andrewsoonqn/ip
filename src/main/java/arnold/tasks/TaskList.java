@@ -68,6 +68,7 @@ public class TaskList {
      *
      * @param which The 1-based index of the task to mark.
      * @return The marked task.
+     * @throws ChatbotArgumentException If the index is out of bounds.
      */
     public Task markTask(int which) {
         Task task = getTask(which);
@@ -81,6 +82,7 @@ public class TaskList {
      *
      * @param which The 1-based index of the task to unmark.
      * @return The unmarked task.
+     * @throws ChatbotArgumentException If the index is out of bounds.
      */
     public Task unmarkTask(int which) {
         Task task = getTask(which);
@@ -103,6 +105,7 @@ public class TaskList {
      *
      * @param which The 1-based index of the task to remove.
      * @return The removed task.
+     * @throws IndexOutOfBoundsException If the index is out of bounds.
      */
     public Task removeTask(int which) {
         Task removedTask = tasks.remove(which - 1);

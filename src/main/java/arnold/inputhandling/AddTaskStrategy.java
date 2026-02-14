@@ -13,8 +13,8 @@ public abstract class AddTaskStrategy implements InputHandlingStrategy {
     /**
      * Returns a task object from the user input.
      *
-     * @param input The user input.
-     * @return The task object.
+     * @param input The user input to extract the task from.
+     * @return The task object created from the input.
      */
     protected abstract Task getTask(String input);
 
@@ -36,7 +36,7 @@ public abstract class AddTaskStrategy implements InputHandlingStrategy {
     /**
      * Returns an example usage of the command.
      *
-     * @return The example usage string.
+     * @return The example usage string for this command.
      */
     public abstract String getExampleUsage();
 }

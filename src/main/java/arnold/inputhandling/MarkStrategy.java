@@ -10,6 +10,14 @@ import arnold.tasks.TaskString;
  * Strategy for handling the mark command.
  */
 public class MarkStrategy implements InputHandlingStrategy {
+    /**
+     * Handles the mark command by marking the specified task as done.
+     *
+     * @param input The ID of the task to mark.
+     * @param msg The messenger to use for communication.
+     * @param taskList The task list containing the task.
+     * @throws ChatbotArgumentException If the input is not a valid integer.
+     */
     @Override
     public void handleInput(String input, Messenger msg, TaskList taskList) {
         int taskId;

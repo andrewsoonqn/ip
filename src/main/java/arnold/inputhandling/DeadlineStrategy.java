@@ -12,6 +12,13 @@ import arnold.tasks.Task;
  * Strategy for adding a deadline task.
  */
 public class DeadlineStrategy extends AddTaskStrategy {
+    /**
+     * Extracts a deadline task from the user input.
+     *
+     * @param input The user input containing task description and deadline.
+     * @return The created deadline task.
+     * @throws ChatbotArgumentException If the input format is invalid or missing information.
+     */
     @Override
     protected Task getTask(String input) {
         Map<String, String> flagValues = ArgParser.getFlags(input);
