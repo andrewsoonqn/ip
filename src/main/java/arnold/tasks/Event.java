@@ -39,10 +39,12 @@ public class Event extends Task {
         return TaskType.EVENT;
     }
 
-    @Override
-    public String asCommand() {
-        return String.format("event %s /from %s /to %s", getDescription(), DateTimeParser.formatDateTime(from),
-            DateTimeParser.formatDateTime(to));
+    public LocalDateTime getFrom() {
+        return from;
+    }
+
+    public LocalDateTime getTo() {
+        return to;
     }
 }
 

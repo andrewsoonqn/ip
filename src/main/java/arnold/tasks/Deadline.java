@@ -33,8 +33,7 @@ public class Deadline extends Task {
         return TaskType.DEADLINE;
     }
 
-    @Override
-    public String asCommand() {
-        return String.format("deadline %s /by %s", getDescription(), DateTimeParser.formatDateTime(by));
+    public LocalDateTime getBy() {
+        return by;
     }
 }

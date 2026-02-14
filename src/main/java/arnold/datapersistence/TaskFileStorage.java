@@ -4,9 +4,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
-import java.util.stream.Stream;
+import java.util.List;
 
-import arnold.inputhandling.InputProcessor;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+
+import arnold.tasks.Task;
 import arnold.tasks.utils.TaskList;
 
 /**
@@ -14,6 +19,7 @@ import arnold.tasks.utils.TaskList;
  */
 public class TaskFileStorage implements Storage {
     private final String filePath;
+    private final ObjectMapper objectMapper;
 
     /**
      * Initializes a new instance of TaskFileStorage.
@@ -22,16 +28,32 @@ public class TaskFileStorage implements Storage {
      */
     public TaskFileStorage(String filePath) {
         this.filePath = filePath;
+        this.objectMapper = createObjectMapper();
+    }
+
+    private ObjectMapper createObjectMapper() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        SimpleModule module = new SimpleModule();
+        module.addSerializer(Task.class, new TaskSerializer());
+        module.addDeserializer(Task.class, new TaskDeserializer());
+        mapper.registerModule(module);
+
+        return mapper;
     }
 
     @Override
     public void load(TaskList taskList) {
-        InputProcessor inputProcessor = new InputProcessor(taskList);
         Path path = Path.of(filePath);
 
-        try (Stream<String> commands = Files.lines(path)) {
-            // Process each line as a command
-            commands.forEach(inputProcessor::processInput);
+        try {
+            String json = Files.readString(path);
+            if (json.isBlank()) {
+                return;
+            }
+            List<Task> tasks = objectMapper.readValue(json, new TypeReference<List<Task>>() {});
+            taskList.loadTasks(tasks);
         } catch (NoSuchFileException e) {
             // File doesn't exist yet, so create it
             FileWriter.createDirectories(path);
@@ -44,11 +66,15 @@ public class TaskFileStorage implements Storage {
 
     @Override
     public void save(TaskList taskList) {
-        String data = taskList.getTasksAsCommands();
-
         Path path = Path.of(filePath);
-
         FileWriter.createDirectories(path);
-        FileWriter.writeToFilePath(filePath, data);
+
+        try {
+            String json = objectMapper.writeValueAsString(taskList.getTasks());
+            FileWriter.writeToFilePath(filePath, json);
+        } catch (IOException e) {
+            System.err.println("Error saving data: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }
