@@ -6,7 +6,7 @@ package arnold.events;
 // Code adapted from Gemini
 // https://gemini.google.com/share/99d8bc847bb9
 public class EventBus {
-    private static final EventBus instance = new EventBus();
+    private static final EventBus INSTANCE = new EventBus();
     // For now, only one shutdown handler is supported
     private Runnable shutdownHandler;
 
@@ -19,7 +19,7 @@ public class EventBus {
      * @return The EventBus instance.
      */
     public static EventBus getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
     /**
