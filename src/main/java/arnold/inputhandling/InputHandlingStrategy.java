@@ -1,6 +1,5 @@
 package arnold.inputhandling;
 
-import arnold.messaging.Messenger;
 import arnold.tasks.TaskList;
 
 /**
@@ -11,9 +10,9 @@ public interface InputHandlingStrategy {
      * Handles the user input.
      *
      * @param input The user input to handle.
-     * @param msg The messenger to use for communication.
      * @param taskList The task list to manage.
+     * @return The response message.
      * @throws arnold.chatbotexceptions.ChatbotException If an error occurs during processing.
      */
-    void handleInput(String input, Messenger msg, TaskList taskList);
+    String handleInput(String input, TaskList taskList);
 }

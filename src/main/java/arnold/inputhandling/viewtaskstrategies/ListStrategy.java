@@ -1,7 +1,6 @@
 package arnold.inputhandling.viewtaskstrategies;
 
 import arnold.inputhandling.InputHandlingStrategy;
-import arnold.messaging.Messenger;
 import arnold.tasks.TaskList;
 
 /**
@@ -9,16 +8,14 @@ import arnold.tasks.TaskList;
  */
 public class ListStrategy implements InputHandlingStrategy {
     /**
-     * Handles the list command.
+     * Handles the list command by displaying all tasks.
      *
      * @param input The user input (not used).
-     * @param msg The messenger to use for communication.
      * @param taskList The task list to display.
+     * @return The formatted list of all tasks.
      */
     @Override
-    public void handleInput(String input, Messenger msg, TaskList taskList) {
-        msg.printMessage(
-            "Here are the tasks in your list:\n"
-                + taskList);
+    public String handleInput(String input, TaskList taskList) {
+        return "Here are the tasks in your list:\n" + taskList;
     }
 }

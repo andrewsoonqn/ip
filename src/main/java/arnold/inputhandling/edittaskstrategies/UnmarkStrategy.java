@@ -2,7 +2,6 @@ package arnold.inputhandling.edittaskstrategies;
 
 import arnold.chatbotexceptions.ChatbotArgumentException;
 import arnold.inputhandling.InputHandlingStrategy;
-import arnold.messaging.Messenger;
 import arnold.tasks.Task;
 import arnold.tasks.TaskList;
 import arnold.tasks.TaskString;
@@ -15,12 +14,12 @@ public class UnmarkStrategy implements InputHandlingStrategy {
      * Handles the unmark command by marking the specified task as not done.
      *
      * @param input The ID of the task to unmark.
-     * @param msg The messenger to use for communication.
      * @param taskList The task list containing the task.
+     * @return The response message confirming the task was unmarked.
      * @throws ChatbotArgumentException If the input is not a valid integer.
      */
     @Override
-    public void handleInput(String input, Messenger msg, TaskList taskList) {
+    public String handleInput(String input, TaskList taskList) {
         int taskId;
         try {
             taskId = Integer.parseInt(input);
@@ -28,8 +27,7 @@ public class UnmarkStrategy implements InputHandlingStrategy {
             throw new ChatbotArgumentException("Please enter a valid task ID.");
         }
         Task task = taskList.unmarkTask(taskId);
-        msg.printMessage(
-            "OK, I've marked this task as not done yet:\n"
-                + TaskString.withoutIndex(task));
+        return "OK, I've marked this task as not done yet:\n"
+            + TaskString.withoutIndex(task);
     }
 }

@@ -2,7 +2,6 @@ package arnold.inputhandling.commandstrategies;
 
 import arnold.chatbotexceptions.NoSuchCommandException;
 import arnold.inputhandling.InputHandlingStrategy;
-import arnold.messaging.Messenger;
 import arnold.tasks.TaskList;
 
 /**
@@ -10,14 +9,15 @@ import arnold.tasks.TaskList;
  */
 public class DefaultStrategy implements InputHandlingStrategy {
     /**
-     * Handles the user input.
+     * Handles the user input by throwing an exception for unrecognised commands.
      *
      * @param input The user input to handle.
-     * @param msg The messenger to use for communication.
      * @param taskList The task list to manage.
+     * @return Never returns normally.
+     * @throws NoSuchCommandException Always thrown.
      */
     @Override
-    public void handleInput(String input, Messenger msg, TaskList taskList) {
+    public String handleInput(String input, TaskList taskList) {
         throw new NoSuchCommandException("Sorry, I don't recognise that command!");
     }
 }

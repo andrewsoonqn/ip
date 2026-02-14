@@ -1,7 +1,6 @@
 package arnold.inputhandling.commandstrategies;
 
 import arnold.inputhandling.InputHandlingStrategy;
-import arnold.messaging.Messenger;
 import arnold.tasks.TaskList;
 
 /**
@@ -12,11 +11,11 @@ public class HiStrategy implements InputHandlingStrategy {
      * Handles the greeting command.
      *
      * @param input The user input (not used).
-     * @param msg The messenger to use for communication.
      * @param taskList The task list (not used).
+     * @return The greeting message.
      */
     @Override
-    public void handleInput(String input, Messenger msg, TaskList taskList) {
-        msg.hi();
+    public String handleInput(String input, TaskList taskList) {
+        return "Hello! I'm Arnold\nWhat can I do for you?";
     }
 }

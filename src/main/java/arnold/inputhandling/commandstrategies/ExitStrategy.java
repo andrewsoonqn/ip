@@ -2,7 +2,6 @@ package arnold.inputhandling.commandstrategies;
 
 import arnold.events.EventBus;
 import arnold.inputhandling.InputHandlingStrategy;
-import arnold.messaging.Messenger;
 import arnold.tasks.TaskList;
 
 /**
@@ -10,17 +9,15 @@ import arnold.tasks.TaskList;
  */
 public class ExitStrategy implements InputHandlingStrategy {
     /**
-     * Handles the exit command.
+     * Handles the exit command by publishing a shutdown event.
      *
      * @param input The user input (not used).
-     * @param msg The messenger to use for communication.
      * @param taskList The task list (not used).
+     * @return The goodbye message.
      */
     @Override
-    public void handleInput(String input, Messenger msg, TaskList taskList) {
-        msg.printMessage("Bye. Hope to see you again soon!");
-
-        // Bot will receive and shut down
+    public String handleInput(String input, TaskList taskList) {
         EventBus.getInstance().publishShutdown();
+        return "Bye. Hope to see you again soon!";
     }
 }
