@@ -1,7 +1,7 @@
 package arnold;
 
-import arnold.inputhandling.HiStrategy;
 import arnold.inputhandling.InputProcessor;
+import arnold.inputhandling.commandstrategies.HiStrategy;
 import arnold.messaging.Messenger;
 import arnold.tasks.TaskList;
 

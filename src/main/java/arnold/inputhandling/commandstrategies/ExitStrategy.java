@@ -1,6 +1,7 @@
-package arnold.inputhandling;
+package arnold.inputhandling.commandstrategies;
 
 import arnold.events.EventBus;
+import arnold.inputhandling.InputHandlingStrategy;
 import arnold.messaging.Messenger;
 import arnold.tasks.TaskList;
 

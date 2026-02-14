@@ -1,6 +1,7 @@
-package arnold.inputhandling;
+package arnold.inputhandling.edittaskstrategies;
 
 import arnold.chatbotexceptions.ChatbotArgumentException;
+import arnold.inputhandling.InputHandlingStrategy;
 import arnold.messaging.Messenger;
 import arnold.tasks.Task;
 import arnold.tasks.TaskList;

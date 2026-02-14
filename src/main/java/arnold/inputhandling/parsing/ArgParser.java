@@ -1,4 +1,4 @@
-package arnold.inputhandling;
+package arnold.inputhandling.parsing;
 
 import java.util.Map;
 

@@ -1,5 +1,6 @@
-package arnold.inputhandling;
+package arnold.inputhandling.viewtaskstrategies;
 
+import arnold.inputhandling.InputHandlingStrategy;
 import arnold.messaging.Messenger;
 import arnold.tasks.TaskList;
 

@@ -2,7 +2,7 @@ package arnold.tasks;
 
 import java.time.LocalDateTime;
 
-import arnold.inputhandling.DateTimeParser;
+import arnold.inputhandling.parsing.DateTimeParser;
 
 /**
  * Represents a task with a deadline.

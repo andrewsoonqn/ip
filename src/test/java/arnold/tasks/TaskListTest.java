@@ -89,7 +89,7 @@ public class TaskListTest {
 
     @Test
     public void removeTask_invalidIndex_throwsException() {
-        assertThrows(IndexOutOfBoundsException.class, () -> taskList.removeTask(1));
+        assertThrows(ChatbotArgumentException.class, () -> taskList.removeTask(1));
     }
 
     @Test

@@ -1,19 +1,20 @@
-package arnold.inputhandling;
+package arnold.inputhandling.edittaskstrategies;
 
 import arnold.chatbotexceptions.ChatbotArgumentException;
+import arnold.inputhandling.InputHandlingStrategy;
 import arnold.messaging.Messenger;
 import arnold.tasks.Task;
 import arnold.tasks.TaskList;
 import arnold.tasks.TaskString;
 
 /**
- * Strategy for handling the mark command.
+ * Strategy for handling the unmark command.
  */
-public class MarkStrategy implements InputHandlingStrategy {
+public class UnmarkStrategy implements InputHandlingStrategy {
     /**
-     * Handles the mark command by marking the specified task as done.
+     * Handles the unmark command by marking the specified task as not done.
      *
-     * @param input The ID of the task to mark.
+     * @param input The ID of the task to unmark.
      * @param msg The messenger to use for communication.
      * @param taskList The task list containing the task.
      * @throws ChatbotArgumentException If the input is not a valid integer.
@@ -26,9 +27,9 @@ public class MarkStrategy implements InputHandlingStrategy {
         } catch (NumberFormatException e) {
             throw new ChatbotArgumentException("Please enter a valid task ID.");
         }
-        Task task = taskList.markTask(taskId);
+        Task task = taskList.unmarkTask(taskId);
         msg.printMessage(
-            "Nice! I've marked this task as done:\n"
+            "OK, I've marked this task as not done yet:\n"
                 + TaskString.withoutIndex(task));
     }
 }

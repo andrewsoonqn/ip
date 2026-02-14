@@ -1,4 +1,4 @@
-package arnold.inputhandling;
+package arnold.inputhandling.addtaskstrategies;
 
 import arnold.tasks.Task;
 import arnold.tasks.Todo;

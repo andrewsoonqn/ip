@@ -2,7 +2,7 @@ package arnold.tasks;
 
 import java.time.LocalDateTime;
 
-import arnold.inputhandling.DateTimeParser;
+import arnold.inputhandling.parsing.DateTimeParser;
 
 /**
  * Represents an event task with a start and end time.

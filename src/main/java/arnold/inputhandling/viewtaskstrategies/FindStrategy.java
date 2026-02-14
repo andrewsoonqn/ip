@@ -1,7 +1,8 @@
-package arnold.inputhandling;
+package arnold.inputhandling.viewtaskstrategies;
 
 import java.util.function.Predicate;
 
+import arnold.inputhandling.InputHandlingStrategy;
 import arnold.messaging.Messenger;
 import arnold.tasks.Task;
 import arnold.tasks.TaskList;
