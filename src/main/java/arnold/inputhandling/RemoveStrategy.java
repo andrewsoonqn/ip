@@ -1,5 +1,6 @@
 package arnold.inputhandling;
 
+import arnold.chatbotexceptions.ChatbotArgumentException;
 import arnold.messaging.Messenger;
 import arnold.tasks.Task;
 import arnold.tasks.TaskList;
@@ -19,7 +20,13 @@ public class RemoveStrategy implements InputHandlingStrategy {
      */
     @Override
     public void handleInput(String input, Messenger msg, TaskList taskList) {
-        int taskId = Integer.parseInt(input);
+        int taskId;
+        try {
+            taskId = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new ChatbotArgumentException("Please enter a valid task ID.");
+        }
+
         Task task = taskList.removeTask(taskId);
         msg.printMessage(
             "Noted. I've removed this task:\n"

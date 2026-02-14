@@ -105,12 +105,16 @@ public class TaskList {
      *
      * @param which The 1-based index of the task to remove.
      * @return The removed task.
-     * @throws IndexOutOfBoundsException If the index is out of bounds.
+     * @throws ChatbotArgumentException If the index is out of bounds.
      */
     public Task removeTask(int which) {
-        Task removedTask = tasks.remove(which - 1);
-        storage.save(this);
-        return removedTask;
+        try {
+            Task removedTask = tasks.remove(which - 1);
+            storage.save(this);
+            return removedTask;
+        } catch (IndexOutOfBoundsException e) {
+            throw new ChatbotArgumentException("Task index out of bounds.");
+        }
     }
 
     /**
