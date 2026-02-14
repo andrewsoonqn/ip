@@ -33,6 +33,7 @@ public class TaskFileStorage implements Storage {
 
     private ObjectMapper createObjectMapper() {
         ObjectMapper mapper = new ObjectMapper();
+        mapper.deactivateDefaultTyping();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         // Use ISO-8601 strings to store DateTime
