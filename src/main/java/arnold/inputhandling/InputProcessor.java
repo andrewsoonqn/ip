@@ -1,38 +1,48 @@
 package arnold.inputhandling;
 
-import java.util.Map;
-
 import arnold.chatbotexceptions.ChatbotException;
-import arnold.messaging.Messenger;
-import arnold.tasks.TaskList;
+import arnold.inputhandling.parsing.Parser;
+import arnold.inputhandling.taskcrudstrategies.create.DeadlineStrategy;
+import arnold.inputhandling.taskcrudstrategies.create.EventStrategy;
+import arnold.inputhandling.taskcrudstrategies.create.TodoStrategy;
+import arnold.inputhandling.taskcrudstrategies.delete.RemoveStrategy;
+import arnold.inputhandling.taskcrudstrategies.read.FindStrategy;
+import arnold.inputhandling.taskcrudstrategies.read.ListStrategy;
+import arnold.inputhandling.taskcrudstrategies.update.MarkStrategy;
+import arnold.inputhandling.taskcrudstrategies.update.UnmarkStrategy;
+import arnold.tasks.utils.TaskList;
 
 /**
  * Processes user input and executes commands using appropriate strategies.
  */
 public class InputProcessor {
-    private static final Map<String, InputHandlingStrategy> commandStrategies = Map.of(
-        "bye", new ExitStrategy(),
-        "list", new ListStrategy(),
-        "mark", new MarkStrategy(),
-        "unmark", new UnmarkStrategy(),
-        "todo", new TodoStrategy(),
-        "deadline", new DeadlineStrategy(),
-        "event", new EventStrategy(),
-        "delete", new RemoveStrategy(),
-        "find", new FindStrategy()
-    );
-    private final Messenger msg;
+    private final Parser parser;
     private final TaskList taskList;
 
     /**
      * Initializes a new instance of the InputProcessor.
      *
-     * @param msg The messenger to use for communication.
      * @param taskList The task list to manage.
      */
-    public InputProcessor(Messenger msg, TaskList taskList) {
-        this.msg = msg;
+    public InputProcessor(TaskList taskList) {
+        this.parser = makeDefaultParser();
         this.taskList = taskList;
+    }
+
+    private static Parser makeDefaultParser() {
+        Parser parser = new Parser();
+
+        parser.register("bye", new ExitStrategy());
+        parser.register("list", new ListStrategy());
+        parser.register("mark", new MarkStrategy());
+        parser.register("unmark", new UnmarkStrategy());
+        parser.register("todo", new TodoStrategy());
+        parser.register("delete", new RemoveStrategy());
+        parser.register("find", new FindStrategy());
+        parser.register("deadline", new DeadlineStrategy(), "by");
+        parser.register("event", new EventStrategy(), "from", "to");
+
+        return parser;
     }
 
     /**
@@ -42,32 +52,11 @@ public class InputProcessor {
      * @return The response message after processing the input.
      */
     public String processInput(String input) {
-        String[] commandArgs = ArgParser.getCommandArgs(input);
-        String command = commandArgs[0];
-        String arg = commandArgs[1];
-
         try {
-            InputHandlingStrategy strategy = commandStrategies.get(command);
-            if (strategy != null) {
-                strategy.handleInput(arg, msg, taskList);
-            } else {
-                new DefaultStrategy().handleInput(input, msg, taskList);
-            }
+            Parser.Result result = parser.parse(input);
+            return result.strategy().handleInput(result.command(), taskList);
         } catch (ChatbotException e) {
-            msg.printMessage(e.getMessage());
+            return e.getMessage();
         }
-        return msg.getLastMessage();
-    }
-
-    /**
-     * Processes user input using a specific strategy.
-     *
-     * @param strategy The strategy to use for processing.
-     * @param arg The argument for the strategy.
-     * @return The response message.
-     */
-    public String processInput(InputHandlingStrategy strategy, String arg) {
-        strategy.handleInput(arg, msg, taskList);
-        return msg.getLastMessage();
     }
 }

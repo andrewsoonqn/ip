@@ -1,25 +1,23 @@
 package arnold.inputhandling;
 
 import arnold.events.EventBus;
-import arnold.messaging.Messenger;
-import arnold.tasks.TaskList;
+import arnold.inputhandling.parsing.ParsedCommand;
+import arnold.tasks.utils.TaskList;
 
 /**
  * Strategy for handling the exit command.
  */
 public class ExitStrategy implements InputHandlingStrategy {
     /**
-     * Handles the exit command.
+     * Handles the exit command by publishing a shutdown event.
      *
-     * @param input The user input (not used).
-     * @param msg The messenger to use for communication.
+     * @param command The parsed command (not used).
      * @param taskList The task list (not used).
+     * @return The goodbye message.
      */
     @Override
-    public void handleInput(String input, Messenger msg, TaskList taskList) {
-        msg.printMessage("Bye. Hope to see you again soon!");
-
-        // Bot will receive and shut down
+    public String handleInput(ParsedCommand command, TaskList taskList) {
         EventBus.getInstance().publishShutdown();
+        return "Bye. Hope to see you again soon!";
     }
 }

@@ -5,8 +5,7 @@ import java.io.IOException;
 import arnold.datapersistence.DataPaths;
 import arnold.datapersistence.Storage;
 import arnold.datapersistence.TaskFileStorage;
-import arnold.messaging.Messenger;
-import arnold.tasks.TaskList;
+import arnold.tasks.utils.TaskList;
 import arnold.ui.MainWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -27,9 +26,11 @@ public class ArnoldApplication extends Application {
         Storage storage = new TaskFileStorage(DataPaths.TASKS_FILE_PATH);
         TaskList taskList = TaskList.create(storage);
 
-        Arnold arnold = new Arnold(new Messenger(), taskList);
+        Arnold arnold = new Arnold(taskList);
 
         try {
+            primaryStage.setTitle("Arnold");
+
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);

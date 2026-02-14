@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import arnold.chatbotexceptions.ChatbotArgumentException;
 import arnold.datapersistence.NullStorage;
+import arnold.tasks.utils.TaskList;
 
 public class TaskListTest {
     private TaskList taskList;
@@ -89,7 +90,7 @@ public class TaskListTest {
 
     @Test
     public void removeTask_invalidIndex_throwsException() {
-        assertThrows(IndexOutOfBoundsException.class, () -> taskList.removeTask(1));
+        assertThrows(ChatbotArgumentException.class, () -> taskList.removeTask(1));
     }
 
     @Test

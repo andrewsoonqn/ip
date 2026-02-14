@@ -1,31 +1,31 @@
 package arnold;
 
-import arnold.inputhandling.HiStrategy;
 import arnold.inputhandling.InputProcessor;
-import arnold.messaging.Messenger;
-import arnold.tasks.TaskList;
+import arnold.tasks.utils.TaskList;
 
 /**
  * Main chatbot class.
  */
 public class Arnold {
+    private static final String GREETING = "Hello! I'm Arnold\nWhat can I do for you?";
     private final InputProcessor inputProcessor;
 
     /**
      * Initializes a new instance of the Arnold chatbot.
      *
-     * @param msg The messenger to use for communication.
      * @param taskList The task list to manage.
      */
-    public Arnold(Messenger msg, TaskList taskList) {
-        this.inputProcessor = new InputProcessor(msg, taskList);
+    public Arnold(TaskList taskList) {
+        this.inputProcessor = new InputProcessor(taskList);
     }
 
     /**
      * Greets the user.
+     *
+     * @return The greeting message.
      */
     public String hi() {
-        return inputProcessor.processInput(new HiStrategy(), "");
+        return GREETING;
     }
 
     /**

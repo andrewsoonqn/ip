@@ -17,8 +17,8 @@ public class ListSearcher<T> {
      * @param list The list of elements to filter. Must not be null.
      * @param predicate The condition to apply to each element in the list. Must not be null.
      * @return A new list containing elements that match the predicate condition.
-     *         Returns an empty list if no elements satisfy the predicate
-     *         or if the input list is empty.
+     *     Returns an empty list if no elements satisfy the predicate
+     *     or if the input list is empty.
      * @throws NullPointerException If the input list or predicate is null.
      */
     public List<T> findItems(List<T> list, Predicate<T> predicate) {

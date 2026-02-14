@@ -1,4 +1,4 @@
-package arnold.inputhandling;
+package arnold.inputhandling.parsing;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

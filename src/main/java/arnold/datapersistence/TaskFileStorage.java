@@ -7,8 +7,7 @@ import java.nio.file.Path;
 import java.util.stream.Stream;
 
 import arnold.inputhandling.InputProcessor;
-import arnold.messaging.Messenger;
-import arnold.tasks.TaskList;
+import arnold.tasks.utils.TaskList;
 
 /**
  * Concrete implementation of Storage that uses a file for persistence.
@@ -27,14 +26,14 @@ public class TaskFileStorage implements Storage {
 
     @Override
     public void load(TaskList taskList) {
-        InputProcessor inputProcessor = new InputProcessor(new Messenger(), taskList);
+        InputProcessor inputProcessor = new InputProcessor(taskList);
         Path path = Path.of(filePath);
 
         try (Stream<String> commands = Files.lines(path)) {
             // Process each line as a command
             commands.forEach(inputProcessor::processInput);
         } catch (NoSuchFileException e) {
-            // File doesn't exist yet, so create it'
+            // File doesn't exist yet, so create it
             FileWriter.createDirectories(path);
             FileWriter.createFile(path.toString());
         } catch (IOException e) {

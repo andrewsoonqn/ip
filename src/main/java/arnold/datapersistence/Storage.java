@@ -1,6 +1,6 @@
 package arnold.datapersistence;
 
-import arnold.tasks.TaskList;
+import arnold.tasks.utils.TaskList;
 
 /**
  * Interface for loading and saving task list data.

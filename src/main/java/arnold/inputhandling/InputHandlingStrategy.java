@@ -1,19 +1,19 @@
 package arnold.inputhandling;
 
-import arnold.messaging.Messenger;
-import arnold.tasks.TaskList;
+import arnold.inputhandling.parsing.ParsedCommand;
+import arnold.tasks.utils.TaskList;
 
 /**
  * Interface for input handling strategies.
  */
 public interface InputHandlingStrategy {
     /**
-     * Handles the user input.
+     * Handles the parsed command.
      *
-     * @param input The user input to handle.
-     * @param msg The messenger to use for communication.
+     * @param command The parsed command containing description and flags.
      * @param taskList The task list to manage.
+     * @return The response message.
      * @throws arnold.chatbotexceptions.ChatbotException If an error occurs during processing.
      */
-    void handleInput(String input, Messenger msg, TaskList taskList);
+    String handleInput(ParsedCommand command, TaskList taskList);
 }
