@@ -37,13 +37,4 @@ public class Deadline extends Task {
     public TaskType getTaskType() {
         return TaskType.DEADLINE;
     }
-
-    /**
-     * Returns the deadline date and time for this task.
-     *
-     * @return the {@link LocalDateTime} by which this task is due
-     */
-    public LocalDateTime getBy() {
-        return by;
-    }
 }

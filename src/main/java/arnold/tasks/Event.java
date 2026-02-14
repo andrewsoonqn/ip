@@ -27,9 +27,9 @@ public class Event extends Task {
      */
     @JsonCreator
     public Event(
-            @JsonProperty("description") String description,
-            @JsonProperty("from") LocalDateTime from,
-            @JsonProperty("to") LocalDateTime to) {
+        @JsonProperty("description") String description,
+        @JsonProperty("from") LocalDateTime from,
+        @JsonProperty("to") LocalDateTime to) {
         super(description);
         this.from = from;
         this.to = to;
@@ -47,14 +47,6 @@ public class Event extends Task {
     @Override
     public TaskType getTaskType() {
         return TaskType.EVENT;
-    }
-
-    public LocalDateTime getFrom() {
-        return from;
-    }
-
-    public LocalDateTime getTo() {
-        return to;
     }
 }
 

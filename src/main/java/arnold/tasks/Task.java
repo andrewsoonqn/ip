@@ -17,7 +17,7 @@ import arnold.tasks.utils.TaskType;
     @JsonSubTypes.Type(value = Event.class, name = "event")
 })
 @JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE,
-        isGetterVisibility = JsonAutoDetect.Visibility.NONE)
+    isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 public abstract class Task {
     @JsonProperty("description")
     private final String description;
