@@ -1,4 +1,4 @@
-package arnold.inputhandling.taskcrudstrategies.create;
+package arnold.inputhandling.strategies.taskcrudstrategies.create;
 
 import arnold.inputhandling.parsing.ParsedCommand;
 import arnold.tasks.Task;

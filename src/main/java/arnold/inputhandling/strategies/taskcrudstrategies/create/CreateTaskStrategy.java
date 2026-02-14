@@ -1,7 +1,7 @@
-package arnold.inputhandling.taskcrudstrategies.create;
+package arnold.inputhandling.strategies.taskcrudstrategies.create;
 
 import arnold.chatbotexceptions.ChatbotArgumentException;
-import arnold.inputhandling.InputHandlingStrategy;
+import arnold.inputhandling.strategies.InputHandlingStrategy;
 import arnold.inputhandling.parsing.ParsedCommand;
 import arnold.tasks.Task;
 import arnold.tasks.utils.TaskList;

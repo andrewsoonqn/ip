@@ -2,14 +2,15 @@ package arnold.inputhandling;
 
 import arnold.chatbotexceptions.ChatbotException;
 import arnold.inputhandling.parsing.Parser;
-import arnold.inputhandling.taskcrudstrategies.create.DeadlineStrategy;
-import arnold.inputhandling.taskcrudstrategies.create.EventStrategy;
-import arnold.inputhandling.taskcrudstrategies.create.TodoStrategy;
-import arnold.inputhandling.taskcrudstrategies.delete.RemoveStrategy;
-import arnold.inputhandling.taskcrudstrategies.read.FindStrategy;
-import arnold.inputhandling.taskcrudstrategies.read.ListStrategy;
-import arnold.inputhandling.taskcrudstrategies.update.MarkStrategy;
-import arnold.inputhandling.taskcrudstrategies.update.UnmarkStrategy;
+import arnold.inputhandling.strategies.ExitStrategy;
+import arnold.inputhandling.strategies.taskcrudstrategies.create.DeadlineStrategy;
+import arnold.inputhandling.strategies.taskcrudstrategies.create.EventStrategy;
+import arnold.inputhandling.strategies.taskcrudstrategies.create.TodoStrategy;
+import arnold.inputhandling.strategies.taskcrudstrategies.delete.RemoveStrategy;
+import arnold.inputhandling.strategies.taskcrudstrategies.read.FindStrategy;
+import arnold.inputhandling.strategies.taskcrudstrategies.read.ListStrategy;
+import arnold.inputhandling.strategies.taskcrudstrategies.update.MarkStrategy;
+import arnold.inputhandling.strategies.taskcrudstrategies.update.UnmarkStrategy;
 import arnold.tasks.utils.TaskList;
 
 /**

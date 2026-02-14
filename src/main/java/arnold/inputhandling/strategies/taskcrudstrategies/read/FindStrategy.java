@@ -1,8 +1,8 @@
-package arnold.inputhandling.taskcrudstrategies.read;
+package arnold.inputhandling.strategies.taskcrudstrategies.read;
 
 import java.util.function.Predicate;
 
-import arnold.inputhandling.InputHandlingStrategy;
+import arnold.inputhandling.strategies.InputHandlingStrategy;
 import arnold.inputhandling.parsing.ParsedCommand;
 import arnold.tasks.Task;
 import arnold.tasks.utils.TaskList;

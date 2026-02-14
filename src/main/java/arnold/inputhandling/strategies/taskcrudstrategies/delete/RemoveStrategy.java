@@ -1,22 +1,22 @@
-package arnold.inputhandling.taskcrudstrategies.update;
+package arnold.inputhandling.strategies.taskcrudstrategies.delete;
 
 import arnold.chatbotexceptions.ChatbotArgumentException;
-import arnold.inputhandling.InputHandlingStrategy;
+import arnold.inputhandling.strategies.InputHandlingStrategy;
 import arnold.inputhandling.parsing.ParsedCommand;
 import arnold.tasks.Task;
 import arnold.tasks.utils.TaskList;
 import arnold.tasks.utils.TaskString;
 
 /**
- * Strategy for handling the mark command.
+ * Strategy for handling the remove command.
  */
-public class MarkStrategy implements InputHandlingStrategy {
+public class RemoveStrategy implements InputHandlingStrategy {
     /**
-     * Handles the mark command by marking the specified task as done.
+     * Handles the remove command by deleting the specified task.
      *
      * @param command The parsed command containing the task ID.
-     * @param taskList The task list containing the task.
-     * @return The response message confirming the task was marked.
+     * @param taskList The task list to remove the task from.
+     * @return The response message confirming the task was removed.
      * @throws ChatbotArgumentException If the description is not a valid task ID.
      */
     @Override
@@ -27,8 +27,10 @@ public class MarkStrategy implements InputHandlingStrategy {
         } catch (NumberFormatException e) {
             throw new ChatbotArgumentException("Please enter a valid task ID.");
         }
-        Task task = taskList.markTask(taskId);
-        return "Nice! I've marked this task as done:\n"
-            + TaskString.withoutIndex(task);
+
+        Task task = taskList.removeTask(taskId);
+        return "Noted. I've removed this task:\n"
+            + TaskString.withoutIndex(task)
+            + String.format("\nNow you have %d tasks in the list.", taskList.getSize());
     }
 }

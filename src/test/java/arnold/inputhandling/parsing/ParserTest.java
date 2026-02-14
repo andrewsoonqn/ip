@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import arnold.chatbotexceptions.ChatbotArgumentException;
 import arnold.chatbotexceptions.NoSuchCommandException;
-import arnold.inputhandling.InputHandlingStrategy;
+import arnold.inputhandling.strategies.InputHandlingStrategy;
 
 // Tests generated via Junie by JetBrains
 public class ParserTest {

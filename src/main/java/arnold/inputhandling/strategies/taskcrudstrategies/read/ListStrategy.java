@@ -1,6 +1,6 @@
-package arnold.inputhandling.taskcrudstrategies.read;
+package arnold.inputhandling.strategies.taskcrudstrategies.read;
 
-import arnold.inputhandling.InputHandlingStrategy;
+import arnold.inputhandling.strategies.InputHandlingStrategy;
 import arnold.inputhandling.parsing.ParsedCommand;
 import arnold.tasks.utils.TaskList;
 

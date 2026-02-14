@@ -1,4 +1,4 @@
-package arnold.inputhandling;
+package arnold.inputhandling.strategies;
 
 import arnold.inputhandling.parsing.ParsedCommand;
 import arnold.tasks.utils.TaskList;

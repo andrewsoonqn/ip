@@ -5,7 +5,7 @@ import java.util.Map;
 
 import arnold.chatbotexceptions.ChatbotArgumentException;
 import arnold.chatbotexceptions.NoSuchCommandException;
-import arnold.inputhandling.InputHandlingStrategy;
+import arnold.inputhandling.strategies.InputHandlingStrategy;
 
 // Solution below inspired by https://github.com/NUS-CS2103-AY2526-S2/ip/pull/445/
 
