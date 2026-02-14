@@ -122,7 +122,13 @@ public class TaskList {
         return Collections.unmodifiableList(tasks);
     }
 
+    /**
+     * Loads the given list of tasks into the task list, replacing any existing tasks.
+     *
+     * @param loadedTasks The list of tasks to load. Must not be null.
+     */
     public void loadTasks(List<Task> loadedTasks) {
+        tasks.clear();
         tasks.addAll(loadedTasks);
     }
 
