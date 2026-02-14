@@ -3,6 +3,7 @@ package arnold.inputhandling;
 import arnold.chatbotexceptions.ChatbotException;
 import arnold.inputhandling.parsing.Parser;
 import arnold.inputhandling.strategies.ExitStrategy;
+import arnold.inputhandling.strategies.HelpStrategy;
 import arnold.inputhandling.strategies.taskcrudstrategies.create.DeadlineStrategy;
 import arnold.inputhandling.strategies.taskcrudstrategies.create.EventStrategy;
 import arnold.inputhandling.strategies.taskcrudstrategies.create.TodoStrategy;
@@ -42,6 +43,7 @@ public class InputProcessor {
         parser.register("find", new FindStrategy());
         parser.register("deadline", new DeadlineStrategy(), "by");
         parser.register("event", new EventStrategy(), "from", "to");
+        parser.register("help", new HelpStrategy(parser));
 
         return parser;
     }
