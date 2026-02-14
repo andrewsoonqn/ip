@@ -21,4 +21,14 @@ public class ListStrategy implements InputHandlingStrategy {
     public CommandResult handleInput(ParsedCommand command, TaskList taskList) {
         return CommandResult.success(Messages.taskList(taskList.toString()));
     }
+
+    @Override
+    public String getDescription() {
+        return "List all tasks";
+    }
+
+    @Override
+    public String getExampleUsage() {
+        return "list";
+    }
 }

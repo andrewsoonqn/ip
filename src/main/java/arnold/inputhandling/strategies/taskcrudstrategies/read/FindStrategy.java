@@ -32,4 +32,14 @@ public class FindStrategy implements InputHandlingStrategy {
         return CommandResult.success(
             Messages.taskFind(TaskString.listWithIndex(taskList.findTasks(predicate))));
     }
+
+    @Override
+    public String getDescription() {
+        return "Find tasks by keyword";
+    }
+
+    @Override
+    public String getExampleUsage() {
+        return "find book";
+    }
 }
