@@ -18,7 +18,7 @@ public abstract class TaskIdStrategy implements InputHandlingStrategy {
         try {
             taskId = Integer.parseInt(command.getDescription());
         } catch (NumberFormatException e) {
-            throw new ChatbotArgumentException(Messages.invalidTaskId());
+            throw new ChatbotArgumentException(Messages.invalidTaskId(taskList.getSize()));
         }
         return execute(taskId, taskList);
     }

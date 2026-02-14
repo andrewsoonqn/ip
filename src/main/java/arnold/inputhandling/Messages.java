@@ -9,12 +9,25 @@ public final class Messages {
     private Messages() {
     }
 
-    public static String invalidTaskId() {
-        return "I am unable to find a task with that ID.";
+
+    /**
+     * Generates an error message indicating that a task with the provided ID cannot be found.
+     * The message includes the valid range of task IDs based on the current task count.
+     * For example, can be used when index is out of bounds, or when a non-integer is provided.
+     *
+     * @param taskCount The total number of tasks currently in the list, used to calculate
+     *     the valid range of task IDs.
+     * @return A formatted error message specifying the valid range for task IDs.
+     */
+    public static String invalidTaskId(int taskCount) {
+        return String.format(
+            "I am unable to find a task with that ID. "
+                + "\nTask ID must be an integer between 1 and %d.", taskCount);
     }
 
     public static String noSuchCommand() {
-        return "Sorry, I don't recognise that command!";
+        return "Sorry, I don't recognise that command!"
+            + "\nType 'help' to see a list of available commands.";
     }
 
     public static String invalidDeadline() {
@@ -66,5 +79,9 @@ public final class Messages {
 
     public static String missingFlag(String flagName) {
         return String.format("You are missing a required flag: /%s", flagName);
+    }
+
+    public static String taskIndexOutOfBounds(int taskCount) {
+        return String.format("The task index must be between 1 and %d.", taskCount);
     }
 }
