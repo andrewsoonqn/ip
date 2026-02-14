@@ -18,7 +18,7 @@
                 <VBox fx:id="dialogContainer" prefWidth="400.0"/>
             </content>
         </ScrollPane>
-        <TextField fx:id="userInput" onAction="#handleUserInput" prefHeight="42.0" promptText="Type a message..."
+        <TextField fx:id="userInput" onAction="#handleUserInput" prefHeight="42.0" promptText="Enter a command..."
                    AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="86.0"/>
         <Button fx:id="sendButton" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="42.0"
                 prefWidth="74.0" text="Send" AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="8.0"/>
