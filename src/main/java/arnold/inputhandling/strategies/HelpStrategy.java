@@ -33,7 +33,7 @@ public class HelpStrategy implements InputHandlingStrategy {
 
                 sb.append(String.format("\n  %s", name));
                 if (!description.isEmpty()) {
-                    sb.append(String.format(" - %s", description));
+                    sb.append(String.format("\n    %s", description));
                 }
                 if (!example.isEmpty()) {
                     sb.append(String.format("\n    Usage: %s", example));
