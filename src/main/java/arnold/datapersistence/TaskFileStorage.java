@@ -58,7 +58,9 @@ public class TaskFileStorage implements Storage {
             // Treat list as array of Task objects instead of runtime type
             List<Task> tasks = objectMapper.readValue(json, new TypeReference<List<Task>>() {
             });
-            taskList.loadTasks(tasks);
+            if (tasks != null) {
+                taskList.loadTasks(tasks);
+            }
         } catch (NoSuchFileException e) {
             // File doesn't exist yet, so create it
             FileWriter.createDirectories(path);
