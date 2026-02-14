@@ -1,7 +1,7 @@
-package arnold.inputhandling.commandstrategies;
+package arnold.inputhandling;
 
 import arnold.events.EventBus;
-import arnold.inputhandling.InputHandlingStrategy;
+import arnold.inputhandling.parsing.ParsedCommand;
 import arnold.tasks.TaskList;
 
 /**
@@ -11,12 +11,12 @@ public class ExitStrategy implements InputHandlingStrategy {
     /**
      * Handles the exit command by publishing a shutdown event.
      *
-     * @param input The user input (not used).
+     * @param command The parsed command (not used).
      * @param taskList The task list (not used).
      * @return The goodbye message.
      */
     @Override
-    public String handleInput(String input, TaskList taskList) {
+    public String handleInput(ParsedCommand command, TaskList taskList) {
         EventBus.getInstance().publishShutdown();
         return "Bye. Hope to see you again soon!";
     }

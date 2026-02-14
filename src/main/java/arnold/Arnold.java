@@ -1,13 +1,13 @@
 package arnold;
 
 import arnold.inputhandling.InputProcessor;
-import arnold.inputhandling.commandstrategies.HiStrategy;
 import arnold.tasks.TaskList;
 
 /**
  * Main chatbot class.
  */
 public class Arnold {
+    private static final String GREETING = "Hello! I'm Arnold\nWhat can I do for you?";
     private final InputProcessor inputProcessor;
 
     /**
@@ -25,7 +25,7 @@ public class Arnold {
      * @return The greeting message.
      */
     public String hi() {
-        return inputProcessor.processInput(new HiStrategy(), "");
+        return GREETING;
     }
 
     /**

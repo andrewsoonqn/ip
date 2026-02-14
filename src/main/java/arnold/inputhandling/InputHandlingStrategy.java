@@ -1,5 +1,6 @@
 package arnold.inputhandling;
 
+import arnold.inputhandling.parsing.ParsedCommand;
 import arnold.tasks.TaskList;
 
 /**
@@ -7,12 +8,12 @@ import arnold.tasks.TaskList;
  */
 public interface InputHandlingStrategy {
     /**
-     * Handles the user input.
+     * Handles the parsed command.
      *
-     * @param input The user input to handle.
+     * @param command The parsed command containing description and flags.
      * @param taskList The task list to manage.
      * @return The response message.
      * @throws arnold.chatbotexceptions.ChatbotException If an error occurs during processing.
      */
-    String handleInput(String input, TaskList taskList);
+    String handleInput(ParsedCommand command, TaskList taskList);
 }

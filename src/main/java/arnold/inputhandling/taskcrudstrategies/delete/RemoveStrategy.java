@@ -1,7 +1,8 @@
-package arnold.inputhandling.edittaskstrategies;
+package arnold.inputhandling.taskcrudstrategies.delete;
 
 import arnold.chatbotexceptions.ChatbotArgumentException;
 import arnold.inputhandling.InputHandlingStrategy;
+import arnold.inputhandling.parsing.ParsedCommand;
 import arnold.tasks.Task;
 import arnold.tasks.TaskList;
 import arnold.tasks.TaskString;
@@ -13,16 +14,16 @@ public class RemoveStrategy implements InputHandlingStrategy {
     /**
      * Handles the remove command by deleting the specified task.
      *
-     * @param input The ID of the task to remove.
+     * @param command The parsed command containing the task ID.
      * @param taskList The task list to remove the task from.
      * @return The response message confirming the task was removed.
-     * @throws ChatbotArgumentException If the input is not a valid integer.
+     * @throws ChatbotArgumentException If the description is not a valid task ID.
      */
     @Override
-    public String handleInput(String input, TaskList taskList) {
+    public String handleInput(ParsedCommand command, TaskList taskList) {
         int taskId;
         try {
-            taskId = Integer.parseInt(input);
+            taskId = Integer.parseInt(command.getDescription());
         } catch (NumberFormatException e) {
             throw new ChatbotArgumentException("Please enter a valid task ID.");
         }
