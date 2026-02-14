@@ -118,6 +118,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Retrieves an unmodifiable view of the task list.
+     *
+     * @return An unmodifiable list of tasks.
+     */
     public List<Task> getTasks() {
         return Collections.unmodifiableList(tasks);
     }
