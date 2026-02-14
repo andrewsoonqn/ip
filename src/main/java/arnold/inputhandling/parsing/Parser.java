@@ -1,5 +1,6 @@
 package arnold.inputhandling.parsing;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,6 +32,15 @@ public class Parser {
     public void register(String command, InputHandlingStrategy strategy, String... expectedFlags) {
         strategies.put(command, strategy);
         commandFlags.put(command, expectedFlags);
+    }
+
+    /**
+     * Returns an unmodifiable view of the registered command-to-strategy map.
+     *
+     * @return The map of command names to their strategies.
+     */
+    public Map<String, InputHandlingStrategy> getRegisteredCommands() {
+        return Collections.unmodifiableMap(strategies);
     }
 
     /**
