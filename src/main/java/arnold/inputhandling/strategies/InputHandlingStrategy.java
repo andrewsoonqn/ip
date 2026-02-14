@@ -17,4 +17,22 @@ public interface InputHandlingStrategy {
      * @throws arnold.chatbotexceptions.ChatbotException If an error occurs during processing.
      */
     CommandResult handleInput(ParsedCommand command, TaskList taskList);
+
+    /**
+     * Returns a description of what this command does.
+     *
+     * @return The description string, or empty if not provided.
+     */
+    default String getDescription() {
+        return "";
+    }
+
+    /**
+     * Returns an example usage of the command.
+     *
+     * @return The example usage string, or empty if not provided.
+     */
+    default String getExampleUsage() {
+        return "";
+    }
 }

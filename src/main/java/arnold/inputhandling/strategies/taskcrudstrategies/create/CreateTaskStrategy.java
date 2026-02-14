@@ -34,10 +34,4 @@ public abstract class CreateTaskStrategy implements InputHandlingStrategy {
                 TaskString.withoutIndex(addedTask), taskList.getSize()));
     }
 
-    /**
-     * Returns an example usage of the command.
-     *
-     * @return The example usage string for this command.
-     */
-    public abstract String getExampleUsage();
 }
