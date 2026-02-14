@@ -1,5 +1,7 @@
 package arnold.tasks;
 
+import arnold.tasks.utils.TaskType;
+
 /**
  * Represents a todo task.
  */

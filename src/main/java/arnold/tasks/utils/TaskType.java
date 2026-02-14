@@ -1,4 +1,4 @@
-package arnold.tasks;
+package arnold.tasks.utils;
 
 /**
  * Represents the types of tasks available in the chatbot.

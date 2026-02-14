@@ -2,7 +2,7 @@ package arnold.inputhandling.taskcrudstrategies.read;
 
 import arnold.inputhandling.InputHandlingStrategy;
 import arnold.inputhandling.parsing.ParsedCommand;
-import arnold.tasks.TaskList;
+import arnold.tasks.utils.TaskList;
 
 /**
  * Strategy for handling the list command.

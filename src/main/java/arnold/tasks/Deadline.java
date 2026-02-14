@@ -3,6 +3,7 @@ package arnold.tasks;
 import java.time.LocalDateTime;
 
 import arnold.inputhandling.parsing.DateTimeParser;
+import arnold.tasks.utils.TaskType;
 
 /**
  * Represents a task with a deadline.

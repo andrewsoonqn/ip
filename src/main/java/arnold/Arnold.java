@@ -1,7 +1,7 @@
 package arnold;
 
 import arnold.inputhandling.InputProcessor;
-import arnold.tasks.TaskList;
+import arnold.tasks.utils.TaskList;
 
 /**
  * Main chatbot class.

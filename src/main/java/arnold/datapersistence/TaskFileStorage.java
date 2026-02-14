@@ -7,7 +7,7 @@ import java.nio.file.Path;
 import java.util.stream.Stream;
 
 import arnold.inputhandling.InputProcessor;
-import arnold.tasks.TaskList;
+import arnold.tasks.utils.TaskList;
 
 /**
  * Concrete implementation of Storage that uses a file for persistence.

@@ -1,6 +1,6 @@
 package arnold.datapersistence;
 
-import arnold.tasks.TaskList;
+import arnold.tasks.utils.TaskList;
 
 /**
  * A storage implementation that does nothing. Useful for testing or when persistence is not needed.

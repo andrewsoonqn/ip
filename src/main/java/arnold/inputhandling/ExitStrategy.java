@@ -2,7 +2,7 @@ package arnold.inputhandling;
 
 import arnold.events.EventBus;
 import arnold.inputhandling.parsing.ParsedCommand;
-import arnold.tasks.TaskList;
+import arnold.tasks.utils.TaskList;
 
 /**
  * Strategy for handling the exit command.

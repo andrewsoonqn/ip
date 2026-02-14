@@ -10,7 +10,7 @@ import arnold.inputhandling.taskcrudstrategies.read.FindStrategy;
 import arnold.inputhandling.taskcrudstrategies.read.ListStrategy;
 import arnold.inputhandling.taskcrudstrategies.update.MarkStrategy;
 import arnold.inputhandling.taskcrudstrategies.update.UnmarkStrategy;
-import arnold.tasks.TaskList;
+import arnold.tasks.utils.TaskList;
 
 /**
  * Processes user input and executes commands using appropriate strategies.

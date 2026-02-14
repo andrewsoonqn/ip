@@ -5,8 +5,8 @@ import java.util.function.Predicate;
 import arnold.inputhandling.InputHandlingStrategy;
 import arnold.inputhandling.parsing.ParsedCommand;
 import arnold.tasks.Task;
-import arnold.tasks.TaskList;
-import arnold.tasks.TaskString;
+import arnold.tasks.utils.TaskList;
+import arnold.tasks.utils.TaskString;
 
 /**
  * Strategy for handling the find command.

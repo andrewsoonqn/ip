@@ -1,7 +1,7 @@
 package arnold.inputhandling;
 
 import arnold.inputhandling.parsing.ParsedCommand;
-import arnold.tasks.TaskList;
+import arnold.tasks.utils.TaskList;
 
 /**
  * Interface for input handling strategies.
