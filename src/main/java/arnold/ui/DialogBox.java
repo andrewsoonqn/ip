@@ -54,6 +54,10 @@ public class DialogBox extends HBox {
         return db;
     }
 
+    public void setErrorStyle() {
+        dialog.getStyleClass().add("error-label");
+    }
+
     private void flip() {
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         Collections.reverse(tmp);

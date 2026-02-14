@@ -52,12 +52,12 @@ public class InputProcessor {
      * @param input The raw input string from the user.
      * @return The response message after processing the input.
      */
-    public String processInput(String input) {
+    public CommandResult processInput(String input) {
         try {
             Parser.Result result = parser.parse(input);
             return result.strategy().handleInput(result.command(), taskList);
         } catch (ChatbotException e) {
-            return e.getMessage();
+            return CommandResult.error(e.getMessage());
         }
     }
 }

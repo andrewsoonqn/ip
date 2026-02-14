@@ -1,5 +1,6 @@
 package arnold;
 
+import arnold.inputhandling.CommandResult;
 import arnold.inputhandling.InputProcessor;
 import arnold.tasks.utils.TaskList;
 
@@ -34,7 +35,7 @@ public class Arnold {
      * @param input The raw input string provided by the user.
      * @return The response message generated based on the processed input.
      */
-    public String getResponse(String input) {
+    public CommandResult getResponse(String input) {
         return inputProcessor.processInput(input);
     }
 }
