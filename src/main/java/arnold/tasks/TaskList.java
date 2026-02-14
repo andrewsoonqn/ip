@@ -132,7 +132,7 @@ public class TaskList {
      *
      * @param predicate The condition to apply to each task. Must not be null.
      * @return A list of tasks that match the predicate condition. Returns an empty list if no tasks
-     *         satisfy the predicate or if the task list is empty.
+     * satisfy the predicate or if the task list is empty.
      * @throws NullPointerException If the predicate is null.
      */
     public List<Task> findTasks(Predicate<Task> predicate) {
