@@ -7,6 +7,7 @@ import arnold.chatbotexceptions.ChatbotArgumentException;
 import arnold.chatbotexceptions.NoSuchCommandException;
 import arnold.inputhandling.InputHandlingStrategy;
 
+// Solution below inspired by https://github.com/NUS-CS2103-AY2526-S2/ip/pull/445/
 /**
  * The Parser class is responsible for interpreting raw user input to resolve a suitable handling
  * strategy and parse the command data including its description and associated flags.
