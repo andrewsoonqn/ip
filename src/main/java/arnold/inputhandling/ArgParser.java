@@ -12,7 +12,7 @@ public class ArgParser {
      * Splits the input text into command and arguments.
      *
      * @param text The input text to split.
-     * @return An array containing the command and the arguments.
+     * @return An array containing the command at index 0 and the arguments at index 1.
      */
     public static String[] getCommandArgs(String text) {
         String[] parts = text.split("\\s+", 2);
@@ -22,10 +22,10 @@ public class ArgParser {
     }
 
     /**
-     * Parses flags from the input text.
+     * Parses flags from the input text into a map of flag names and values.
      *
-     * @param text The input text containing flags.
-     * @return A map of flag names to flag values.
+     * @param text The input text containing flags in the format "/flag value".
+     * @return A map of flag names to their corresponding flag values.
      */
     public static Map<String, String> getFlags(String text) {
         Map<String, String> flags = new java.util.HashMap<>();

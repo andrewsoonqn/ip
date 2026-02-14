@@ -1,8 +1,5 @@
 package arnold;
 
-import java.util.Scanner;
-
-import arnold.events.EventBus;
 import arnold.inputhandling.HiStrategy;
 import arnold.inputhandling.InputProcessor;
 import arnold.messaging.Messenger;
@@ -13,7 +10,6 @@ import arnold.tasks.TaskList;
  */
 public class Arnold {
     private final InputProcessor inputProcessor;
-    private boolean isRunning = true;
 
     /**
      * Initializes a new instance of the Arnold chatbot.
@@ -28,25 +24,17 @@ public class Arnold {
     /**
      * Greets the user.
      */
-    public void hi() {
-        inputProcessor.processInput(new HiStrategy(), "");
+    public String hi() {
+        return inputProcessor.processInput(new HiStrategy(), "");
     }
 
     /**
-     * Runs the chatbot and processes user input.
+     * Processes the given input string and generates a response.
      *
-     * @param scanner The scanner to read input from.
+     * @param input The raw input string provided by the user.
+     * @return The response message generated based on the processed input.
      */
-    public void run(Scanner scanner) {
-        // Exit command will trigger shutdown
-        EventBus.getInstance().registerShutdownHandler(() -> isRunning = false);
-
-        while (scanner.hasNext()) {
-            String input = scanner.nextLine();
-            inputProcessor.processInput(input);
-            if (!isRunning) {
-                break;
-            }
-        }
+    public String getResponse(String input) {
+        return inputProcessor.processInput(input);
     }
 }

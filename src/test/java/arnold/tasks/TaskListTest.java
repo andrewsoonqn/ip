@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import arnold.chatbotexceptions.ChatbotArgumentException;
 import arnold.datapersistence.NullStorage;
 
 public class TaskListTest {
@@ -49,11 +50,11 @@ public class TaskListTest {
 
     @Test
     public void getTask_invalidIndex_throwsException() {
-        assertThrows(IndexOutOfBoundsException.class, () -> taskList.getTask(1));
+        assertThrows(ChatbotArgumentException.class, () -> taskList.getTask(1));
 
         taskList.addTask(new Todo("test"));
-        assertThrows(IndexOutOfBoundsException.class, () -> taskList.getTask(2));
-        assertThrows(IndexOutOfBoundsException.class, () -> taskList.getTask(0));
+        assertThrows(ChatbotArgumentException.class, () -> taskList.getTask(2));
+        assertThrows(ChatbotArgumentException.class, () -> taskList.getTask(0));
     }
 
     @Test

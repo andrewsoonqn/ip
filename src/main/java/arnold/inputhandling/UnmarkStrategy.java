@@ -10,6 +10,14 @@ import arnold.tasks.TaskString;
  * Strategy for handling the unmark command.
  */
 public class UnmarkStrategy implements InputHandlingStrategy {
+    /**
+     * Handles the unmark command by marking the specified task as not done.
+     *
+     * @param input The ID of the task to unmark.
+     * @param msg The messenger to use for communication.
+     * @param taskList The task list containing the task.
+     * @throws ChatbotArgumentException If the input is not a valid integer.
+     */
     @Override
     public void handleInput(String input, Messenger msg, TaskList taskList) {
         int taskId;

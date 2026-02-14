@@ -36,11 +36,12 @@ public class InputProcessor {
     }
 
     /**
-     * Processes the user input string.
+     * Processes the user input string and executes the corresponding command.
      *
      * @param input The raw input string from the user.
+     * @return The response message after processing the input.
      */
-    public void processInput(String input) {
+    public String processInput(String input) {
         String[] commandArgs = ArgParser.getCommandArgs(input);
         String command = commandArgs[0];
         String arg = commandArgs[1];
@@ -55,6 +56,7 @@ public class InputProcessor {
         } catch (ChatbotException e) {
             msg.printMessage(e.getMessage());
         }
+        return msg.getLastMessage();
     }
 
     /**
@@ -62,8 +64,10 @@ public class InputProcessor {
      *
      * @param strategy The strategy to use for processing.
      * @param arg The argument for the strategy.
+     * @return The response message.
      */
-    public void processInput(InputHandlingStrategy strategy, String arg) {
+    public String processInput(InputHandlingStrategy strategy, String arg) {
         strategy.handleInput(arg, msg, taskList);
+        return msg.getLastMessage();
     }
 }

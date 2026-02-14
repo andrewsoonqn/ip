@@ -12,6 +12,13 @@ import arnold.tasks.Task;
  * Strategy for adding an event task.
  */
 public class EventStrategy extends AddTaskStrategy {
+    /**
+     * Extracts an event task from the user input.
+     *
+     * @param input The user input containing task description and event times.
+     * @return The created event task.
+     * @throws ChatbotArgumentException If the input format is invalid or missing information.
+     */
     @Override
     protected Task getTask(String input) {
         Map<String, String> flagValues = ArgParser.getFlags(input);

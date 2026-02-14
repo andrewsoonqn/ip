@@ -1,0 +1,25 @@
+.dialog-box {
+    -fx-padding: 8 12;
+    -fx-spacing: 10;
+}
+
+.label {
+    -fx-background-color: #0070E0;
+    -fx-text-fill: white;
+    -fx-font: 14px "Open Sans", sans-serif;
+    -fx-background-radius: 18 18 4 18;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-wrap-text: true;
+}
+
+.reply-label {
+    -fx-background-color: #181818;
+    -fx-text-fill: #e0e0e0;
+    -fx-background-radius: 18 18 18 4;
+    -fx-font: 13px "JetBrains Mono", monospace;
+}
+
+#displayPicture {
+    -fx-effect: none;
+}

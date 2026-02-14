@@ -7,7 +7,7 @@ import java.nio.file.Path;
 import java.util.stream.Stream;
 
 import arnold.inputhandling.InputProcessor;
-import arnold.messaging.NullMessenger;
+import arnold.messaging.Messenger;
 import arnold.tasks.TaskList;
 
 /**
@@ -27,7 +27,7 @@ public class TaskFileStorage implements Storage {
 
     @Override
     public void load(TaskList taskList) {
-        InputProcessor inputProcessor = new InputProcessor(new NullMessenger(), taskList);
+        InputProcessor inputProcessor = new InputProcessor(new Messenger(), taskList);
         Path path = Path.of(filePath);
 
         try (Stream<String> commands = Files.lines(path)) {
