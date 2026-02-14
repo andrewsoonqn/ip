@@ -9,6 +9,9 @@ public final class Messages {
     private Messages() {
     }
 
+    public static String welcomeMessage() {
+        return "Hello, I'm Arnold! Type 'help' to see a list of commands.";
+    }
 
     /**
      * Generates an error message indicating that a task with the provided ID cannot be found.
@@ -27,7 +30,7 @@ public final class Messages {
 
     public static String noSuchCommand() {
         return "Sorry, I don't recognise that command!"
-            + "\nType 'help' to see a list of available commands.";
+            + "\nType 'help' for a list of available commands.";
     }
 
     public static String invalidDeadline() {

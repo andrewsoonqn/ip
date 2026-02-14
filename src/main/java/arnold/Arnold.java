@@ -2,13 +2,13 @@ package arnold;
 
 import arnold.inputhandling.CommandResult;
 import arnold.inputhandling.InputProcessor;
+import arnold.inputhandling.Messages;
 import arnold.tasks.utils.TaskList;
 
 /**
  * Main chatbot class.
  */
 public class Arnold {
-    private static final String GREETING = "Hello! I'm Arnold\nWhat can I do for you?";
     private final InputProcessor inputProcessor;
 
     /**
@@ -26,7 +26,7 @@ public class Arnold {
      * @return The greeting message.
      */
     public String hi() {
-        return GREETING;
+        return Messages.welcomeMessage();
     }
 
     /**

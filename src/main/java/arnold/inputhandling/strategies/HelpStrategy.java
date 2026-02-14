@@ -31,12 +31,12 @@ public class HelpStrategy implements InputHandlingStrategy {
                 String description = strategy.getDescription();
                 String example = strategy.getExampleUsage();
 
-                sb.append(String.format("\n  %s", name));
+                sb.append(String.format("\n * %s", name));
                 if (!description.isEmpty()) {
                     sb.append(String.format("\n    %s", description));
                 }
                 if (!example.isEmpty()) {
-                    sb.append(String.format("\n    Usage: %s", example));
+                    sb.append(String.format("\n    `%s`", example));
                 }
             });
 
