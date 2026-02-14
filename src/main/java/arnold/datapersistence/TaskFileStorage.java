@@ -6,6 +6,7 @@ import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.util.List;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -78,7 +79,7 @@ public class TaskFileStorage implements Storage {
                 })
                 .writeValueAsString(taskList.getTasks());
             FileWriter.writeToFilePath(filePath, json);
-        } catch (IOException e) {
+        } catch (JsonProcessingException e) {
             System.err.println("Error saving data: " + e.getMessage());
             e.printStackTrace();
         }
