@@ -50,7 +50,7 @@ public class InputProcessor {
      * Processes the user input string and executes the corresponding command.
      *
      * @param input The raw input string from the user.
-     * @return The response message after processing the input.
+     * @return The command result after processing the input.
      */
     public CommandResult processInput(String input) {
         try {

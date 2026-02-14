@@ -13,7 +13,7 @@ public interface InputHandlingStrategy {
      *
      * @param command The parsed command containing description and flags.
      * @param taskList The task list to manage.
-     * @return The response message.
+     * @return The command result containing the response message and status.
      * @throws arnold.chatbotexceptions.ChatbotException If an error occurs during processing.
      */
     CommandResult handleInput(ParsedCommand command, TaskList taskList);

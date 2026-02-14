@@ -33,7 +33,7 @@ public class Arnold {
      * Processes the given input string and generates a response.
      *
      * @param input The raw input string provided by the user.
-     * @return The response message generated based on the processed input.
+     * @return The command result generated based on the processed input.
      */
     public CommandResult getResponse(String input) {
         return inputProcessor.processInput(input);
