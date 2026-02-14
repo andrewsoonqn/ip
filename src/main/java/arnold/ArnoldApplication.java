@@ -29,8 +29,6 @@ public class ArnoldApplication extends Application {
 
         Arnold arnold = new Arnold(new Messenger(), taskList);
 
-        arnold.hi();
-
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();

@@ -7,7 +7,7 @@ import javafx.application.Application;
  */
 public class Main {
     /**
-     * Main method to start the chatbot.
+     * Starts the application.
      *
      * @param args Command line arguments.
      */

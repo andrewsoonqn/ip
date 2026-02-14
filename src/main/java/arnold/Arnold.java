@@ -24,10 +24,16 @@ public class Arnold {
     /**
      * Greets the user.
      */
-    public void hi() {
-        inputProcessor.processInput(new HiStrategy(), "");
+    public String hi() {
+        return inputProcessor.processInput(new HiStrategy(), "");
     }
 
+    /**
+     * Processes the given input string and generates a response.
+     *
+     * @param input The raw input string provided by the user.
+     * @return The response message generated based on the processed input.
+     */
     public String getResponse(String input) {
         return inputProcessor.processInput(input);
     }

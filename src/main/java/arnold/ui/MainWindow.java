@@ -37,6 +37,9 @@ public class MainWindow extends AnchorPane {
      */
     public void setArnold(Arnold arnold) {
         this.arnold = arnold;
+        dialogContainer.getChildren().addAll(
+                DialogBox.getArnoldDialog(arnold.hi(), arnoldImage)
+        );
     }
 
     /**
