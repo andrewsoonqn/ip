@@ -2,6 +2,7 @@ package arnold.inputhandling.strategies;
 
 import arnold.events.EventBus;
 import arnold.inputhandling.CommandResult;
+import arnold.inputhandling.Messages;
 import arnold.inputhandling.parsing.ParsedCommand;
 import arnold.tasks.utils.TaskList;
 
@@ -19,6 +20,6 @@ public class ExitStrategy implements InputHandlingStrategy {
     @Override
     public CommandResult handleInput(ParsedCommand command, TaskList taskList) {
         EventBus.getInstance().publishShutdown();
-        return CommandResult.exit("Bye. Hope to see you again soon!");
+        return CommandResult.exit(Messages.bye());
     }
 }

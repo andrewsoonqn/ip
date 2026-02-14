@@ -3,6 +3,7 @@ package arnold.inputhandling.strategies.taskcrudstrategies.read;
 import java.util.function.Predicate;
 
 import arnold.inputhandling.CommandResult;
+import arnold.inputhandling.Messages;
 import arnold.inputhandling.strategies.InputHandlingStrategy;
 import arnold.inputhandling.parsing.ParsedCommand;
 import arnold.tasks.Task;
@@ -28,7 +29,7 @@ public class FindStrategy implements InputHandlingStrategy {
             .toLowerCase()
             .contains(keyword.toLowerCase());
 
-        return CommandResult.success("Here are the matching tasks in your list:\n"
-            + TaskString.listWithIndex(taskList.findTasks(predicate)));
+        return CommandResult.success(
+            Messages.taskFind(TaskString.listWithIndex(taskList.findTasks(predicate))));
     }
 }

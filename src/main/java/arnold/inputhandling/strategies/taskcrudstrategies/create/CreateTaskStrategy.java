@@ -2,6 +2,7 @@ package arnold.inputhandling.strategies.taskcrudstrategies.create;
 
 import arnold.chatbotexceptions.ChatbotArgumentException;
 import arnold.inputhandling.CommandResult;
+import arnold.inputhandling.Messages;
 import arnold.inputhandling.strategies.InputHandlingStrategy;
 import arnold.inputhandling.parsing.ParsedCommand;
 import arnold.tasks.Task;
@@ -24,15 +25,13 @@ public abstract class CreateTaskStrategy implements InputHandlingStrategy {
     public CommandResult handleInput(ParsedCommand command, TaskList taskList) {
         if (command.getDescription().isBlank()) {
             throw new ChatbotArgumentException(
-                String.format("The description for a task cannot be blank.\n"
-                    + "Example usage: %s", getExampleUsage()));
+                Messages.blankDescription(getExampleUsage()));
         }
 
         Task addedTask = taskList.addTask(getTask(command));
         return CommandResult.success(
-            String.format("Got it. I've added this %s:\n", addedTask.getTaskType().toString())
-                + TaskString.withoutIndex(addedTask)
-                + String.format("\nNow you have %d tasks in the list.", taskList.getSize()));
+            Messages.taskAdded(addedTask.getTaskType().toString(),
+                TaskString.withoutIndex(addedTask), taskList.getSize()));
     }
 
     /**

@@ -2,6 +2,7 @@ package arnold.inputhandling.strategies.taskcrudstrategies.delete;
 
 import arnold.chatbotexceptions.ChatbotArgumentException;
 import arnold.inputhandling.CommandResult;
+import arnold.inputhandling.Messages;
 import arnold.inputhandling.strategies.InputHandlingStrategy;
 import arnold.inputhandling.parsing.ParsedCommand;
 import arnold.tasks.Task;
@@ -26,12 +27,11 @@ public class RemoveStrategy implements InputHandlingStrategy {
         try {
             taskId = Integer.parseInt(command.getDescription());
         } catch (NumberFormatException e) {
-            throw new ChatbotArgumentException("Please enter a valid task ID.");
+            throw new ChatbotArgumentException(Messages.invalidTaskId());
         }
 
         Task task = taskList.removeTask(taskId);
-        return CommandResult.success("Noted. I've removed this task:\n"
-            + TaskString.withoutIndex(task)
-            + String.format("\nNow you have %d tasks in the list.", taskList.getSize()));
+        return CommandResult.success(
+            Messages.taskRemoved(TaskString.withoutIndex(task), taskList.getSize()));
     }
 }

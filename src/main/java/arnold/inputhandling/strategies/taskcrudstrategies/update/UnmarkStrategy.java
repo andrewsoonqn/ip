@@ -2,6 +2,7 @@ package arnold.inputhandling.strategies.taskcrudstrategies.update;
 
 import arnold.chatbotexceptions.ChatbotArgumentException;
 import arnold.inputhandling.CommandResult;
+import arnold.inputhandling.Messages;
 import arnold.inputhandling.strategies.InputHandlingStrategy;
 import arnold.inputhandling.parsing.ParsedCommand;
 import arnold.tasks.Task;
@@ -26,10 +27,9 @@ public class UnmarkStrategy implements InputHandlingStrategy {
         try {
             taskId = Integer.parseInt(command.getDescription());
         } catch (NumberFormatException e) {
-            throw new ChatbotArgumentException("Please enter a valid task ID.");
+            throw new ChatbotArgumentException(Messages.invalidTaskId());
         }
         Task task = taskList.unmarkTask(taskId);
-        return CommandResult.success("OK, I've marked this task as not done yet:\n"
-            + TaskString.withoutIndex(task));
+        return CommandResult.success(Messages.taskUnmarked(TaskString.withoutIndex(task)));
     }
 }

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import arnold.chatbotexceptions.ChatbotArgumentException;
 import arnold.chatbotexceptions.NoSuchCommandException;
+import arnold.inputhandling.Messages;
 import arnold.inputhandling.strategies.InputHandlingStrategy;
 
 // Solution below inspired by https://github.com/NUS-CS2103-AY2526-S2/ip/pull/445/
@@ -49,7 +50,7 @@ public class Parser {
 
         InputHandlingStrategy strategy = strategies.get(commandName);
         if (strategy == null) {
-            throw new NoSuchCommandException("Sorry, I don't recognise that command!");
+            throw new NoSuchCommandException(Messages.noSuchCommand());
         }
 
         String[] expectedFlags = commandFlags.get(commandName);
@@ -82,8 +83,7 @@ public class Parser {
             String key = flag.strip();
             String value = flags.get(key);
             if (value == null || value.isBlank()) {
-                throw new ChatbotArgumentException(
-                    String.format("Missing required flag: /%s", key));
+                throw new ChatbotArgumentException(Messages.missingFlag(key));
             }
         }
 
