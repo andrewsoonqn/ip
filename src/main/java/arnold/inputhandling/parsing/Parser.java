@@ -8,6 +8,7 @@ import arnold.chatbotexceptions.NoSuchCommandException;
 import arnold.inputhandling.InputHandlingStrategy;
 
 // Solution below inspired by https://github.com/NUS-CS2103-AY2526-S2/ip/pull/445/
+
 /**
  * The Parser class is responsible for interpreting raw user input to resolve a suitable handling
  * strategy and parse the command data including its description and associated flags.
@@ -24,7 +25,7 @@ public class Parser {
      *
      * @param command The command name (e.g. "deadline").
      * @param strategy The strategy that handles this command.
-     * @param expectedFlags The flags this command requires (e.g. "/by", "/from").
+     * @param expectedFlags The flags this command requires (e.g. "by", "from").
      */
     public void register(String command, InputHandlingStrategy strategy, String... expectedFlags) {
         strategies.put(command, strategy);
@@ -60,6 +61,10 @@ public class Parser {
 
     private ParsedCommand parseFlags(String text, String[] expectedFlags) {
         Map<String, String> flags = new HashMap<>();
+
+        // Split text into description and flag portions
+        // e.g., "meeting /from Mon 2pm /to Mon 4pm"
+        // -> "meeting", "from Mon 2pm", "to Mon 4pm"
         String[] parts = text.split(FLAG_SIGNIFIER);
 
         String description = parts[0].strip();

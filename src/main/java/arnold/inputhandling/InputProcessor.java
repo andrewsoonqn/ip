@@ -39,8 +39,8 @@ public class InputProcessor {
         parser.register("todo", new TodoStrategy());
         parser.register("delete", new RemoveStrategy());
         parser.register("find", new FindStrategy());
-        parser.register("deadline", new DeadlineStrategy(), "/by");
-        parser.register("event", new EventStrategy(), "/from", "/to");
+        parser.register("deadline", new DeadlineStrategy(), "by");
+        parser.register("event", new EventStrategy(), "from", "to");
 
         return parser;
     }
