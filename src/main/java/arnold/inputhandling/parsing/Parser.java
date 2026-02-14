@@ -63,7 +63,7 @@ public class Parser {
 
         String description = parts[0].strip();
 
-        // Extracts flag key‑value pairs from input
+        // Extracts flag key-value pairs from input
         for (int i = 1; i < parts.length; i++) {
             String[] keyValuePair = parts[i].split("\\s+", 2);
             if (keyValuePair.length == 2) {
