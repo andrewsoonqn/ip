@@ -10,6 +10,7 @@ import arnold.chatbotexceptions.ChatbotArgumentException;
 import arnold.chatbotexceptions.NoSuchCommandException;
 import arnold.inputhandling.InputHandlingStrategy;
 
+// Tests generated via Junie by JetBrains
 public class ParserTest {
     private Parser parser;
     private InputHandlingStrategy dummyStrategy;
