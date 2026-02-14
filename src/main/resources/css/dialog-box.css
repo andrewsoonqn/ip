@@ -20,6 +20,11 @@
     -fx-font: 13px "JetBrains Mono", monospace;
 }
 
+.error-label {
+    -fx-background-color: #3a1010;
+    -fx-text-fill: #ff6b6b;
+}
+
 #displayPicture {
     -fx-effect: none;
 }
