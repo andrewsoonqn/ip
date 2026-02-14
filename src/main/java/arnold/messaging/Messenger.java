@@ -1,35 +1,33 @@
 package arnold.messaging;
 
 /**
- * Abstract class for sending messages to the user.
+ * Class for storing and sending messages to the user.
  */
-public abstract class Messenger {
-    /**
-     * Prints text with indentation.
-     *
-     * @param text The text to print.
-     */
-    protected void indentPrint(String text) {
-        System.out.print("    ");
-        System.out.println(text);
-    }
+public class Messenger {
+    private String lastMessage = "";
 
     /**
-     * Prints a horizontal line.
-     */
-    protected void line() {
-        indentPrint("_".repeat(60));
-    }
-
-    /**
-     * Prints a message to the user.
+     * Prints a message to the user and stores it.
      *
      * @param message The message to print.
      */
-    public abstract void printMessage(String message);
+    public void printMessage(String message) {
+        this.lastMessage = message;
+    }
+
+    /**
+     * Retrieves the last message stored.
+     *
+     * @return The last message.
+     */
+    public String getLastMessage() {
+        return lastMessage;
+    }
 
     /**
      * Greets the user.
      */
-    public abstract void hi();
+    public void hi() {
+        this.lastMessage = "Hello! I'm Arnold" + "\n" + "What can I do for you?";
+    }
 }

@@ -27,6 +27,12 @@ public class TaskString {
         return String.format("  %s", task);
     }
 
+    /**
+     * Returns a string representing the list of tasks with indices.
+     *
+     * @param tasks The list of tasks.
+     * @return The formatted string.
+     */
     public static String listWithIndex(List<Task> tasks) {
         StringBuilder taskListBuilder = new StringBuilder();
 
@@ -41,3 +47,4 @@ public class TaskString {
         return taskListBuilder.toString();
     }
 }
+

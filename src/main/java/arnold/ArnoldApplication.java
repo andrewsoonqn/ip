@@ -1,12 +1,12 @@
 package arnold;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 import arnold.datapersistence.DataPaths;
 import arnold.datapersistence.Storage;
 import arnold.datapersistence.TaskFileStorage;
-import arnold.messaging.DefaultMessenger;
+import arnold.events.EventBus;
+import arnold.messaging.Messenger;
 import arnold.tasks.TaskList;
 import arnold.ui.MainWindow;
 import javafx.application.Application;
@@ -15,25 +15,28 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+/**
+ * The main application class for the Arnold chatbot.
+ */
 public class ArnoldApplication extends Application {
     @Override
     public void start(Stage primaryStage) {
         Storage storage = new TaskFileStorage(DataPaths.TASKS_FILE_PATH);
         TaskList taskList = TaskList.create(storage);
 
-        Arnold arnold = new Arnold(new DefaultMessenger(), taskList);
-
-        // Scanner is used to get user input later
-        Scanner scanner = new Scanner(System.in);
+        Arnold arnold = new Arnold(new Messenger(), taskList);
 
         arnold.hi();
-        arnold.run(scanner);
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             primaryStage.setScene(scene);
+
+            primaryStage.setMinHeight(220);
+            primaryStage.setMinWidth(417);
+
             fxmlLoader.<MainWindow>getController().setArnold(arnold); // Inject the Arnold instance
             primaryStage.show();
         } catch (IOException e) {
