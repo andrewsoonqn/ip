@@ -7,7 +7,7 @@ public class Messenger {
     private String lastMessage = "";
 
     /**
-     * Prints a message to the user and stores it.
+     * Stores a message to be sent to the user.
      *
      * @param message The message to print.
      */
