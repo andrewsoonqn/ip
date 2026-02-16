@@ -8,6 +8,8 @@ import java.time.format.DateTimeParseException;
  * Utility class for parsing and formatting dates and times.
  */
 public class DateTimeParser {
+    private static final String DATE_TIME_PATTERN = "d/M/yyyy HHmm";
+
     /**
      * Parses a date and time string.
      *
@@ -16,7 +18,7 @@ public class DateTimeParser {
      * @throws DateTimeParseException If the string cannot be parsed.
      */
     public static LocalDateTime parse(String dateTimeString) throws DateTimeParseException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_TIME_PATTERN);
 
         return LocalDateTime.parse(dateTimeString, formatter);
     }
@@ -29,6 +31,6 @@ public class DateTimeParser {
      * @return The formatted date and time string.
      */
     public static String formatDateTime(LocalDateTime dateTime) {
-        return dateTime.format(DateTimeFormatter.ofPattern("d/M/yyyy HHmm"));
+        return dateTime.format(DateTimeFormatter.ofPattern(DATE_TIME_PATTERN));
     }
 }
