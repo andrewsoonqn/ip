@@ -116,8 +116,9 @@ public class TaskList {
      */
     public Task removeTask(int which) {
         try {
+            int previousSize = tasks.size();
             Task removedTask = tasks.remove(which - 1);
-            assert !tasks.contains(removedTask) : "Removed task should not be in list";
+            assert tasks.size() == previousSize - 1 : "Task list size should decrease by one after removal";
             storage.save(this);
             return removedTask;
         } catch (IndexOutOfBoundsException e) {
