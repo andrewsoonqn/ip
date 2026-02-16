@@ -62,6 +62,7 @@ public class Parser {
         if (strategy == null) {
             throw new NoSuchCommandException(Messages.noSuchCommand());
         }
+        assert strategy != null : "Strategy should be resolved after null check passes";
 
         String[] expectedFlags = commandFlags.get(commandName);
         ParsedCommand command = parseFlags(" " + rest, expectedFlags);
@@ -95,6 +96,8 @@ public class Parser {
             if (value == null || value.isBlank()) {
                 throw new ChatbotArgumentException(Messages.missingFlag(key));
             }
+            assert flags.containsKey(key) : "Expected flag should be present after validation: " + key;
+            assert !flags.get(key).isBlank() : "Expected flag should have non-blank value after validation: " + key;
         }
 
         return new ParsedCommand(description, flags);
