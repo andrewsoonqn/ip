@@ -2,14 +2,16 @@ package arnold.inputhandling;
 
 import arnold.chatbotexceptions.ChatbotException;
 import arnold.inputhandling.parsing.Parser;
-import arnold.inputhandling.taskcrudstrategies.create.DeadlineStrategy;
-import arnold.inputhandling.taskcrudstrategies.create.EventStrategy;
-import arnold.inputhandling.taskcrudstrategies.create.TodoStrategy;
-import arnold.inputhandling.taskcrudstrategies.delete.RemoveStrategy;
-import arnold.inputhandling.taskcrudstrategies.read.FindStrategy;
-import arnold.inputhandling.taskcrudstrategies.read.ListStrategy;
-import arnold.inputhandling.taskcrudstrategies.update.MarkStrategy;
-import arnold.inputhandling.taskcrudstrategies.update.UnmarkStrategy;
+import arnold.inputhandling.strategies.ExitStrategy;
+import arnold.inputhandling.strategies.HelpStrategy;
+import arnold.inputhandling.strategies.taskcrudstrategies.create.DeadlineStrategy;
+import arnold.inputhandling.strategies.taskcrudstrategies.create.EventStrategy;
+import arnold.inputhandling.strategies.taskcrudstrategies.create.TodoStrategy;
+import arnold.inputhandling.strategies.taskcrudstrategies.delete.RemoveStrategy;
+import arnold.inputhandling.strategies.taskcrudstrategies.read.FindStrategy;
+import arnold.inputhandling.strategies.taskcrudstrategies.read.ListStrategy;
+import arnold.inputhandling.strategies.taskcrudstrategies.update.MarkStrategy;
+import arnold.inputhandling.strategies.taskcrudstrategies.update.UnmarkStrategy;
 import arnold.tasks.utils.TaskList;
 
 /**
@@ -41,6 +43,7 @@ public class InputProcessor {
         parser.register("find", new FindStrategy());
         parser.register("deadline", new DeadlineStrategy(), "by");
         parser.register("event", new EventStrategy(), "from", "to");
+        parser.register("help", new HelpStrategy(parser));
 
         return parser;
     }
@@ -49,14 +52,14 @@ public class InputProcessor {
      * Processes the user input string and executes the corresponding command.
      *
      * @param input The raw input string from the user.
-     * @return The response message after processing the input.
+     * @return The command result after processing the input.
      */
-    public String processInput(String input) {
+    public CommandResult processInput(String input) {
         try {
             Parser.Result result = parser.parse(input);
             return result.strategy().handleInput(result.command(), taskList);
         } catch (ChatbotException e) {
-            return e.getMessage();
+            return CommandResult.error(e.getMessage());
         }
     }
 }

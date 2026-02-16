@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 
 import arnold.chatbotexceptions.ChatbotArgumentException;
 import arnold.datapersistence.Storage;
+import arnold.inputhandling.Messages;
 import arnold.tasks.Task;
 import arnold.utils.ListSearcher;
 
@@ -59,7 +60,7 @@ public class TaskList {
      */
     public Task getTask(int idx) {
         if (idx < 1 || idx > tasks.size()) {
-            throw new ChatbotArgumentException("Task index out of bounds.");
+            throw new ChatbotArgumentException(Messages.taskIndexOutOfBounds(tasks.size()));
         }
         return tasks.get(idx - 1);
     }
@@ -114,7 +115,7 @@ public class TaskList {
             storage.save(this);
             return removedTask;
         } catch (IndexOutOfBoundsException e) {
-            throw new ChatbotArgumentException("Task index out of bounds.");
+            throw new ChatbotArgumentException(Messages.taskIndexOutOfBounds(getSize()));
         }
     }
 
