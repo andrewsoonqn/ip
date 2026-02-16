@@ -21,7 +21,6 @@ public class EventBus {
     public static EventBus getInstance() {
         return INSTANCE;
     }
-
     /**
      * Registers a handler to be executed on shutdown.
      *

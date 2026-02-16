@@ -16,6 +16,8 @@ public class FileWriter {
      * @param content The content to write.
      */
     public static void writeToFilePath(String filePath, String content) {
+        assert filePath != null : "File path must not be null";
+        assert content != null : "Content must not be null";
         try {
             Files.writeString(Paths.get(filePath), content);
         } catch (IOException e) {
