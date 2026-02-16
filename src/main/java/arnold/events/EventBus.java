@@ -19,10 +19,8 @@ public class EventBus {
      * @return The EventBus instance.
      */
     public static EventBus getInstance() {
-        assert INSTANCE != null : "Singleton instance must be initialized";
         return INSTANCE;
     }
-
     /**
      * Registers a handler to be executed on shutdown.
      *
