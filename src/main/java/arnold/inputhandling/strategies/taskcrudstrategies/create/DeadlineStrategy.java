@@ -1,9 +1,7 @@
 package arnold.inputhandling.strategies.taskcrudstrategies.create;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 
-import arnold.chatbotexceptions.ChatbotArgumentException;
 import arnold.inputhandling.Messages;
 import arnold.inputhandling.parsing.DateTimeParser;
 import arnold.inputhandling.parsing.ParsedCommand;
@@ -23,12 +21,8 @@ public class DeadlineStrategy extends CreateTaskStrategy {
      */
     @Override
     protected Task getTask(ParsedCommand command) {
-        LocalDateTime parsedBy;
-        try {
-            parsedBy = DateTimeParser.parse(command.getFlag("by"));
-        } catch (DateTimeParseException e) {
-            throw new ChatbotArgumentException(Messages.invalidDeadline());
-        }
+        LocalDateTime parsedBy = DateTimeParser.parseWithErrorMessage(
+                command.getFlag("by"), Messages.invalidDeadline());
 
         return new Deadline(command.getDescription(), parsedBy);
     }
