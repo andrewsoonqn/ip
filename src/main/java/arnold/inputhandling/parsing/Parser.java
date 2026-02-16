@@ -62,7 +62,6 @@ public class Parser {
         if (strategy == null) {
             throw new NoSuchCommandException(Messages.noSuchCommand());
         }
-        assert strategy != null : "Strategy should be resolved after null check passes";
 
         String[] expectedFlags = commandFlags.get(commandName);
         ParsedCommand command = parseFlags(" " + rest, expectedFlags);
