@@ -60,7 +60,7 @@ public class TaskList {
      */
     public Task getTask(int idx) {
         if (idx < 1 || idx > tasks.size()) {
-            throw new ChatbotArgumentException(Messages.invalidTaskId(tasks.size()));
+            throw new ChatbotArgumentException(Messages.taskIndexOutOfBounds(tasks.size()));
         }
         return tasks.get(idx - 1);
     }
