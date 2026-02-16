@@ -16,6 +16,8 @@ public class ParsedCommand {
      * @param flags The parsed flags and their values.
      */
     public ParsedCommand(String description, Map<String, String> flags) {
+        assert description != null : "Description must not be null";
+        assert flags != null : "Flags map must not be null";
         this.description = description;
         this.flags = flags;
     }
