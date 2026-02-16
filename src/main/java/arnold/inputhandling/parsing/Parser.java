@@ -104,33 +104,5 @@ public class Parser {
      * Holds the result of parsing: the resolved strategy and the parsed command data.
      */
     public record Result(InputHandlingStrategy strategy, ParsedCommand command) {
-        /**
-         * Initializes a new Result.
-         *
-         * @param strategy The resolved strategy for this command.
-         * @param command The parsed command data.
-         */
-        public Result {
-        }
-
-        /**
-         * Returns the resolved strategy.
-         *
-         * @return The strategy to handle this command.
-         */
-        @Override
-        public InputHandlingStrategy strategy() {
-            return strategy;
-        }
-
-        /**
-         * Returns the parsed command data.
-         *
-         * @return The parsed command containing description and flags.
-         */
-        @Override
-        public ParsedCommand command() {
-            return command;
-        }
     }
 }
