@@ -25,6 +25,8 @@ import arnold.chatbotexceptions.ChatbotArgumentException;
  */
 public class DateTimeParser {
     private static final String DATE_TIME_PATTERN = "d/M/yyyy HHmm";
+    private static final int DEFAULT_HOUR = 23;
+    private static final int DEFAULT_MINUTE = 59;
 
     /**
      * Parses a date and time string using the strict full format {@code d/M/yyyy HHmm}.
