@@ -1,6 +1,8 @@
 package arnold.tasks.utils;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import arnold.tasks.Task;
 
@@ -36,17 +38,9 @@ public class TaskString {
      * @return The formatted string.
      */
     public static String listWithIndex(List<Task> tasks) {
-        StringBuilder taskListBuilder = new StringBuilder();
-
-        for (int i = 0; i < tasks.size(); i++) {
-            Task task = tasks.get(i);
-            taskListBuilder.append(TaskString.withIndex(task, i + 1));
-
-            if (i < tasks.size() - 1) {
-                taskListBuilder.append("\n");
-            }
-        }
-        return taskListBuilder.toString();
+        return IntStream.range(0, tasks.size())
+                .mapToObj(i -> withIndex(tasks.get(i), i + 1))
+                .collect(Collectors.joining("\n"));
     }
 }
 

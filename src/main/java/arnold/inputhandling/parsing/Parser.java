@@ -1,8 +1,10 @@
 package arnold.inputhandling.parsing;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import arnold.chatbotexceptions.ChatbotArgumentException;
 import arnold.chatbotexceptions.NoSuchCommandException;
@@ -71,22 +73,24 @@ public class Parser {
 
 
     private ParsedCommand parseFlags(String text, String[] expectedFlags) {
-        Map<String, String> flags = new HashMap<>();
-
-        // Split text into description and flag portions
+        // Split text into description and flag segments
         // e.g., "meeting /from Mon 2pm /to Mon 4pm"
         // -> "meeting", "from Mon 2pm", "to Mon 4pm"
         String[] parts = text.split(FLAG_SIGNIFIER);
 
         String description = parts[0].strip();
 
-        // Extracts flag key-value pairs from input
-        for (int i = 1; i < parts.length; i++) {
-            String[] keyValuePair = parts[i].split("\\s+", 2);
-            if (keyValuePair.length == 2) {
-                flags.put(keyValuePair[0].strip(), keyValuePair[1].strip());
-            }
-        }
+        Map<String, String> flags =
+            Arrays.stream(parts)
+                // Skip description
+                .skip(1)
+                .map(segment -> segment.split("\\s+", 2))
+                // Extracts flag key-value pairs from segment
+                .filter(kv -> kv.length == 2)
+                .collect(Collectors.toMap(
+                    kv -> kv[0].strip(),
+                    kv -> kv[1].strip()
+                ));
 
         // Validates presence of required flags
         for (String flag : expectedFlags) {

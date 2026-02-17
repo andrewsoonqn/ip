@@ -21,4 +21,6 @@ data/
 .cursor
 .cursorignore
 
+.opencode
+
 **/.backup
