@@ -27,6 +27,7 @@ public class TaskFileStorage implements Storage {
      * @param filePath The path to the file used for persistence.
      */
     public TaskFileStorage(String filePath) {
+        assert filePath != null && !filePath.isBlank() : "File path must be valid";
         this.filePath = filePath;
         this.objectMapper = createObjectMapper();
     }

@@ -40,7 +40,10 @@ public class TaskList {
      * @return The added task.
      */
     public Task addTask(Task task) {
+        int initialSize = tasks.size();
         tasks.add(task);
+        assert tasks.contains(task) : "Task should be in list after adding";
+        assert tasks.size() == initialSize + 1 : "Task list size should increase by 1 after adding";
         storage.save(this);
         return task;
     }
@@ -84,6 +87,7 @@ public class TaskList {
     public Task markTask(int idx) {
         Task task = getTask(idx);
         task.mark();
+        assert task.isDone() : "Task should be marked as done after marking";
         storage.save(this);
         return task;
     }
@@ -98,6 +102,7 @@ public class TaskList {
     public Task unmarkTask(int idx) {
         Task task = getTask(idx);
         task.unmark();
+        assert !task.isDone() : "Task should not be done after unmarking";
         storage.save(this);
         return task;
     }
@@ -120,7 +125,9 @@ public class TaskList {
      */
     public Task removeTask(int idx) {
         validateIndex(idx);
+        int previousSize = tasks.size();
         Task removedTask = tasks.remove(idx - 1);
+        assert tasks.size() == previousSize - 1 : "Task list size should decrease by one after removal";
         storage.save(this);
         return removedTask;
     }
