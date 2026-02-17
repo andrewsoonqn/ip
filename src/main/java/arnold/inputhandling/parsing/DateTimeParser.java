@@ -59,6 +59,63 @@ public class DateTimeParser {
     }
 
     /**
+     * Parses a date and time string with natural format support.
+     *
+     * <p>Accepts flexible date/time input where year and time are optional:
+     * <ul>
+     *   <li>Year omitted: uses next future occurrence of the given day/month</li>
+     *   <li>Time omitted: defaults to 2359</li>
+     *   <li>Time format: 1-2 digits treated as hours, 3-4 digits as HHMM</li>
+     *   <li>2-digit years: interpreted using a sliding 100-year window</li>
+     * </ul>
+     *
+     * @param dateTimeString The string to parse.
+     * @return The parsed LocalDateTime.
+     * @throws DateTimeParseException If the string cannot be parsed.
+     */
+    public static LocalDateTime parseNatural(String dateTimeString) throws DateTimeParseException {
+        String trimmed = dateTimeString.trim();
+        if (trimmed.isEmpty()) {
+            throw new DateTimeParseException("Empty date/time string", dateTimeString, 0);
+        }
+
+        String datePart;
+        String timePart;
+
+        // Split by space to separate date and time
+        int spaceIndex = trimmed.indexOf(' ');
+        if (spaceIndex >= 0) {
+            datePart = trimmed.substring(0, spaceIndex).trim();
+            timePart = trimmed.substring(spaceIndex + 1).trim();
+        } else {
+            datePart = trimmed;
+            timePart = null;
+        }
+
+        LocalDate date = parseDate(datePart, dateTimeString);
+        LocalTime time = parseTime(timePart, dateTimeString);
+
+        return LocalDateTime.of(date, time);
+    }
+
+    /**
+     * Parses a date and time string with natural format support, wrapping any parsing error
+     * into a ChatbotArgumentException with a custom error message.
+     *
+     * @param dateTimeString The string to parse.
+     * @param errorMessage The error message to use if parsing fails.
+     * @return The parsed LocalDateTime.
+     * @throws ChatbotArgumentException If the string cannot be parsed.
+     */
+    public static LocalDateTime parseNaturalWithErrorMessage(String dateTimeString, String errorMessage) {
+        try {
+            return parseNatural(dateTimeString);
+        } catch (DateTimeException e) {
+            throw new ChatbotArgumentException(errorMessage);
+        }
+    }
+
+    /**
      * Parses the date portion of the input string.
      *
      * @param datePart The date string in {@code day/month} or {@code day/month/year} format.
