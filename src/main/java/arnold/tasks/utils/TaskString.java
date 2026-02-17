@@ -41,8 +41,8 @@ public class TaskString {
      */
     public static String listWithIndex(List<Task> tasks) {
         return IntStream.range(0, tasks.size())
-                .mapToObj(i -> withIndex(tasks.get(i), i + 1))
-                .collect(Collectors.joining("\n"));
+            .mapToObj(i -> withIndex(tasks.get(i), i + 1))
+            .collect(Collectors.joining("\n"));
     }
 }
 

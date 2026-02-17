@@ -38,7 +38,7 @@ public final class Messages {
      * This message includes a suggestion to type 'help' for a list of valid commands.
      *
      * @return A formatted error message stating that the command is invalid
-     *         and providing guidance for accessing valid commands.
+     *     and providing guidance for accessing valid commands.
      */
     public static String noSuchCommand() {
         return "Sorry, I don't recognise that command!"
