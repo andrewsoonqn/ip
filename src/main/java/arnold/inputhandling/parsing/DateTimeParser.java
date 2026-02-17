@@ -24,9 +24,12 @@ import arnold.chatbotexceptions.ChatbotArgumentException;
  * 3-4 digits as HHMM (e.g., {@code 930} = 0930).
  */
 public class DateTimeParser {
+
     private static final String DATE_TIME_PATTERN = "d/M/yyyy HHmm";
     private static final int DEFAULT_HOUR = 23;
     private static final int DEFAULT_MINUTE = 59;
+
+    // Public API
 
     /**
      * Parses a date and time string with natural format support.
@@ -55,6 +58,9 @@ public class DateTimeParser {
         // Split by space to separate date and time
         int spaceIndex = trimmed.indexOf(' ');
         if (spaceIndex >= 0) {
+        assert spaceIndex != 0 : "Trimmed string cannot start with a space";
+
+        if (spaceIndex > 0) {
             datePart = trimmed.substring(0, spaceIndex).trim();
             timePart = trimmed.substring(spaceIndex + 1).trim();
         } else {
@@ -86,6 +92,18 @@ public class DateTimeParser {
     }
 
     /**
+     * Formats a LocalDateTime as a string using the full format {@code d/M/yyyy HHmm}.
+     *
+     * @param dateTime The LocalDateTime to format.
+     * @return The formatted date and time string.
+     */
+    public static String formatDateTime(LocalDateTime dateTime) {
+        return dateTime.format(DateTimeFormatter.ofPattern(DATE_TIME_PATTERN));
+    }
+
+    // Date parsing helpers
+
+    /**
      * Parses the date portion of the input string.
      *
      * @param datePart The date string in {@code day/month} or {@code day/month/year} format.
@@ -95,14 +113,15 @@ public class DateTimeParser {
      */
     private static LocalDate parseDate(String datePart, String originalInput) {
         String[] parts = datePart.split("/");
+
         if (parts.length < 2 || parts.length > 3) {
-            throw new DateTimeParseException("Invalid date format, expected day/month or day/month/year",
-                    originalInput, 0);
+            throw new DateTimeParseException(
+                "Invalid date format, expected day/month or day/month/year", originalInput, 0);
         }
 
-        // Get day and month
         int day;
         int month;
+
         try {
             day = Integer.parseInt(parts[0]);
             month = Integer.parseInt(parts[1]);
@@ -110,20 +129,20 @@ public class DateTimeParser {
             throw new DateTimeParseException("Invalid day or month value", originalInput, 0);
         }
 
-        // Get and parse year
         if (parts.length == 3) {
-            // Year is provided
             int year = parseYear(parts[2], originalInput);
             return LocalDate.of(year, month, day);
-        } else {
-            // Year omitted: use next future occurrence
-            return resolveNextFutureDate(day, month);
         }
+
+        // Year omitted: use next future occurrence
+        return resolveNextFutureDate(day, month);
     }
 
     /**
      * Parses a year string, supporting both 2-digit and 4-digit years.
-     * 2-digit years use a sliding 100-year window: 0-49 map to 2000-2049, 50-99 map to 1950-1999.
+     *
+     * <p>2-digit years use a sliding 100-year window:
+     * 0-49 map to 2000-2049, 50-99 map to 1950-1999.
      *
      * @param yearStr The year string to parse.
      * @param originalInput The original full input string (for error reporting).
@@ -132,25 +151,26 @@ public class DateTimeParser {
      */
     private static int parseYear(String yearStr, String originalInput) {
         if (yearStr.length() != 2 && yearStr.length() != 4) {
-            throw new DateTimeParseException("Invalid year format, expected 2 or 4 digits", originalInput, 0);
+            throw new DateTimeParseException(
+                "Invalid year format, expected 2 or 4 digits", originalInput, 0);
         }
 
         int year;
+
         try {
             year = Integer.parseInt(yearStr);
         } catch (NumberFormatException e) {
             throw new DateTimeParseException("Invalid year value", originalInput, 0);
         }
 
+        // Apply sliding window for 2-digit years
         if (yearStr.length() == 2) {
-            // Sliding 100-year window: 0-49 -> 2000-2049, 50-99 -> 1950-1999
-            if (year >= 0 && year <= 49) {
+            if (year <= 49) {
                 year += 2000;
-            } else if (year >= 50 && year <= 99) {
+            } else {
                 year += 1900;
             }
         }
-
 
         return year;
     }
@@ -174,11 +194,19 @@ public class DateTimeParser {
         return candidate;
     }
 
+    // Time parsing helpers
+
     /**
      * Parses the time portion of the input string.
-     * If time is null (omitted), defaults to 23:59.
-     * Supports 1-4 digit formats: 1-2 digits are treated as hours (minutes = 0),
-     * 3-4 digits are treated as HHMM.
+     *
+     * <p>If time is null (omitted), defaults to 23:59.
+     *
+     * <p>Supports 1-4 digit formats:
+     * <ul>
+     *   <li>1-2 digits: treated as hours, minutes default to 0 (e.g., {@code 9} = 09:00)</li>
+     *   <li>3 digits: first digit is hour, last 2 are minutes (e.g., {@code 930} = 09:30)</li>
+     *   <li>4 digits: HHMM (e.g., {@code 1400} = 14:00)</li>
+     * </ul>
      *
      * @param timePart The time string, or null if time was omitted.
      * @param originalInput The original full input string (for error reporting).
@@ -195,15 +223,12 @@ public class DateTimeParser {
 
         try {
             if (timePart.length() <= 2) {
-                // 1-2 digits: treat as hours only
                 hour = Integer.parseInt(timePart);
                 minute = 0;
             } else if (timePart.length() == 3) {
-                // 3 digits: first digit is hour, last 2 are minutes (e.g., 930 -> 09:30)
                 hour = Integer.parseInt(timePart.substring(0, 1));
                 minute = Integer.parseInt(timePart.substring(1));
             } else if (timePart.length() == 4) {
-                // 4 digits: HHMM (e.g., 1400 -> 14:00)
                 hour = Integer.parseInt(timePart.substring(0, 2));
                 minute = Integer.parseInt(timePart.substring(2));
             } else {
@@ -214,20 +239,10 @@ public class DateTimeParser {
         }
 
         if (hour < 0 || hour > 23 || minute < 0 || minute > 59) {
-            throw new DateTimeParseException("Time out of range (hour: 0-23, minute: 0-59)",
-                    originalInput, 0);
+            throw new DateTimeParseException(
+                "Time out of range (hour: 0-23, minute: 0-59)", originalInput, 0);
         }
 
         return LocalTime.of(hour, minute);
-    }
-
-    /**
-     * Formats a LocalDateTime as a string using the full format {@code d/M/yyyy HHmm}.
-     *
-     * @param dateTime The LocalDateTime to format.
-     * @return The formatted date and time string.
-     */
-    public static String formatDateTime(LocalDateTime dateTime) {
-        return dateTime.format(DateTimeFormatter.ofPattern(DATE_TIME_PATTERN));
     }
 }
