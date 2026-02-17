@@ -43,7 +43,7 @@ public class DateTimeParser {
      * @return The parsed LocalDateTime.
      * @throws DateTimeParseException If the string cannot be parsed.
      */
-    public static LocalDateTime parseNatural(String dateTimeString) throws DateTimeParseException {
+    public static LocalDateTime parse(String dateTimeString) throws DateTimeParseException {
         String trimmed = dateTimeString.trim();
         if (trimmed.isEmpty()) {
             throw new DateTimeParseException("Empty date/time string", dateTimeString, 0);
@@ -77,9 +77,9 @@ public class DateTimeParser {
      * @return The parsed LocalDateTime.
      * @throws ChatbotArgumentException If the string cannot be parsed.
      */
-    public static LocalDateTime parseNaturalWithErrorMessage(String dateTimeString, String errorMessage) {
+    public static LocalDateTime parseWithErrorMessage(String dateTimeString, String errorMessage) {
         try {
-            return parseNatural(dateTimeString);
+            return parse(dateTimeString);
         } catch (DateTimeException e) {
             throw new ChatbotArgumentException(errorMessage);
         }
