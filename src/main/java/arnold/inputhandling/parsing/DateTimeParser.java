@@ -29,36 +29,6 @@ public class DateTimeParser {
     private static final int DEFAULT_MINUTE = 59;
 
     /**
-     * Parses a date and time string using the strict full format {@code d/M/yyyy HHmm}.
-     *
-     * @param dateTimeString The string to parse.
-     * @return The parsed LocalDateTime.
-     * @throws DateTimeParseException If the string cannot be parsed.
-     */
-    public static LocalDateTime parse(String dateTimeString) throws DateTimeParseException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_TIME_PATTERN);
-
-        return LocalDateTime.parse(dateTimeString, formatter);
-    }
-
-    /**
-     * Parses a date and time string using the strict full format, wrapping any parsing error
-     * into a ChatbotArgumentException with a custom error message.
-     *
-     * @param dateTimeString The string to parse.
-     * @param errorMessage The error message to use if parsing fails.
-     * @return The parsed LocalDateTime.
-     * @throws ChatbotArgumentException If the string cannot be parsed.
-     */
-    public static LocalDateTime parseWithErrorMessage(String dateTimeString, String errorMessage) {
-        try {
-            return parse(dateTimeString);
-        } catch (DateTimeParseException e) {
-            throw new ChatbotArgumentException(errorMessage);
-        }
-    }
-
-    /**
      * Parses a date and time string with natural format support.
      *
      * <p>Accepts flexible date/time input where year and time are optional:
