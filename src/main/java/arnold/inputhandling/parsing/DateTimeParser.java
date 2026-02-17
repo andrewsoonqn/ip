@@ -237,11 +237,6 @@ public class DateTimeParser {
             throw new DateTimeParseException("Invalid time value", originalInput, 0);
         }
 
-        if (hour < 0 || hour > 23 || minute < 0 || minute > 59) {
-            throw new DateTimeParseException(
-                "Time out of range (hour: 0-23, minute: 0-59)", originalInput, 0);
-        }
-
         return LocalTime.of(hour, minute);
     }
 }
