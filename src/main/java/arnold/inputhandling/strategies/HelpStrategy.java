@@ -25,22 +25,32 @@ public class HelpStrategy implements InputHandlingStrategy {
 
         commands.entrySet().stream()
             .sorted(Map.Entry.comparingByKey())
-            .forEach(entry -> {
-                String name = entry.getKey();
-                InputHandlingStrategy strategy = entry.getValue();
-                String description = strategy.getDescription();
-                String example = strategy.getExampleUsage();
-
-                sb.append(String.format("\n * %s", name));
-                if (!description.isEmpty()) {
-                    sb.append(String.format("\n    %s", description));
-                }
-                if (!example.isEmpty()) {
-                    sb.append(String.format("\n    `%s`", example));
-                }
-            });
+            .forEach(entry -> sb.append(formatCommandEntry(entry.getKey(), entry.getValue())));
 
         return CommandResult.success(sb.toString());
+    }
+
+    /**
+     * Formats a single command entry with its name, description, and example usage.
+     *
+     * @param name The command name
+     * @param strategy The strategy containing description and usage information
+     * @return A formatted string representing the command entry
+     */
+    private String formatCommandEntry(String name, InputHandlingStrategy strategy) {
+        StringBuilder entryBuilder = new StringBuilder();
+        String description = strategy.getDescription();
+        String example = strategy.getExampleUsage();
+
+        entryBuilder.append(String.format("\n * %s", name));
+        if (!description.isEmpty()) {
+            entryBuilder.append(String.format("\n    %s", description));
+        }
+        if (!example.isEmpty()) {
+            entryBuilder.append(String.format("\n    `%s`", example));
+        }
+
+        return entryBuilder.toString();
     }
 
     @Override

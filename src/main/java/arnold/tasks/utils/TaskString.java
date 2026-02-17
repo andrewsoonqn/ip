@@ -10,6 +10,8 @@ import arnold.tasks.Task;
  * Utility class for formatting tasks as strings.
  */
 public class TaskString {
+    private static final String INDENT = "  ";
+
     /**
      * Returns the task formatted with its index.
      *
@@ -28,7 +30,7 @@ public class TaskString {
      * @return The formatted string.
      */
     public static String withoutIndex(Task task) {
-        return String.format("  %s", task);
+        return INDENT + task;
     }
 
     /**

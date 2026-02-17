@@ -1,9 +1,7 @@
 package arnold.inputhandling.strategies.taskcrudstrategies.create;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 
-import arnold.chatbotexceptions.ChatbotArgumentException;
 import arnold.inputhandling.Messages;
 import arnold.inputhandling.parsing.DateTimeParser;
 import arnold.inputhandling.parsing.ParsedCommand;
@@ -23,19 +21,10 @@ public class EventStrategy extends CreateTaskStrategy {
      */
     @Override
     protected Task getTask(ParsedCommand command) {
-        LocalDateTime parsedFrom;
-        try {
-            parsedFrom = DateTimeParser.parse(command.getFlag("from"));
-        } catch (DateTimeParseException e) {
-            throw new ChatbotArgumentException(Messages.invalidEventStart());
-        }
-
-        LocalDateTime parsedTo;
-        try {
-            parsedTo = DateTimeParser.parse(command.getFlag("to"));
-        } catch (DateTimeParseException e) {
-            throw new ChatbotArgumentException(Messages.invalidEventEnd());
-        }
+        LocalDateTime parsedFrom = DateTimeParser.parseWithErrorMessage(
+            command.getFlag("from"), Messages.invalidEventStart());
+        LocalDateTime parsedTo = DateTimeParser.parseWithErrorMessage(
+            command.getFlag("to"), Messages.invalidEventEnd());
 
         return new Event(command.getDescription(), parsedFrom, parsedTo);
     }

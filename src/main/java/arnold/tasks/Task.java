@@ -19,6 +19,9 @@ import arnold.tasks.utils.TaskType;
 @JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE,
     isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 public abstract class Task {
+    private static final String DONE_STATUS_SYMBOL = "X";
+    private static final String NOT_DONE_STATUS_SYMBOL = " ";
+
     @JsonProperty("description")
     private final String description;
 
@@ -35,13 +38,13 @@ public abstract class Task {
         this.isDone = false;
     }
 
-    private String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+    private String getStatusSymbol() {
+        return (isDone ? DONE_STATUS_SYMBOL : NOT_DONE_STATUS_SYMBOL);
     }
 
     @Override
     public String toString() {
-        return String.format("[%s] %s", getStatusIcon(), description);
+        return String.format("[%s] %s", getStatusSymbol(), description);
     }
 
     public String getDescription() {

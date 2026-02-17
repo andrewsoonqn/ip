@@ -3,7 +3,7 @@ package arnold.inputhandling;
 /**
  * Represents the result of executing a command, encapsulating a message, error status,
  * and whether the app should terminate.
- *
+ * <p>
  * This class provides factory methods to create instances that represent a successful
  * result, an error result, or a signal to terminate the application.
  */
