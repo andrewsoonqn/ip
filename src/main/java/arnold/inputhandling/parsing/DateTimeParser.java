@@ -58,6 +58,52 @@ public class DateTimeParser {
         }
     }
 
+    /**
+     * Parses the time portion of the input string.
+     * If time is null (omitted), defaults to 23:59.
+     * Supports 1-4 digit formats: 1-2 digits are treated as hours (minutes = 0),
+     * 3-4 digits are treated as HHMM.
+     *
+     * @param timePart The time string, or null if time was omitted.
+     * @param originalInput The original full input string (for error reporting).
+     * @return The parsed LocalTime.
+     * @throws DateTimeParseException If the time cannot be parsed.
+     */
+    private static LocalTime parseTime(String timePart, String originalInput) {
+        if (timePart == null || timePart.isEmpty()) {
+            return LocalTime.of(DEFAULT_HOUR, DEFAULT_MINUTE);
+        }
+
+        int hour;
+        int minute;
+
+        try {
+            if (timePart.length() <= 2) {
+                // 1-2 digits: treat as hours only
+                hour = Integer.parseInt(timePart);
+                minute = 0;
+            } else if (timePart.length() == 3) {
+                // 3 digits: first digit is hour, last 2 are minutes (e.g., 930 -> 09:30)
+                hour = Integer.parseInt(timePart.substring(0, 1));
+                minute = Integer.parseInt(timePart.substring(1));
+            } else if (timePart.length() == 4) {
+                // 4 digits: HHMM (e.g., 1400 -> 14:00)
+                hour = Integer.parseInt(timePart.substring(0, 2));
+                minute = Integer.parseInt(timePart.substring(2));
+            } else {
+                throw new DateTimeParseException("Time must be 1-4 digits", originalInput, 0);
+            }
+        } catch (NumberFormatException e) {
+            throw new DateTimeParseException("Invalid time value", originalInput, 0);
+        }
+
+        if (hour < 0 || hour > 23 || minute < 0 || minute > 59) {
+            throw new DateTimeParseException("Time out of range (hour: 0-23, minute: 0-59)",
+                    originalInput, 0);
+        }
+
+        return LocalTime.of(hour, minute);
+    }
 
     /**
      * Formats a LocalDateTime as a string.
