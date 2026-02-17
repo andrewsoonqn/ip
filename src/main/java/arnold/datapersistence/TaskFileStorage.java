@@ -2,7 +2,6 @@ package arnold.datapersistence;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.util.List;
 
@@ -49,24 +48,39 @@ public class TaskFileStorage implements Storage {
     public void load(TaskList taskList) {
         Path path = Path.of(filePath);
 
-        try {
-            String json = Files.readString(path);
-            if (json.isBlank()) {
-                return;
-            }
+        if (!Files.exists(path)) {
+            FileWriter.createDirectories(path);
+            FileWriter.createFile(path.toString());
+            return;
+        }
 
-            // Treat list as array of Task objects instead of runtime type
+        String json = readFileContent(path);
+        if (json == null || json.isBlank()) {
+            return;
+        }
+
+        loadTasksFromJson(taskList, json);
+    }
+
+    private String readFileContent(Path path) {
+        try {
+            return Files.readString(path);
+        } catch (IOException e) {
+            System.err.println("Error loading data: " + e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private void loadTasksFromJson(TaskList taskList, String json) {
+        try {
             List<Task> tasks = objectMapper.readValue(json, new TypeReference<List<Task>>() {
             });
             if (tasks != null) {
                 taskList.loadTasks(tasks);
             }
-        } catch (NoSuchFileException e) {
-            // File doesn't exist yet, so create it
-            FileWriter.createDirectories(path);
-            FileWriter.createFile(path.toString());
         } catch (IOException e) {
-            System.err.println("Error loading data: " + e.getMessage());
+            System.err.println("Error parsing task data: " + e.getMessage());
             e.printStackTrace();
         }
     }
