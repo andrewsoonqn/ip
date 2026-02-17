@@ -51,6 +51,8 @@ public class ArnoldApplication extends Application {
             mainWindow.setArnold(arnold); // Inject Arnold instance
             primaryStage.show();
         } catch (IOException e) {
+            // Should never happen
+            assert false : "Failed to load MainWindow.fxml";
             e.printStackTrace();
         }
     }

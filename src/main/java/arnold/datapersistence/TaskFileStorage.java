@@ -107,6 +107,7 @@ public class TaskFileStorage implements Storage {
             FileWriter.writeToFilePath(filePath, json);
         } catch (JsonProcessingException e) {
             // Should not reach here
+            assert false : "Failed to serialize task list to JSON";
             throw new StorageException(
                 "Failed to save tasks. Your changes may not be persisted.", e);
         }
