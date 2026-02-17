@@ -184,13 +184,13 @@ public class DateTimeParser {
      */
     private static LocalDate resolveNextFutureDate(int day, int month) {
         LocalDate today = LocalDate.now();
-        LocalDate candidate = LocalDate.of(today.getYear(), month, day);
+        LocalDate candidateDate = LocalDate.of(today.getYear(), month, day);
 
-        if (!candidate.isAfter(today)) {
-            candidate = LocalDate.of(today.getYear() + 1, month, day);
+        if (!candidateDate.isAfter(today)) {
+            candidateDate = LocalDate.of(today.getYear() + 1, month, day);
         }
 
-        return candidate;
+        return candidateDate;
     }
 
     // Time parsing helpers
