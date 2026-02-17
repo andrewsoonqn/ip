@@ -158,4 +158,13 @@ public final class Messages {
     public static String taskIndexOutOfBounds(int taskCount) {
         return String.format("The task index must be between 1 and %d.", taskCount);
     }
+
+    /**
+     * Generates the header message for the help command output.
+     *
+     * @return A header message indicating that available commands will be listed.
+     */
+    public static String helpHeader() {
+        return "Available commands:\n";
+    }
 }

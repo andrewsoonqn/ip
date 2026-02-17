@@ -3,6 +3,7 @@ package arnold.inputhandling.strategies;
 import java.util.Map;
 
 import arnold.inputhandling.CommandResult;
+import arnold.inputhandling.Messages;
 import arnold.inputhandling.parsing.ParsedCommand;
 import arnold.inputhandling.parsing.Parser;
 import arnold.tasks.utils.TaskList;
@@ -21,7 +22,7 @@ public class HelpStrategy implements InputHandlingStrategy {
     @Override
     public CommandResult handleInput(ParsedCommand command, TaskList taskList) {
         Map<String, InputHandlingStrategy> commands = parser.getRegisteredCommands();
-        StringBuilder sb = new StringBuilder("Available commands:\n");
+        StringBuilder sb = new StringBuilder(Messages.helpHeader());
 
         commands.entrySet().stream()
             .sorted(Map.Entry.comparingByKey())
