@@ -28,6 +28,7 @@ public class DateTimeParser {
     private static final String DATE_TIME_PATTERN = "d/M/yyyy HHmm";
     private static final int DEFAULT_HOUR = 23;
     private static final int DEFAULT_MINUTE = 59;
+    private static final int DEFAULT_MINUTE_WHEN_HOURS_ONLY = 0;
 
     // Public API
 
@@ -217,26 +218,41 @@ public class DateTimeParser {
             return LocalTime.of(DEFAULT_HOUR, DEFAULT_MINUTE);
         }
 
-        int hour;
-        int minute;
+        if (timePart.length() < 1 || timePart.length() > 4) {
+            throw new DateTimeParseException("Time must be 1-4 digits", originalInput, 0);
+        }
 
+        int[] hourAndMinute = parseHourAndMinuteFromDigits(timePart, originalInput);
+        assert hourAndMinute.length == 2 : "parseHourAndMinuteFromDigits should return a 2-element array";
+        return LocalTime.of(hourAndMinute[0], hourAndMinute[1]);
+    }
+
+    /**
+     * Extracts hour and minute from a validated 1-4 digit time string.
+     *
+     * @param timePart A non-empty string of 1-4 digits.
+     * @param originalInput The original full input string (for error reporting).
+     * @return An int array of {@code {hour, minute}}.
+     * @throws DateTimeParseException If the digits cannot be parsed as numbers.
+     */
+    private static int[] parseHourAndMinuteFromDigits(String timePart, String originalInput) {
         try {
             if (timePart.length() <= 2) {
-                hour = Integer.parseInt(timePart);
-                minute = 0;
-            } else if (timePart.length() == 3) {
-                hour = Integer.parseInt(timePart.substring(0, 1));
-                minute = Integer.parseInt(timePart.substring(1));
-            } else if (timePart.length() == 4) {
-                hour = Integer.parseInt(timePart.substring(0, 2));
-                minute = Integer.parseInt(timePart.substring(2));
-            } else {
-                throw new DateTimeParseException("Time must be 1-4 digits", originalInput, 0);
+                return new int[]{Integer.parseInt(timePart), DEFAULT_MINUTE_WHEN_HOURS_ONLY};
             }
+            if (timePart.length() == 3) {
+                return new int[]{
+                    Integer.parseInt(timePart.substring(0, 1)),
+                    Integer.parseInt(timePart.substring(1))
+                };
+            }
+            // length == 4
+            return new int[]{
+                Integer.parseInt(timePart.substring(0, 2)),
+                Integer.parseInt(timePart.substring(2))
+            };
         } catch (NumberFormatException e) {
             throw new DateTimeParseException("Invalid time value", originalInput, 0);
         }
-
-        return LocalTime.of(hour, minute);
     }
 }
