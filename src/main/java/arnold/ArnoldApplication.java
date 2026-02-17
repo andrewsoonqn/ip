@@ -28,11 +28,6 @@ public class ArnoldApplication extends Application {
         Font.loadFont(getClass().getResourceAsStream("/fonts/JetBrainsMono-Regular.ttf"), MONOSPACE_FONT_SIZE);
         Font.loadFont(getClass().getResourceAsStream("/fonts/OpenSans-Regular.ttf"), SANS_SERIF_FONT_SIZE);
 
-        Storage storage = new TaskFileStorage(DataPaths.TASKS_FILE_PATH);
-        TaskList taskList = TaskList.create(storage);
-
-        Arnold arnold = new Arnold(taskList);
-
         try {
             primaryStage.setTitle("Arnold");
 
@@ -44,7 +39,16 @@ public class ArnoldApplication extends Application {
             primaryStage.setMinHeight(MIN_WINDOW_HEIGHT);
             primaryStage.setMinWidth(MIN_WINDOW_WIDTH);
 
-            fxmlLoader.<MainWindow>getController().setArnold(arnold); // Inject the Arnold instance
+            MainWindow mainWindow = fxmlLoader.getController();
+
+            // Register MainWindow as the storage event listener before loading,
+            // so any load errors are displayed to the user in the UI.
+            Storage storage = new TaskFileStorage(DataPaths.TASKS_FILE_PATH);
+            storage.setEventListener(mainWindow);
+            TaskList taskList = TaskList.create(storage);
+
+            Arnold arnold = new Arnold(taskList);
+            mainWindow.setArnold(arnold); // Inject Arnold instance
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
