@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
+import arnold.chatbotexceptions.StorageException;
 import arnold.tasks.Task;
 import arnold.tasks.utils.TaskList;
 
@@ -97,8 +98,11 @@ public class TaskFileStorage implements Storage {
                 .writeValueAsString(taskList.getTasks());
             FileWriter.writeToFilePath(filePath, json);
         } catch (JsonProcessingException e) {
-            System.err.println("Error saving data: " + e.getMessage());
-            e.printStackTrace();
+            // Should not reach here
+            throw new StorageException(
+                "Failed to save tasks. Your changes may not be persisted.", e);
+        }
+    }
         }
     }
 }
