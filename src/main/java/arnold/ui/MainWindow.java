@@ -1,6 +1,7 @@
 package arnold.ui;
 
 import arnold.Arnold;
+import arnold.datapersistence.StorageEventListener;
 import arnold.inputhandling.CommandResult;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,7 +14,7 @@ import javafx.scene.layout.VBox;
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
-public class MainWindow extends AnchorPane {
+public class MainWindow extends AnchorPane implements StorageEventListener {
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -60,5 +61,17 @@ public class MainWindow extends AnchorPane {
             responseBox
         );
         userInput.clear();
+    }
+
+    /**
+     * Displays a storage load error as an Arnold message with error styling.
+     *
+     * @param message A user-facing message describing what went wrong.
+     */
+    @Override
+    public void onLoadError(String message) {
+        DialogBox errorBox = DialogBox.getArnoldDialog(message, arnoldImage);
+        errorBox.setErrorStyle();
+        dialogContainer.getChildren().add(errorBox);
     }
 }
