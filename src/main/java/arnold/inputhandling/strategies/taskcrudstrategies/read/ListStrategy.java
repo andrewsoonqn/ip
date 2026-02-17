@@ -2,8 +2,8 @@ package arnold.inputhandling.strategies.taskcrudstrategies.read;
 
 import arnold.inputhandling.CommandResult;
 import arnold.inputhandling.Messages;
-import arnold.inputhandling.strategies.InputHandlingStrategy;
 import arnold.inputhandling.parsing.ParsedCommand;
+import arnold.inputhandling.strategies.InputHandlingStrategy;
 import arnold.tasks.utils.TaskList;
 
 /**

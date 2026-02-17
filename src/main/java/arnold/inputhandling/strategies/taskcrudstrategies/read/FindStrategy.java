@@ -4,8 +4,8 @@ import java.util.function.Predicate;
 
 import arnold.inputhandling.CommandResult;
 import arnold.inputhandling.Messages;
-import arnold.inputhandling.strategies.InputHandlingStrategy;
 import arnold.inputhandling.parsing.ParsedCommand;
+import arnold.inputhandling.strategies.InputHandlingStrategy;
 import arnold.tasks.Task;
 import arnold.tasks.utils.TaskList;
 import arnold.tasks.utils.TaskString;

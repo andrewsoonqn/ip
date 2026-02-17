@@ -22,7 +22,7 @@ public class DeadlineStrategy extends CreateTaskStrategy {
     @Override
     protected Task getTask(ParsedCommand command) {
         LocalDateTime parsedBy = DateTimeParser.parseWithErrorMessage(
-                command.getFlag("by"), Messages.invalidDeadline());
+            command.getFlag("by"), Messages.invalidDeadline());
 
         return new Deadline(command.getDescription(), parsedBy);
     }
