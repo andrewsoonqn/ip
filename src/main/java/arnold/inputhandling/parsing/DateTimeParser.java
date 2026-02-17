@@ -30,6 +30,10 @@ public class DateTimeParser {
     private static final int DEFAULT_MINUTE = 59;
     private static final int DEFAULT_MINUTE_WHEN_HOURS_ONLY = 0;
 
+    private static final int TWO_DIGIT_YEAR_CENTURY_THRESHOLD = 49;
+    private static final int CENTURY_OFFSET_RECENT = 2000;
+    private static final int CENTURY_OFFSET_PAST = 1900;
+
     // Public API
 
     /**
@@ -165,11 +169,9 @@ public class DateTimeParser {
 
         // Apply sliding window for 2-digit years
         if (yearStr.length() == 2) {
-            if (year <= 49) {
-                year += 2000;
-            } else {
-                year += 1900;
-            }
+            year += (year <= TWO_DIGIT_YEAR_CENTURY_THRESHOLD)
+                    ? CENTURY_OFFSET_RECENT
+                    : CENTURY_OFFSET_PAST;
         }
 
         return year;
