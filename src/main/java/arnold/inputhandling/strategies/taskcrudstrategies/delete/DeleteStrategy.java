@@ -8,15 +8,15 @@ import arnold.tasks.utils.TaskList;
 import arnold.tasks.utils.TaskString;
 
 /**
- * Strategy for handling the remove command.
+ * Strategy for handling the delete command.
  */
-public class RemoveStrategy extends TaskIdStrategy {
+public class DeleteStrategy extends TaskIdStrategy {
     /**
-     * Removes the specified task from the task list.
+     * Deletes the specified task from the task list.
      *
-     * @param taskId The ID of the task to remove.
-     * @param taskList The task list to remove the task from.
-     * @return The response message confirming the task was removed.
+     * @param taskId The ID of the task to delete.
+     * @param taskList The task list to delete the task from.
+     * @return The response message confirming the task was deleted.
      */
     @Override
     protected CommandResult execute(int taskId, TaskList taskList) {

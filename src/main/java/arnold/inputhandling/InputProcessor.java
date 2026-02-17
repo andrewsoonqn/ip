@@ -7,7 +7,7 @@ import arnold.inputhandling.strategies.HelpStrategy;
 import arnold.inputhandling.strategies.taskcrudstrategies.create.DeadlineStrategy;
 import arnold.inputhandling.strategies.taskcrudstrategies.create.EventStrategy;
 import arnold.inputhandling.strategies.taskcrudstrategies.create.TodoStrategy;
-import arnold.inputhandling.strategies.taskcrudstrategies.delete.RemoveStrategy;
+import arnold.inputhandling.strategies.taskcrudstrategies.delete.DeleteStrategy;
 import arnold.inputhandling.strategies.taskcrudstrategies.read.FindStrategy;
 import arnold.inputhandling.strategies.taskcrudstrategies.read.ListStrategy;
 import arnold.inputhandling.strategies.taskcrudstrategies.update.MarkStrategy;
@@ -39,7 +39,7 @@ public class InputProcessor {
         parser.register("mark", new MarkStrategy());
         parser.register("unmark", new UnmarkStrategy());
         parser.register("todo", new TodoStrategy());
-        parser.register("delete", new RemoveStrategy());
+        parser.register("delete", new DeleteStrategy());
         parser.register("find", new FindStrategy());
         parser.register("deadline", new DeadlineStrategy(), "by");
         parser.register("event", new EventStrategy(), "from", "to");
