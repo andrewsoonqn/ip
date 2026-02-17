@@ -158,4 +158,8 @@ public final class Messages {
     public static String taskIndexOutOfBounds(int taskCount) {
         return String.format("The task index must be between 1 and %d.", taskCount);
     }
+
+    public static String helpHeader() {
+        return "Available commands:\n";
+    }
 }
