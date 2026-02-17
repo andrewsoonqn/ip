@@ -22,10 +22,12 @@ public class TaskList {
     }
 
     /**
-     * Creates a TaskList from storage.
+     * Creates a TaskList from storage. If the data file is corrupted or unreadable,
+     * the task list will be empty and any registered {@link arnold.datapersistence.StorageEventListener}
+     * will be notified.
      *
      * @param storage The storage to load tasks from.
-     * @return A TaskList populated with tasks from storage.
+     * @return A TaskList populated with tasks from storage, or empty if loading failed.
      */
     public static TaskList create(Storage storage) {
         TaskList taskList = new TaskList(storage);
