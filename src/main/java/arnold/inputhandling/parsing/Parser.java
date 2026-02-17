@@ -55,6 +55,7 @@ public class Parser {
      */
     public Result parse(String input) {
         String[] commandParts = splitCommandFromArguments(input);
+        assert commandParts.length == 2 : "Expected two elements: command name and rest of the text";
         String commandName = commandParts[0];
         String rest = commandParts[1];
 
@@ -77,9 +78,9 @@ public class Parser {
      * @return An array where index 0 is the command name and index 1 is the rest of the text.
      */
     private String[] splitCommandFromArguments(String input) {
-        String[] parts = input.split("\\s+", 2);
-        String commandName = parts[0];
-        String rest = parts.length > 1 ? parts[1] : "";
+        String[] inputParts = input.split("\\s+", 2);
+        String commandName = inputParts[0];
+        String rest = inputParts.length > 1 ? inputParts[1] : "";
 
         return new String[] {commandName, rest};
     }
@@ -89,12 +90,12 @@ public class Parser {
         // Split text into description and flag segments
         // e.g., "meeting /from Mon 2pm /to Mon 4pm"
         // -> "meeting", "from Mon 2pm", "to Mon 4pm"
-        String[] parts = text.split(FLAG_SIGNIFIER);
+        String[] flagParts = text.split(FLAG_SIGNIFIER);
 
-        String description = parts[0].strip();
+        String description = flagParts[0].strip();
 
         Map<String, String> flags =
-            Arrays.stream(parts)
+            Arrays.stream(flagParts)
                 // Skip description
                 .skip(1)
                 .map(segment -> segment.split("\\s+", 2))
