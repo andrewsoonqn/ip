@@ -59,6 +59,25 @@ public class DateTimeParser {
     }
 
     /**
+     * Resolves the next future occurrence of a given day and month.
+     * If the date has already passed this year (or is today), uses next year.
+     *
+     * @param day The day of month.
+     * @param month The month.
+     * @return The next future LocalDate with the given day and month.
+     */
+    private static LocalDate resolveNextFutureDate(int day, int month) {
+        LocalDate today = LocalDate.now();
+        LocalDate candidate = LocalDate.of(today.getYear(), month, day);
+
+        if (!candidate.isAfter(today)) {
+            candidate = LocalDate.of(today.getYear() + 1, month, day);
+        }
+
+        return candidate;
+    }
+
+    /**
      * Parses the time portion of the input string.
      * If time is null (omitted), defaults to 23:59.
      * Supports 1-4 digit formats: 1-2 digits are treated as hours (minutes = 0),
