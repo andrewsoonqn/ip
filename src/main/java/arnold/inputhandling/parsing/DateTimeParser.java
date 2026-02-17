@@ -111,9 +111,9 @@ public class DateTimeParser {
      * @throws DateTimeParseException If the date cannot be parsed.
      */
     private static LocalDate parseDate(String datePart, String originalInput) {
-        String[] parts = datePart.split("/");
+        String[] dateSegments = datePart.split("/");
 
-        if (parts.length < 2 || parts.length > 3) {
+        if (dateSegments.length < 2 || dateSegments.length > 3) {
             throw new DateTimeParseException(
                 "Invalid date format, expected day/month or day/month/year", originalInput, 0);
         }
@@ -122,14 +122,14 @@ public class DateTimeParser {
         int month;
 
         try {
-            day = Integer.parseInt(parts[0]);
-            month = Integer.parseInt(parts[1]);
+            day = Integer.parseInt(dateSegments[0]);
+            month = Integer.parseInt(dateSegments[1]);
         } catch (NumberFormatException e) {
             throw new DateTimeParseException("Invalid day or month value", originalInput, 0);
         }
 
-        if (parts.length == 3) {
-            int year = parseYear(parts[2], originalInput);
+        if (dateSegments.length == 3) {
+            int year = parseYear(dateSegments[2], originalInput);
             return LocalDate.of(year, month, day);
         }
 
