@@ -8,12 +8,23 @@ import arnold.chatbotexceptions.ChatbotArgumentException;
 
 /**
  * Utility class for parsing and formatting dates and times.
+ *
+ * <p>Supports natural date formats where year and time are optional:
+ * <ul>
+ *   <li>{@code day/month/year time} - full format (e.g., {@code 25/12/2026 1400})</li>
+ *   <li>{@code day/month time} - year omitted, uses next future occurrence</li>
+ *   <li>{@code day/month/year} - time omitted, defaults to 2359</li>
+ *   <li>{@code day/month} - both omitted</li>
+ * </ul>
+ *
+ * <p>Time can be 1-4 digits: 1-2 digits are treated as hours (e.g., {@code 9} = 0900),
+ * 3-4 digits as HHMM (e.g., {@code 930} = 0930).
  */
 public class DateTimeParser {
     private static final String DATE_TIME_PATTERN = "d/M/yyyy HHmm";
 
     /**
-     * Parses a date and time string.
+     * Parses a date and time string using the strict full format {@code d/M/yyyy HHmm}.
      *
      * @param dateTimeString The string to parse.
      * @return The parsed LocalDateTime.
@@ -26,8 +37,8 @@ public class DateTimeParser {
     }
 
     /**
-     * Parses a date and time string and wraps any parsing error into a ChatbotArgumentException
-     * with a custom error message.
+     * Parses a date and time string using the strict full format, wrapping any parsing error
+     * into a ChatbotArgumentException with a custom error message.
      *
      * @param dateTimeString The string to parse.
      * @param errorMessage The error message to use if parsing fails.
