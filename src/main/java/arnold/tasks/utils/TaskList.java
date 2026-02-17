@@ -51,6 +51,18 @@ public class TaskList {
     }
 
     /**
+     * Validates that the given 1-based index is within valid bounds.
+     *
+     * @param idx The 1-based index to validate.
+     * @throws ChatbotArgumentException If the index is out of bounds.
+     */
+    private void validateIndex(int idx) {
+        if (idx < 1 || idx > tasks.size()) {
+            throw new ChatbotArgumentException(Messages.taskIndexOutOfBounds(tasks.size()));
+        }
+    }
+
+    /**
      * Retrieves a task from the list by its index.
      *
      * @param idx The 1-based index of the task.
@@ -58,21 +70,19 @@ public class TaskList {
      * @throws ChatbotArgumentException If the index is out of bounds.
      */
     public Task getTask(int idx) {
-        if (idx < 1 || idx > tasks.size()) {
-            throw new ChatbotArgumentException(Messages.taskIndexOutOfBounds(tasks.size()));
-        }
+        validateIndex(idx);
         return tasks.get(idx - 1);
     }
 
     /**
      * Marks a task as done and saves the changes.
      *
-     * @param which The 1-based index of the task to mark.
+     * @param idx The 1-based index of the task to mark.
      * @return The marked task.
      * @throws ChatbotArgumentException If the index is out of bounds.
      */
-    public Task markTask(int which) {
-        Task task = getTask(which);
+    public Task markTask(int idx) {
+        Task task = getTask(idx);
         task.mark();
         storage.save(this);
         return task;
@@ -81,12 +91,12 @@ public class TaskList {
     /**
      * Unmarks a task as done and saves the changes.
      *
-     * @param which The 1-based index of the task to unmark.
+     * @param idx The 1-based index of the task to unmark.
      * @return The unmarked task.
      * @throws ChatbotArgumentException If the index is out of bounds.
      */
-    public Task unmarkTask(int which) {
-        Task task = getTask(which);
+    public Task unmarkTask(int idx) {
+        Task task = getTask(idx);
         task.unmark();
         storage.save(this);
         return task;
@@ -104,18 +114,15 @@ public class TaskList {
     /**
      * Removes a task from the list and saves the changes.
      *
-     * @param which The 1-based index of the task to remove.
+     * @param idx The 1-based index of the task to remove.
      * @return The removed task.
      * @throws ChatbotArgumentException If the index is out of bounds.
      */
-    public Task removeTask(int which) {
-        try {
-            Task removedTask = tasks.remove(which - 1);
-            storage.save(this);
-            return removedTask;
-        } catch (IndexOutOfBoundsException e) {
-            throw new ChatbotArgumentException(Messages.taskIndexOutOfBounds(getSize()));
-        }
+    public Task removeTask(int idx) {
+        validateIndex(idx);
+        Task removedTask = tasks.remove(idx - 1);
+        storage.save(this);
+        return removedTask;
     }
 
     /**
