@@ -21,9 +21,9 @@ public class EventStrategy extends CreateTaskStrategy {
      */
     @Override
     protected Task getTask(ParsedCommand command) {
-        LocalDateTime parsedFrom = DateTimeParser.parseWithErrorMessage(
+        LocalDateTime parsedFrom = DateTimeParser.parseNaturalWithErrorMessage(
             command.getFlag("from"), Messages.invalidEventStart());
-        LocalDateTime parsedTo = DateTimeParser.parseWithErrorMessage(
+        LocalDateTime parsedTo = DateTimeParser.parseNaturalWithErrorMessage(
             command.getFlag("to"), Messages.invalidEventEnd());
 
         return new Event(command.getDescription(), parsedFrom, parsedTo);
