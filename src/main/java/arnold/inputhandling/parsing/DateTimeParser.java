@@ -252,7 +252,6 @@ public class DateTimeParser {
     }
 
     /**
-     * Formats a LocalDateTime as a string.
      * Formats a LocalDateTime as a string using the full format {@code d/M/yyyy HHmm}.
      *
      * @param dateTime The LocalDateTime to format.
