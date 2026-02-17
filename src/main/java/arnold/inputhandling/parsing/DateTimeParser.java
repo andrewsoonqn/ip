@@ -57,7 +57,6 @@ public class DateTimeParser {
 
         // Split by space to separate date and time
         int spaceIndex = trimmed.indexOf(' ');
-        if (spaceIndex >= 0) {
         assert spaceIndex != 0 : "Trimmed string cannot start with a space";
 
         if (spaceIndex > 0) {
