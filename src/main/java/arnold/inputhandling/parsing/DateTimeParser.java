@@ -170,8 +170,8 @@ public class DateTimeParser {
         // Apply sliding window for 2-digit years
         if (yearStr.length() == 2) {
             year += (year <= TWO_DIGIT_YEAR_CENTURY_THRESHOLD)
-                    ? CENTURY_OFFSET_RECENT
-                    : CENTURY_OFFSET_PAST;
+                ? CENTURY_OFFSET_RECENT
+                : CENTURY_OFFSET_PAST;
         }
 
         return year;
@@ -240,16 +240,16 @@ public class DateTimeParser {
     private static int[] parseHourAndMinuteFromDigits(String timePart, String originalInput) {
         try {
             if (timePart.length() <= 2) {
-                return new int[]{Integer.parseInt(timePart), DEFAULT_MINUTE_WHEN_HOURS_ONLY};
+                return new int[] {Integer.parseInt(timePart), DEFAULT_MINUTE_WHEN_HOURS_ONLY};
             }
             if (timePart.length() == 3) {
-                return new int[]{
+                return new int[] {
                     Integer.parseInt(timePart.substring(0, 1)),
                     Integer.parseInt(timePart.substring(1))
                 };
             }
             // length == 4
-            return new int[]{
+            return new int[] {
                 Integer.parseInt(timePart.substring(0, 2)),
                 Integer.parseInt(timePart.substring(2))
             };
