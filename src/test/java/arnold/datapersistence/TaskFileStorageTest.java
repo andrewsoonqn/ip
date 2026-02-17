@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,12 +29,15 @@ public class TaskFileStorageTest {
     private Path tempFile;
     private TaskFileStorage storage;
     private TaskList taskList;
+    private List<String> capturedErrors;
 
     @BeforeEach
     public void setUp() {
         tempFile = tempDir.resolve("tasks.json");
         storage = new TaskFileStorage(tempFile.toString());
         taskList = TaskList.create(new NullStorage());
+        capturedErrors = new ArrayList<>();
+        storage.setEventListener(capturedErrors::add);
     }
 
     @Test
@@ -50,7 +55,9 @@ public class TaskFileStorageTest {
 
         storage.save(taskList);
 
-        TaskList loadedList = TaskList.create(storage);
+        TaskList loadedList = TaskList.create(new NullStorage());
+        storage.load(loadedList);
+        assertTrue(capturedErrors.isEmpty());
         assertEquals(3, loadedList.getSize());
 
         assertTrue(loadedList.getTask(1) instanceof Todo);
@@ -70,21 +77,33 @@ public class TaskFileStorageTest {
     public void load_emptyJson_doesNothing() throws IOException {
         Files.writeString(tempFile, "");
         storage.load(taskList);
+        assertTrue(capturedErrors.isEmpty());
         assertEquals(0, taskList.getSize());
 
         Files.writeString(tempFile, "   ");
         storage.load(taskList);
+        assertTrue(capturedErrors.isEmpty());
         assertEquals(0, taskList.getSize());
 
         Files.writeString(tempFile, "null");
         storage.load(taskList);
+        assertTrue(capturedErrors.isEmpty());
         assertEquals(0, taskList.getSize());
     }
 
     @Test
-    public void load_malformedJson_logsErrorAndDoesNotCrash() throws IOException {
+    public void load_malformedJson_firesLoadErrorEvent() throws IOException {
         Files.writeString(tempFile, "{ malformed json }");
-        // It should catch JsonProcessingException and print to stderr
+        storage.load(taskList);
+        assertEquals(1, capturedErrors.size());
+        assertTrue(capturedErrors.get(0).contains("corrupted"));
+        assertEquals(0, taskList.getSize());
+    }
+
+    @Test
+    public void load_malformedJsonWithoutListener_doesNotThrow() throws IOException {
+        storage.setEventListener(null);
+        Files.writeString(tempFile, "{ malformed json }");
         storage.load(taskList);
         assertEquals(0, taskList.getSize());
     }
@@ -100,7 +119,8 @@ public class TaskFileStorageTest {
 
         storage.save(taskList);
 
-        TaskList loadedList = TaskList.create(storage);
+        TaskList loadedList = TaskList.create(new NullStorage());
+        storage.load(loadedList);
         assertTrue(loadedList.getTask(1).isDone());
         assertFalse(loadedList.getTask(2).isDone());
     }
@@ -113,7 +133,8 @@ public class TaskFileStorageTest {
 
         storage.save(taskList);
 
-        TaskList loadedList = TaskList.create(storage);
+        TaskList loadedList = TaskList.create(new NullStorage());
+        storage.load(loadedList);
         Deadline loadedDeadline = (Deadline) loadedList.getTask(1);
         assertTrue(loadedDeadline.toString().contains("14/2/2026 1030"));
     }
