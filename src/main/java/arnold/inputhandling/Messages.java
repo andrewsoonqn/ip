@@ -147,6 +147,10 @@ public final class Messages {
         return String.format("You are missing a required flag: /%s", flagName);
     }
 
+    public static String duplicateFlag(String flagName) {
+        return String.format("Duplicate flag detected: /%s. Please provide only one value for this flag.", flagName);
+    }
+
     /**
      * Generates an error message indicating that a task index is out of bounds.
      * The message specifies the valid range of task indices based on the total number of tasks.
