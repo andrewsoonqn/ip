@@ -21,6 +21,7 @@ import arnold.tasks.utils.TaskList;
 public class TaskFileStorage implements Storage {
     private final String filePath;
     private final ObjectMapper objectMapper;
+    private StorageEventListener eventListener;
 
     /**
      * Initializes a new instance of TaskFileStorage.
@@ -47,6 +48,11 @@ public class TaskFileStorage implements Storage {
     }
 
     @Override
+    public void setEventListener(StorageEventListener listener) {
+        this.eventListener = listener;
+    }
+
+    @Override
     public void load(TaskList taskList) {
         Path path = Path.of(filePath);
 
@@ -57,7 +63,11 @@ public class TaskFileStorage implements Storage {
         }
 
         String json = readFileContent(path);
-        if (json == null || json.isBlank()) {
+        if (json == null) {
+            fireLoadError("Could not read task data file. Starting with an empty task list.");
+            return;
+        }
+        if (json.isBlank()) {
             return;
         }
 
@@ -68,8 +78,6 @@ public class TaskFileStorage implements Storage {
         try {
             return Files.readString(path);
         } catch (IOException e) {
-            System.err.println("Error loading data: " + e.getMessage());
-            e.printStackTrace();
             return null;
         }
     }
@@ -82,8 +90,8 @@ public class TaskFileStorage implements Storage {
                 taskList.loadTasks(tasks);
             }
         } catch (IOException e) {
-            System.err.println("Error parsing task data: " + e.getMessage());
-            e.printStackTrace();
+            fireLoadError("Task data file is corrupted and could not be read. "
+                + "Starting with an empty task list.");
         }
     }
 
@@ -103,6 +111,15 @@ public class TaskFileStorage implements Storage {
                 "Failed to save tasks. Your changes may not be persisted.", e);
         }
     }
+
+    /**
+     * Fires a load error event to the registered listener, if any.
+     *
+     * @param message The error message to send.
+     */
+    private void fireLoadError(String message) {
+        if (eventListener != null) {
+            eventListener.onLoadError(message);
         }
     }
 }
