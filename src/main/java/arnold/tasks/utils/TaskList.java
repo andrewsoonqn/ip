@@ -9,7 +9,6 @@ import arnold.chatbotexceptions.ChatbotArgumentException;
 import arnold.datapersistence.Storage;
 import arnold.inputhandling.Messages;
 import arnold.tasks.Task;
-import arnold.utils.ListSearcher;
 
 /**
  * Represents a list of tasks.
@@ -147,7 +146,6 @@ public class TaskList {
      * @throws NullPointerException If the predicate is null.
      */
     public List<Task> findTasks(Predicate<Task> predicate) {
-        ListSearcher<Task> searcher = new ListSearcher<>();
-        return searcher.findItems(tasks, predicate);
+        return tasks.stream().filter(predicate).toList();
     }
 }
