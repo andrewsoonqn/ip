@@ -59,6 +59,40 @@ public class DateTimeParser {
     }
 
     /**
+     * Parses a year string, supporting both 2-digit and 4-digit years.
+     * 2-digit years use a sliding 100-year window: 0-49 map to 2000-2049, 50-99 map to 1950-1999.
+     *
+     * @param yearStr The year string to parse.
+     * @param originalInput The original full input string (for error reporting).
+     * @return The resolved 4-digit year.
+     * @throws DateTimeParseException If the year cannot be parsed.
+     */
+    private static int parseYear(String yearStr, String originalInput) {
+        if (yearStr.length() != 2 && yearStr.length() != 4) {
+            throw new DateTimeParseException("Invalid year format, expected 2 or 4 digits", originalInput, 0);
+        }
+
+        int year;
+        try {
+            year = Integer.parseInt(yearStr);
+        } catch (NumberFormatException e) {
+            throw new DateTimeParseException("Invalid year value", originalInput, 0);
+        }
+
+        if (yearStr.length() == 2) {
+            // Sliding 100-year window: 0-49 -> 2000-2049, 50-99 -> 1950-1999
+            if (year >= 0 && year <= 49) {
+                year += 2000;
+            } else if (year >= 50 && year <= 99) {
+                year += 1900;
+            }
+        }
+
+
+        return year;
+    }
+
+    /**
      * Resolves the next future occurrence of a given day and month.
      * If the date has already passed this year (or is today), uses next year.
      *
