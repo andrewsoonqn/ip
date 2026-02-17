@@ -166,4 +166,16 @@ public final class Messages {
     public static String helpHeader() {
         return "Available commands:\n";
     }
+
+    public static String emptyDateTime() {
+        return "Empty date/time string";
+    }
+
+    public static String invalidDateFormat() {
+        return "Invalid date format, expected day/month or day/month/year";
+    }
+
+    public static String invalidDayMonthValue() {
+        return "Invalid day or month value";
+    }
 }

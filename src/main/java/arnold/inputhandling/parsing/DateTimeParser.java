@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import arnold.chatbotexceptions.ChatbotArgumentException;
+import arnold.inputhandling.Messages;
 
 /**
  * Utility class for parsing and formatting dates and times.
@@ -54,7 +55,7 @@ public class DateTimeParser {
     public static LocalDateTime parse(String dateTimeString) throws DateTimeParseException {
         String trimmed = dateTimeString.trim();
         if (trimmed.isEmpty()) {
-            throw new DateTimeParseException("Empty date/time string", dateTimeString, 0);
+            throw new DateTimeParseException(Messages.emptyDateTime(), dateTimeString, 0);
         }
 
         String datePart;
@@ -119,8 +120,7 @@ public class DateTimeParser {
         String[] dateSegments = datePart.split("/");
 
         if (dateSegments.length < 2 || dateSegments.length > 3) {
-            throw new DateTimeParseException(
-                "Invalid date format, expected day/month or day/month/year", originalInput, 0);
+            throw new DateTimeParseException(Messages.invalidDateFormat(), originalInput, 0);
         }
 
         int day;
@@ -130,7 +130,7 @@ public class DateTimeParser {
             day = Integer.parseInt(dateSegments[0]);
             month = Integer.parseInt(dateSegments[1]);
         } catch (NumberFormatException e) {
-            throw new DateTimeParseException("Invalid day or month value", originalInput, 0);
+            throw new DateTimeParseException(Messages.invalidDayMonthValue(), originalInput, 0);
         }
 
         if (dateSegments.length == 3) {
