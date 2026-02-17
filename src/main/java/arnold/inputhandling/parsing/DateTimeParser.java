@@ -59,6 +59,42 @@ public class DateTimeParser {
     }
 
     /**
+     * Parses the date portion of the input string.
+     *
+     * @param datePart The date string in {@code day/month} or {@code day/month/year} format.
+     * @param originalInput The original full input string (for error reporting).
+     * @return The parsed LocalDate.
+     * @throws DateTimeParseException If the date cannot be parsed.
+     */
+    private static LocalDate parseDate(String datePart, String originalInput) {
+        String[] parts = datePart.split("/");
+        if (parts.length < 2 || parts.length > 3) {
+            throw new DateTimeParseException("Invalid date format, expected day/month or day/month/year",
+                    originalInput, 0);
+        }
+
+        // Get day and month
+        int day;
+        int month;
+        try {
+            day = Integer.parseInt(parts[0]);
+            month = Integer.parseInt(parts[1]);
+        } catch (NumberFormatException e) {
+            throw new DateTimeParseException("Invalid day or month value", originalInput, 0);
+        }
+
+        // Get and parse year
+        if (parts.length == 3) {
+            // Year is provided
+            int year = parseYear(parts[2], originalInput);
+            return LocalDate.of(year, month, day);
+        } else {
+            // Year omitted: use next future occurrence
+            return resolveNextFutureDate(day, month);
+        }
+    }
+
+    /**
      * Parses a year string, supporting both 2-digit and 4-digit years.
      * 2-digit years use a sliding 100-year window: 0-49 map to 2000-2049, 50-99 map to 1950-1999.
      *
