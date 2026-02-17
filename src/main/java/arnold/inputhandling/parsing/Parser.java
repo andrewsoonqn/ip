@@ -55,6 +55,7 @@ public class Parser {
      */
     public Result parse(String input) {
         String[] commandParts = splitCommandFromArguments(input);
+        assert commandParts.length == 2 : "Expected two elements: command name and rest of the text";
         String commandName = commandParts[0];
         String rest = commandParts[1];
 
