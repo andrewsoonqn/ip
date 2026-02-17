@@ -52,11 +52,9 @@ public class Parser {
      * @throws ChatbotArgumentException If a required flag is missing or blank.
      */
     public Result parse(String input) {
-        // Split input into command name and rest of the text
-        // e.g., "deadline report /by 1/12/2026 2359" -> "deadline", "/by 1/12/2026 2359"
-        String[] parts = input.split("\\s+", 2);
-        String commandName = parts[0];
-        String rest = parts.length > 1 ? parts[1] : "";
+        String[] commandParts = splitCommandFromArguments(input);
+        String commandName = commandParts[0];
+        String rest = commandParts[1];
 
         InputHandlingStrategy strategy = strategies.get(commandName);
         if (strategy == null) {
@@ -67,6 +65,21 @@ public class Parser {
         ParsedCommand command = parseFlags(" " + rest, expectedFlags);
 
         return new Result(strategy, command);
+    }
+
+    /**
+     * Splits the input into command name and the rest of the text.
+     * E.g., "deadline report /by 1/12/2026 2359" -> "deadline", "/by 1/12/2026 2359".
+     *
+     * @param input The full raw input string.
+     * @return An array where index 0 is the command name and index 1 is the rest of the text.
+     */
+    private String[] splitCommandFromArguments(String input) {
+        String[] parts = input.split("\\s+", 2);
+        String commandName = parts[0];
+        String rest = parts.length > 1 ? parts[1] : "";
+
+        return new String[] {commandName, rest};
     }
 
 
