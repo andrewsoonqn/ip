@@ -2,6 +2,7 @@ package arnold.datapersistence;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import arnold.chatbotexceptions.StorageException;
 import arnold.tasks.Deadline;
 import arnold.tasks.Event;
 import arnold.tasks.Task;
@@ -137,5 +139,54 @@ public class TaskFileStorageTest {
         storage.load(loadedList);
         Deadline loadedDeadline = (Deadline) loadedList.getTask(1);
         assertTrue(loadedDeadline.toString().contains("14/2/2026 1030"));
+    }
+
+    @Test
+    public void save_readOnlyFile_throwsStorageException() throws IOException {
+        Files.writeString(tempFile, "");
+        tempFile.toFile().setReadOnly();
+
+        taskList.addTask(new Todo("test"));
+        assertThrows(StorageException.class, () -> storage.save(taskList));
+
+        tempFile.toFile().setWritable(true);
+    }
+
+    @Test
+    public void save_readOnlyDirectory_throwsStorageException() throws IOException {
+        Path readOnlyDir = tempDir.resolve("readonly");
+        Files.createDirectory(readOnlyDir);
+        Path fileInReadOnlyDir = readOnlyDir.resolve("tasks.json");
+        readOnlyDir.toFile().setReadOnly();
+
+        TaskFileStorage readOnlyStorage = new TaskFileStorage(fileInReadOnlyDir.toString());
+        taskList.addTask(new Todo("test"));
+        assertThrows(StorageException.class, () -> readOnlyStorage.save(taskList));
+
+        readOnlyDir.toFile().setWritable(true);
+    }
+
+    @Test
+    public void save_emptyList_success() {
+        storage.save(taskList);
+
+        TaskList loadedList = TaskList.create(new NullStorage());
+        storage.load(loadedList);
+        assertEquals(0, loadedList.getSize());
+    }
+
+    @Test
+    public void save_overwritesPreviousData() {
+        taskList.addTask(new Todo("old task"));
+        storage.save(taskList);
+
+        TaskList newList = TaskList.create(new NullStorage());
+        newList.addTask(new Todo("new task"));
+        storage.save(newList);
+
+        TaskList loadedList = TaskList.create(new NullStorage());
+        storage.load(loadedList);
+        assertEquals(1, loadedList.getSize());
+        assertEquals("new task", loadedList.getTask(1).getDescription());
     }
 }
