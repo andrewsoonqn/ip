@@ -210,7 +210,7 @@ Arnold automatically saves your tasks to `./data/tasks.json` after every command
 
 ## Date & Time Format
 
-Arnold accepts flexible date and time input, both the year and the time are optional.
+Arnold accepts flexible date and time input. Both the year and the time are optional.
 
 ### Date
 
