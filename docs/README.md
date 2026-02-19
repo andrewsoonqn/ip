@@ -23,7 +23,7 @@ Add a simple task without any date or time.
 
 **Expected output**:
 ```
-Got it! I've added this task:
+Got it. I've added this todo:
   [T][ ] read book
 Now you have 1 task in the list.
 ```
@@ -40,7 +40,7 @@ Add a task with a due date and time.
 
 **Expected output**:
 ```
-Got it! I've added this task:
+Got it. I've added this deadline:
   [D][ ] submit report (by: 1/12/2026 2359)
 Now you have 2 tasks in the list.
 ```
@@ -62,7 +62,7 @@ Add a task with both start and end times.
 
 **Expected output**:
 ```
-Got it! I've added this task:
+Got it. I've added this event:
   [E][ ] attend meeting (from: 1/12/2026 1000 to: 1/12/2026 1200)
 Now you have 3 tasks in the list.
 ```
@@ -80,9 +80,9 @@ Display all tasks in your task list.
 **Expected output**:
 ```
 Here are the tasks in your list:
-1. [T][ ] read book
-2. [D][ ] submit report (by: 1 Dec 2026 11:59 PM)
-3. [E][ ] attend meeting (from: 1 Dec 2026 10:00 AM to: 1 Dec 2026 12:00 PM)
+1.[T][ ] read book
+2.[D][ ] submit report (by: 1/12/2026 2359)
+3.[E][ ] attend meeting (from: 1/12/2026 1000 to: 1/12/2026 1200)
 ```
 
 **Task Status Symbols**:
@@ -151,7 +151,7 @@ Search for tasks containing a specific keyword (case-insensitive).
 **Expected output**:
 ```
 Here are the matching tasks in your list:
-1. [E][ ] attend meeting (from: 1 Dec 2026 10:00 AM to: 1 Dec 2026 12:00 PM)
+1.[E][ ] attend meeting (from: 1/12/2026 1000 to: 1/12/2026 1200)
 ```
 
 ---
@@ -179,7 +179,7 @@ Exit Arnold and close the application.
 
 **Expected output**:
 ```
-Bye! Hope to see you again soon!
+Bye. Hope to see you again soon!
 ```
 
 ---
