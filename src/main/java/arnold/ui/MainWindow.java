@@ -2,6 +2,8 @@ package arnold.ui;
 
 import arnold.Arnold;
 import arnold.inputhandling.CommandResult;
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -9,11 +11,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
+    private static final double EXIT_DELAY_SECONDS = 3;
+
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -60,5 +65,13 @@ public class MainWindow extends AnchorPane {
             responseBox
         );
         userInput.clear();
+
+        if (result.shouldExit()) {
+            userInput.setDisable(true);
+            sendButton.setDisable(true);
+            PauseTransition delay = new PauseTransition(Duration.seconds(EXIT_DELAY_SECONDS));
+            delay.setOnFinished(event -> Platform.exit());
+            delay.play();
+        }
     }
 }
