@@ -20,7 +20,6 @@ public class StorageException extends ChatbotException {
      * @param cause The underlying cause of the exception.
      */
     public StorageException(String message, Throwable cause) {
-        super(message);
-        initCause(cause);
+        super(message, cause);
     }
 }
