@@ -63,7 +63,7 @@ Add a task with both start and end times.
 **Expected output**:
 ```
 Got it! I've added this task:
-  [E][ ] attend meeting (from: 1 Dec 2026 10:00 AM to: 1 Dec 2026 12:00 PM)
+  [E][ ] attend meeting (from: 1/12/2026 1000 to: 1/12/2026 1200)
 Now you have 3 tasks in the list.
 ```
 
