@@ -31,3 +31,9 @@ jobs:
       - name: Build and check with Gradle
         run: ./gradlew check -x checkstyleMain -x checkstyleTest
 
+      - name: Upload Test Report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report-${{ matrix.platform }}
+          path: build/reports/tests/test/
