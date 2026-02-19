@@ -8,10 +8,9 @@ Arnold is a friendly task management chatbot that helps you keep track of your t
 
 1. Download `arnold.jar` executable from releases [here](https://github.com/andrewsoonqn/ip/releases/latest).
 2. Run the following command within the enclosing folder of the JAR file.
-
-```sh
-java -jar arnold.jar
-```
+   
+   ```sh
+   java -jar arnold.jar
 3. Type commands in the text field and press Enter or click Send.
 4. Type `help` to see all available commands.
 
