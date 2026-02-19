@@ -126,14 +126,11 @@ public final class Messages {
 
     /**
      * Generates an error message indicating that a task description cannot be blank.
-     * The message includes an example usage of the command to guide the user.
      *
-     * @param exampleUsage The example usage string to be included in the error message.
      * @return A formatted error message indicating that the description is blank.
      */
-    public static String blankDescription(String exampleUsage) {
-        return String.format("The description for a task cannot be blank.\nExample usage: %s",
-            exampleUsage);
+    public static String blankDescription() {
+        return "The description for a task cannot be blank.";
     }
 
     /**

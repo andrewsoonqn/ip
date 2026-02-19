@@ -2,6 +2,7 @@ package arnold.inputhandling.strategies.taskcrudstrategies;
 
 import arnold.chatbotexceptions.ChatbotArgumentException;
 import arnold.inputhandling.CommandResult;
+import arnold.inputhandling.ExampleUsage;
 import arnold.inputhandling.Messages;
 import arnold.inputhandling.parsing.ParsedCommand;
 import arnold.inputhandling.strategies.InputHandlingStrategy;
@@ -18,7 +19,8 @@ public abstract class TaskIdStrategy implements InputHandlingStrategy {
         try {
             taskId = Integer.parseInt(command.getDescription());
         } catch (NumberFormatException e) {
-            throw new ChatbotArgumentException(Messages.invalidTaskId(taskList.getSize()));
+            throw new ChatbotArgumentException(
+                ExampleUsage.attach(Messages.invalidTaskId(taskList.getSize()), getExampleUsage()));
         }
         return execute(taskId, taskList);
     }
