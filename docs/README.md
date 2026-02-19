@@ -187,22 +187,6 @@ Bye. Hope to see you again soon!
 
 ---
 
-## Error Handling
-
-### Invalid Commands and Arguments
-
-When a command is invalid or arguments are missing/malformed, Arnold displays an error message in a distinct style. When applicable, error messages include an example of the correct usage to help you fix the command quickly.
-
-### Blank Task Descriptions
-
-All task-creation commands (`todo`, `deadline`, `event`) require a non-blank description. Submitting a command with an empty description produces an error.
-
-### Data File Corruption
-
-If the saved `tasks.json` file is corrupted or unreadable at startup, Arnold starts with an empty task list and notifies you of the load error. No data is silently discarded — the error is surfaced in the chat window.
-
----
-
 ## Data Storage
 
 Arnold automatically saves your tasks to `./data/tasks.json` after every command. Your tasks will be restored when you restart the application, so you never lose track of what needs to be done.
