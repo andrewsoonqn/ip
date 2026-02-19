@@ -2,7 +2,7 @@
 
 Arnold is a friendly task management chatbot that helps you keep track of your todos, deadlines, and events. With a simple command-line style interface and persistent storage, Arnold makes task management effortless.
 
-![Product screenshot](images/ui.png)
+![Product screenshot](Ui.png)
 
 ## Quick Start
 
