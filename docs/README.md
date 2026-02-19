@@ -48,7 +48,7 @@ Got it. I've added this deadline:
 Now you have 2 tasks in the list.
 ```
 
-See [Date & Time Format](#date--time-format) for the full range of accepted inputs.
+See [Date and Time Format](#date--time-format) for the full range of accepted inputs.
 
 ---
 
@@ -67,7 +67,7 @@ Got it. I've added this event:
 Now you have 3 tasks in the list.
 ```
 
-See [Date & Time Format](#date--time-format) for the full range of accepted inputs.
+See [Date and Time Format](#date--time-format) for the full range of accepted inputs.
 
 ---
 
@@ -208,7 +208,7 @@ Arnold automatically saves your tasks to `./data/tasks.json` after every command
 
 ---
 
-## Date & Time Format
+## Date and Time Format
 
 Arnold accepts flexible date and time input. Both the year and the time are optional.
 
