@@ -147,6 +147,13 @@ public final class Messages {
         return String.format("You are missing a required flag: /%s", flagName);
     }
 
+    /**
+     * Generates an error message indicating that a duplicate flag has been detected.
+     * This message specifies the name of the duplicate flag to help the user identify the issue.
+     *
+     * @param flagName The name of the flag that has been duplicated.
+     * @return A formatted error message specifying the duplicate flag.
+     */
     public static String duplicateFlag(String flagName) {
         return String.format(
             "Duplicate flag detected: /%s. "
