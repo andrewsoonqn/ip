@@ -126,14 +126,11 @@ public final class Messages {
 
     /**
      * Generates an error message indicating that a task description cannot be blank.
-     * The message includes an example usage of the command to guide the user.
      *
-     * @param exampleUsage The example usage string to be included in the error message.
      * @return A formatted error message indicating that the description is blank.
      */
-    public static String blankDescription(String exampleUsage) {
-        return String.format("The description for a task cannot be blank.\nExample usage: %s",
-            exampleUsage);
+    public static String blankDescription() {
+        return "The description for a task cannot be blank.";
     }
 
     /**
@@ -145,6 +142,20 @@ public final class Messages {
      */
     public static String missingFlag(String flagName) {
         return String.format("You are missing a required flag: /%s", flagName);
+    }
+
+    /**
+     * Generates an error message indicating that a duplicate flag has been detected.
+     * This message specifies the name of the duplicate flag to help the user identify the issue.
+     *
+     * @param flagName The name of the flag that has been duplicated.
+     * @return A formatted error message specifying the duplicate flag.
+     */
+    public static String duplicateFlag(String flagName) {
+        return String.format(
+            "Duplicate flag detected: /%s. "
+                + "Please provide only one value for this flag.",
+            flagName);
     }
 
     /**
@@ -161,5 +172,17 @@ public final class Messages {
 
     public static String helpHeader() {
         return "Available commands:\n";
+    }
+
+    public static String emptyDateTime() {
+        return "Empty date/time string";
+    }
+
+    public static String invalidDateFormat() {
+        return "Invalid date format, expected day/month or day/month/year";
+    }
+
+    public static String invalidDayMonthValue() {
+        return "Invalid day or month value";
     }
 }
