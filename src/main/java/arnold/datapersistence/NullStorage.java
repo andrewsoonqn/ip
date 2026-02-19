@@ -25,4 +25,14 @@ public class NullStorage implements Storage {
     public void save(TaskList taskList) {
         // Do nothing
     }
+
+    /**
+     * Registers a listener to be notified of storage events.
+     *
+     * @param listener The listener to register.
+     */
+    @Override
+    public void setEventListener(StorageEventListener listener) {
+        // Do nothing
+    }
 }
