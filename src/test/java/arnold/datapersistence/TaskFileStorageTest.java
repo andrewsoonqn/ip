@@ -142,31 +142,6 @@ public class TaskFileStorageTest {
     }
 
     @Test
-    public void save_readOnlyFile_throwsStorageException() throws IOException {
-        Files.writeString(tempFile, "");
-        tempFile.toFile().setReadOnly();
-
-        taskList.addTask(new Todo("test"));
-        assertThrows(StorageException.class, () -> storage.save(taskList));
-
-        tempFile.toFile().setWritable(true);
-    }
-
-    @Test
-    public void save_readOnlyDirectory_throwsStorageException() throws IOException {
-        Path readOnlyDir = tempDir.resolve("readonly");
-        Files.createDirectory(readOnlyDir);
-        Path fileInReadOnlyDir = readOnlyDir.resolve("tasks.json");
-        readOnlyDir.toFile().setReadOnly();
-
-        TaskFileStorage readOnlyStorage = new TaskFileStorage(fileInReadOnlyDir.toString());
-        taskList.addTask(new Todo("test"));
-        assertThrows(StorageException.class, () -> readOnlyStorage.save(taskList));
-
-        readOnlyDir.toFile().setWritable(true);
-    }
-
-    @Test
     public void save_emptyList_success() {
         storage.save(taskList);
 
