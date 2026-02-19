@@ -148,7 +148,10 @@ public final class Messages {
     }
 
     public static String duplicateFlag(String flagName) {
-        return String.format("Duplicate flag detected: /%s. Please provide only one value for this flag.", flagName);
+        return String.format(
+            "Duplicate flag detected: /%s. "
+                + "Please provide only one value for this flag.",
+            flagName);
     }
 
     /**
