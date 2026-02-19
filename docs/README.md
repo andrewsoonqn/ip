@@ -4,7 +4,7 @@ Arnold is a friendly task management chatbot that helps you keep track of your t
 
 ![Product screenshot](images/ui.png)
 
-## Quick Startlist
+## Quick Start
 
 1. Download the latest release of Arnold
 2. Double-click the JAR file to launch the application
