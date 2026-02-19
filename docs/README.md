@@ -11,6 +11,7 @@ Arnold is a friendly task management chatbot that helps you keep track of your t
    
    ```sh
    java -jar arnold.jar
+   ```
 3. Type commands in the text field and press Enter or click Send.
 4. Type `help` to see all available commands.
 
@@ -48,7 +49,7 @@ Got it. I've added this deadline:
 Now you have 2 tasks in the list.
 ```
 
-See [Date and Time Format](#date--time-format) for the full range of accepted inputs.
+See [Date and Time Format](#date-and-time-format) for the full range of accepted inputs.
 
 ---
 
@@ -67,7 +68,7 @@ Got it. I've added this event:
 Now you have 3 tasks in the list.
 ```
 
-See [Date and Time Format](#date--time-format) for the full range of accepted inputs.
+See [Date and Time Format](#date-and-time-format) for the full range of accepted inputs.
 
 ---
 
