@@ -36,7 +36,6 @@ public class FileWriter {
      * @throws StorageException If the file cannot be created.
      */
     public static void createFile(String filePath) {
-        assert !Files.exists(Paths.get(filePath)) : "createFile should not be called if file already exists";
         try {
             Files.createFile(Paths.get(filePath));
         } catch (IOException e) {
