@@ -1,13 +1,12 @@
 package arnold.inputhandling.parsing;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import arnold.chatbotexceptions.ChatbotArgumentException;
 import arnold.chatbotexceptions.NoSuchCommandException;
+import arnold.inputhandling.ExampleUsage;
 import arnold.inputhandling.Messages;
 import arnold.inputhandling.strategies.InputHandlingStrategy;
 
@@ -65,7 +64,7 @@ public class Parser {
         }
 
         String[] expectedFlags = commandFlags.get(commandName);
-        ParsedCommand command = parseFlags(" " + rest, expectedFlags);
+        ParsedCommand command = parseFlags(" " + rest, expectedFlags, strategy);
 
         return new Result(strategy, command);
     }
@@ -86,7 +85,7 @@ public class Parser {
     }
 
 
-    private ParsedCommand parseFlags(String text, String[] expectedFlags) {
+    private ParsedCommand parseFlags(String text, String[] expectedFlags, InputHandlingStrategy strategy) {
         // Split text into description and flag segments
         // e.g., "meeting /from Mon 2pm /to Mon 4pm"
         // -> "meeting", "from Mon 2pm", "to Mon 4pm"
@@ -94,24 +93,26 @@ public class Parser {
 
         String description = flagParts[0].strip();
 
-        Map<String, String> flags =
-            Arrays.stream(flagParts)
-                // Skip description
-                .skip(1)
-                .map(segment -> segment.split("\\s+", 2))
-                // Extracts flag key-value pairs from segment
-                .filter(kv -> kv.length == 2)
-                .collect(Collectors.toMap(
-                    kv -> kv[0].strip(),
-                    kv -> kv[1].strip()
-                ));
+        Map<String, String> flags = new HashMap<>();
+        for (int i = 1; i < flagParts.length; i++) {
+            String[] kv = flagParts[i].split("\\s+", 2);
+            if (kv.length != 2) {
+                continue;
+            }
+            String key = kv[0].strip();
+            String value = kv[1].strip();
+            if (flags.put(key, value) != null) {
+                throw new ChatbotArgumentException(Messages.duplicateFlag(key));
+            }
+        }
 
         // Validates presence of required flags
         for (String flag : expectedFlags) {
             String key = flag.strip();
             String value = flags.get(key);
             if (value == null || value.isBlank()) {
-                throw new ChatbotArgumentException(Messages.missingFlag(key));
+                throw new ChatbotArgumentException(
+                    ExampleUsage.attach(Messages.missingFlag(key), strategy.getExampleUsage()));
             }
             assert flags.containsKey(key) : "Expected flag should be present after validation: " + key;
             assert !flags.get(key).isBlank() : "Expected flag should have non-blank value after validation: " + key;

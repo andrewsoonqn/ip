@@ -1,6 +1,5 @@
 package arnold.inputhandling.strategies;
 
-import arnold.events.EventBus;
 import arnold.inputhandling.CommandResult;
 import arnold.inputhandling.Messages;
 import arnold.inputhandling.parsing.ParsedCommand;
@@ -11,15 +10,14 @@ import arnold.tasks.utils.TaskList;
  */
 public class ExitStrategy implements InputHandlingStrategy {
     /**
-     * Handles the exit command by publishing a shutdown event.
+     * Handles the exit command by returning an exit result.
      *
      * @param command The parsed command (not used).
      * @param taskList The task list (not used).
-     * @return The goodbye message.
+     * @return The goodbye message with exit signal.
      */
     @Override
     public CommandResult handleInput(ParsedCommand command, TaskList taskList) {
-        EventBus.getInstance().publishShutdown();
         return CommandResult.exit(Messages.bye());
     }
 

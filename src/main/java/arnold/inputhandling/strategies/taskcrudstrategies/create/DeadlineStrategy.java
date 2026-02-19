@@ -2,6 +2,7 @@ package arnold.inputhandling.strategies.taskcrudstrategies.create;
 
 import java.time.LocalDateTime;
 
+import arnold.inputhandling.ExampleUsage;
 import arnold.inputhandling.Messages;
 import arnold.inputhandling.parsing.DateTimeParser;
 import arnold.inputhandling.parsing.ParsedCommand;
@@ -22,7 +23,7 @@ public class DeadlineStrategy extends CreateTaskStrategy {
     @Override
     protected Task getTask(ParsedCommand command) {
         LocalDateTime parsedBy = DateTimeParser.parseWithErrorMessage(
-            command.getFlag("by"), Messages.invalidDeadline());
+            command.getFlag("by"), ExampleUsage.attach(Messages.invalidDeadline(), getExampleUsage()));
 
         return new Deadline(command.getDescription(), parsedBy);
     }
