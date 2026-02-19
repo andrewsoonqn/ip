@@ -141,7 +141,7 @@ Now you have 2 tasks in the list.
 
 ### Finding Tasks: `find`
 
-Search for tasks containing a specific keyword (case-insensitive).
+Search for tasks containing a specific keyword. The search is case-insensitive and matches any part of the task description.
 
 **Format**: `find <keyword>`
 
@@ -164,13 +164,13 @@ Display a list of all available commands with examples.
 **Example**: `help`
 
 **Expected output**:
-A list of all available commands with examples.
+A list of all available commands with descriptions and usage examples.
 
 ---
 
 ### Exiting the Application: `bye`
 
-Exit Arnold and close the application.
+Exit Arnold and close the application after a short pause. Input fields and buttons will be disabled during this pause.
 
 **Format**: `bye`
 
@@ -180,6 +180,22 @@ Exit Arnold and close the application.
 ```
 Bye. Hope to see you again soon!
 ```
+
+---
+
+## Error Handling
+
+### Invalid Commands and Arguments
+
+When a command is invalid or arguments are missing/malformed, Arnold displays an error message in a distinct style. Every error message includes an example of the correct usage to help you fix the command quickly.
+
+### Blank Task Descriptions
+
+All task-creation commands (`todo`, `deadline`, `event`) require a non-blank description. Submitting a command with an empty description produces an error.
+
+### Data File Corruption
+
+If the saved `tasks.json` file is corrupted or unreadable at startup, Arnold starts with an empty task list and notifies you of the load error. No data is silently discarded — the error is surfaced in the chat window.
 
 ---
 
