@@ -17,7 +17,7 @@ Arnold provides a seamless interface to unlock everlasting memory. *Never forget
 java -jar arnold.jar
 ```
 
-3. Launch the `help` or `start` commands in the Arnold app interface to learn about what you can do with Arnold.
+3. Launch the `help` command in the Arnold app interface to learn about what you can do with Arnold.
 4. Add your tasks and free your mind! 🧠🎉
 
 ## Features
