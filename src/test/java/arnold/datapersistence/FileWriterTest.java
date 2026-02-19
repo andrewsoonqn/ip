@@ -1,7 +1,7 @@
 package arnold.datapersistence;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
@@ -53,8 +53,8 @@ public class FileWriterTest {
         Files.createFile(file);
         // createFile should never be called when the file already exists;
         // if it is, the user must be alerted via StorageException
-        assertThrows(arnold.chatbotexceptions.StorageException.class,
-                () -> FileWriter.createFile(file.toString()));
+        assertThrows(arnold.chatbotexceptions.StorageException.class, () ->
+            FileWriter.createFile(file.toString()));
     }
 
     @Test
