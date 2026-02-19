@@ -41,7 +41,7 @@ Add a task with a due date and time.
 **Expected output**:
 ```
 Got it! I've added this task:
-  [D][ ] submit report (by: 1 Dec 2026 11:59 PM)
+  [D][ ] submit report (by: 1/12/2026 2359)
 Now you have 2 tasks in the list.
 ```
 
