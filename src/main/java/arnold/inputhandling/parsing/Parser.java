@@ -1,10 +1,8 @@
 package arnold.inputhandling.parsing;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import arnold.chatbotexceptions.ChatbotArgumentException;
 import arnold.chatbotexceptions.NoSuchCommandException;
@@ -94,17 +92,18 @@ public class Parser {
 
         String description = flagParts[0].strip();
 
-        Map<String, String> flags =
-            Arrays.stream(flagParts)
-                // Skip description
-                .skip(1)
-                .map(segment -> segment.split("\\s+", 2))
-                // Extracts flag key-value pairs from segment
-                .filter(kv -> kv.length == 2)
-                .collect(Collectors.toMap(
-                    kv -> kv[0].strip(),
-                    kv -> kv[1].strip()
-                ));
+        Map<String, String> flags = new HashMap<>();
+        for (int i = 1; i < flagParts.length; i++) {
+            String[] kv = flagParts[i].split("\\s+", 2);
+            if (kv.length != 2) {
+                continue;
+            }
+            String key = kv[0].strip();
+            String value = kv[1].strip();
+            if (flags.put(key, value) != null) {
+                throw new ChatbotArgumentException(Messages.duplicateFlag(key));
+            }
+        }
 
         // Validates presence of required flags
         for (String flag : expectedFlags) {

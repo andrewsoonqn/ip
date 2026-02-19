@@ -148,6 +148,20 @@ public final class Messages {
     }
 
     /**
+     * Generates an error message indicating that a duplicate flag has been detected.
+     * This message specifies the name of the duplicate flag to help the user identify the issue.
+     *
+     * @param flagName The name of the flag that has been duplicated.
+     * @return A formatted error message specifying the duplicate flag.
+     */
+    public static String duplicateFlag(String flagName) {
+        return String.format(
+            "Duplicate flag detected: /%s. "
+                + "Please provide only one value for this flag.",
+            flagName);
+    }
+
+    /**
      * Generates an error message indicating that a task index is out of bounds.
      * The message specifies the valid range of task indices based on the total number of tasks.
      *
@@ -161,5 +175,17 @@ public final class Messages {
 
     public static String helpHeader() {
         return "Available commands:\n";
+    }
+
+    public static String emptyDateTime() {
+        return "Empty date/time string";
+    }
+
+    public static String invalidDateFormat() {
+        return "Invalid date format, expected day/month or day/month/year";
+    }
+
+    public static String invalidDayMonthValue() {
+        return "Invalid day or month value";
     }
 }
