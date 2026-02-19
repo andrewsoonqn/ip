@@ -191,7 +191,7 @@ Bye. Hope to see you again soon!
 
 ### Invalid Commands and Arguments
 
-When a command is invalid or arguments are missing/malformed, Arnold displays an error message in a distinct style. Every error message includes an example of the correct usage to help you fix the command quickly.
+When a command is invalid or arguments are missing/malformed, Arnold displays an error message in a distinct style. When applicable, error messages include an example of the correct usage to help you fix the command quickly.
 
 ### Blank Task Descriptions
 
