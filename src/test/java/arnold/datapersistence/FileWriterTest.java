@@ -1,5 +1,6 @@
 package arnold.datapersistence;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -47,12 +48,13 @@ public class FileWriterTest {
     }
 
     @Test
-    public void createFile_alreadyExists_doesNotThrow() throws IOException {
+    public void createFile_alreadyExists_throwsStorageException() throws IOException {
         Path file = tempDir.resolve("existing.txt");
         Files.createFile(file);
-        // Should not throw, just logs error
-        FileWriter.createFile(file.toString());
-        assertTrue(Files.exists(file));
+        // createFile should never be called when the file already exists;
+        // if it is, the user must be alerted via StorageException
+        assertThrows(arnold.chatbotexceptions.StorageException.class,
+                () -> FileWriter.createFile(file.toString()));
     }
 
     @Test
